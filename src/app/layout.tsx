@@ -6,6 +6,8 @@ import InteractiveGrid from "~/components/InteractiveGrid";
 import SmoothScroll from "~/components/LenisWrapper";
 import { CustomPointerContextProvider } from "~/context/custom-pointer-context";
 import CustomPointer from "~/components/CustomPointer";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+import Error from "./global-error";
 
 const copyright_font = localFont({
   src: "../../public/fonts/Copyright.woff2",
