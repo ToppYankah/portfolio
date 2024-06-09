@@ -9,6 +9,10 @@ export default {
         sans: ["var(--font-ibm-plex)", ...fontFamily.sans],
         serif: ["var(--font-copyright)", ...fontFamily.serif],
       },
+      backgroundColor: {
+        inverted: 'var(--foreground-hex)',
+        color: 'var(--background-hex)',
+      },
     },
   },
   plugins: [],

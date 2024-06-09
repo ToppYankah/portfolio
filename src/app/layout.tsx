@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import { IBM_Plex_Sans } from "next/font/google";
 import localFont from "next/font/local";
+import InteractiveGrid from "~/components/InteractiveGrid";
 
 const copyright_font = localFont({
   src: "../../public/fonts/Copyright.woff2",
@@ -29,7 +30,10 @@ export default function RootLayout({
       lang="en"
       className={`${copyright_font.variable} ${ibm_plex_sans.className}`}
     >
-      <body>{children}</body>
+      <body>
+        <InteractiveGrid />
+        {children}
+      </body>
     </html>
   );
 }

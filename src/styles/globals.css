@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --foreground-hex: #1c110a;
+    --background-hex: #e0ddcf;
+    --custom-timing: cubic-bezier(0.15, 0.86, 0.66, 0.99);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --foreground-hex: #e0ddcf;
+        --background-hex: #040f16;
+        --background-hex: #080808;
+        --background-hex: #000;
+    }
+}
+
+body {
+    overflow-x: hidden;
+    color: var(--foreground-hex);
+    background: var(--background-hex);
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 2px;
+}
+
+#interactive-grid .grid-tile {
+    opacity: 0;
+    transition: opacity 0.5s linear;
+    background-color: var(--foreground-hex);
+}
+
+#interactive-grid .grid-tile.active {
+    opacity: 0.05;
+    transition: none;
+}
