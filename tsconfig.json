@@ -36,7 +36,8 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.js",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/**/*.ts" // Added to fix the error
   ],
   "exclude": ["node_modules"]
 }

@@ -41,3 +41,18 @@ body {
     opacity: 0.05;
     transition: none;
 }
+
+
+#custom-pointer {
+    @apply pointer-events-none fixed left-1/2 top-1/2 z-[1000] min-h-[0.75rem] min-w-[0.75rem] bg-white;
+    transition: all 0.3s ease-out;
+    color: var(--background-hex);
+    mix-blend-mode: difference;
+    border-radius: 0.75rem;
+
+}
+
+#custom-pointer.scale {
+    @apply min-h-[2.5rem] min-w-[2.5rem];
+    border-radius: 0px;
+}

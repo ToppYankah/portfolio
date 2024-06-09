@@ -4,6 +4,8 @@ import { IBM_Plex_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import InteractiveGrid from "~/components/InteractiveGrid";
 import SmoothScroll from "~/components/LenisWrapper";
+import { CustomPointerContextProvider } from "~/context/custom-pointer-context";
+import CustomPointer from "~/components/CustomPointer";
 
 const copyright_font = localFont({
   src: "../../public/fonts/Copyright.woff2",
@@ -15,8 +17,10 @@ const ibm_plex_sans = IBM_Plex_Sans({
   subsets: ["latin"],
 });
 
+const envTag = process.env.NODE_ENV === "production" ? "" : " (Dev Mode)";
+
 export const metadata = {
-  title: "Kenny Yankz",
+  title: "Kenny Yankz" + envTag,
   description: "Porfolio website showcasing Kenny's projects",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
@@ -32,8 +36,11 @@ export default function RootLayout({
       className={`${copyright_font.variable} ${ibm_plex_sans.className}`}
     >
       <body>
-        <InteractiveGrid />
-        <SmoothScroll>{children}</SmoothScroll>
+        <CustomPointerContextProvider>
+          <InteractiveGrid />
+          <SmoothScroll>{children}</SmoothScroll>
+          <CustomPointer />
+        </CustomPointerContextProvider>
       </body>
     </html>
   );
