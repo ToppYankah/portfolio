@@ -3,6 +3,7 @@ import "~/styles/globals.css";
 import { IBM_Plex_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import InteractiveGrid from "~/components/InteractiveGrid";
+import SmoothScroll from "~/components/LenisWrapper";
 
 const copyright_font = localFont({
   src: "../../public/fonts/Copyright.woff2",
@@ -32,7 +33,7 @@ export default function RootLayout({
     >
       <body>
         <InteractiveGrid />
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
