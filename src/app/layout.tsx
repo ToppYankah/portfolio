@@ -18,7 +18,9 @@ const ibm_plex_sans = IBM_Plex_Sans({
   subsets: ["latin"],
 });
 
-const envTag = process.env.NODE_ENV === "production" ? "" : " (Dev Mode)";
+const devTag = " (Dev Mode)";
+const prodTag = " | Frontend Developer";
+const envTag = process.env.NODE_ENV === "production" ? prodTag : devTag;
 
 export const metadata = {
   title: "Kenny Yankz" + envTag,

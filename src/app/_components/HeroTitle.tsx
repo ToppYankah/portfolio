@@ -56,7 +56,7 @@ export default ({
         <div className="flex items-center ">
           <div ref={upperRefContainer} className="">
             <h1
-              className={`after:bg-color relative translate-x-0 whitespace-nowrap after:absolute after:inset-0 after:translate-y-full after:scale-x-[1.5] after:content-['_'] ${isAnimationComplete ? "after:bg-transparent" : ""} perspective-400`}
+              className={`after:bg-color relative translate-x-0 whitespace-nowrap perspective-400`}
             >
               <span ref={upperRef} className="block font-serif text-[6.2rem] max-[950px]:text-[5rem] max-[800px]:text-[4rem] text-center sm:text-left">
                 Sculpting
@@ -69,7 +69,7 @@ export default ({
         </div>
         <div className="relative">
           <h1
-            className={`after:bg-color whitespace-nowrap font-serif text-[6.2rem] max-[950px]:text-[5rem] max-[800px]:text-[4rem] after:absolute after:inset-0 after:translate-y-full after:scale-x-[1.5] after:content-['_'] ${isAnimationComplete ? "after:bg-transparent" : ""} perspective-400 relative min-h-[6rem] `}
+            className={`after:bg-color whitespace-nowrap font-serif text-[6.2rem] max-[950px]:text-[5rem] max-[800px]:text-[4rem] perspective-400 relative min-h-[6rem] `}
           >
             <span ref={middleRef} className="block sm:relative absolute left-1/2 -translate-x-1/2">
               Digital Dreams
@@ -87,7 +87,7 @@ export default ({
           </div>
           <div ref={lowerRefContainer} className="">
             <h1
-              className={`after:bg-color relative translate-x-0 whitespace-nowrap text-[6.2rem] max-[950px]:text-[5rem] max-[800px]:text-[4rem] after:absolute after:inset-0 after:translate-y-full after:scale-x-[1.5] after:content-['_'] ${isAnimationComplete ? "after:bg-transparent" : ""} perspective-400`}
+              className={`after:bg-color relative translate-x-0 whitespace-nowrap text-[6.2rem] max-[950px]:text-[5rem] max-[800px]:text-[4rem] perspective-400`}
             >
               <span ref={lowerRef} className="block font-serif text-center sm:text-left">
                 into Reality

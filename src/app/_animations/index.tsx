@@ -8,17 +8,91 @@ gsap.registerPlugin(ScrollTrigger);
 export const animateLogo = (
   lettersRef: MutableRefObject<(HTMLSpanElement | null)[]>,
 ) => {
-  return gsap.fromTo(
+    return gsap.fromTo(
     lettersRef.current,
-    { yPercent: 100 },
-    {
-      delay: 2,
+      {
+        opacity: 0, 
+        rotateX: -90,
+        yPercent: 50, 
+        filter: "blur(8px)" 
+    },
+      {
+      opacity: 1,
       yPercent: 0,
-      duration: 1,
-      stagger: 0.2,
-      ease: "expo.out",
+      rotateX: 0,
+      filter: "blur(0px)",
+      duration: .5,
+      stagger: 0.1,
     },
   );
+};
+
+export const animatePortfolioDate = (
+  dateRef: MutableRefObject<HTMLParagraphElement | null>,
+  portfolioRef: MutableRefObject<HTMLParagraphElement | null>,
+) => {
+  return gsap
+    .fromTo(
+      [portfolioRef.current, dateRef.current],
+      {
+        opacity: 0,
+        rotateX: -45,
+        yPercent: 50,
+        filter: "blur(8px)"
+      },
+      {
+        opacity: 1,
+        yPercent: 0,
+        rotateX: 0,
+        filter: "blur(0px)",
+        duration: 1,
+        stagger: 0.2,
+      },
+    );
+};
+
+export const animateLinks = (
+  linksRef: MutableRefObject<(HTMLDivElement | null)[]>,
+) => {
+  return gsap
+    .fromTo(
+      linksRef,
+      {
+        opacity: 0,
+        yPercent: 50,
+        filter: "blur(8px)"
+      },
+      {
+        opacity: 1,
+        yPercent: 0,
+        filter: "blur(0px)",
+        duration: 1,
+        stagger: 0.2,
+      },
+    );
+};
+
+export const animateSocials = (
+  socialsRef: MutableRefObject<(HTMLDivElement | null)[]>,
+) => {
+  return gsap
+    .fromTo(
+      socialsRef.current,
+      {
+        opacity: 0,
+        rotateX: -45,
+        yPercent: 50,
+        filter: "blur(8px)"
+      },
+      {
+        opacity: 1,
+        yPercent: 0,
+        rotateX: 0,
+        filter: "blur(0px)",
+        duration: .5,
+        stagger: 0.2,
+      },
+    );
 };
 
 export const startHeroAnimations = (
@@ -43,6 +117,7 @@ export const startHeroAnimations = (
           duration: 2,
         },
         {
+          delay: 1,
           yPercent: 0,
           stagger: 0.2,
           duration: 1.5,
@@ -54,20 +129,24 @@ export const startHeroAnimations = (
       gsap.fromTo(
         [upperRef.current, middleRef.current, lowerRef.current],
         {
-          filter: "blur(15px)",
-          rotateX: -30,
+          opacity: 0,
+          rotateX: -40,
           duration: 2,
+          filter: "blur(15px)",
         },
         {
-          filter: "blur(0px)",
+          opacity: 1,
           rotateX: 0,
           stagger: 0.2,
-          duration: 2,
+          duration: 2.5,
+          filter: "blur(0px)",
           ease: "expo.out",
         },
       ),
       "<"
     )
+    .add(gsap.fromTo(badgeRef.current, { yPercent: 50, xPercent: -10, opacity: 0, filter: "blur(8px)" }, { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1, delay: 1 }), "<")
+    .add(gsap.fromTo(["#short-bio", "#short-note"], { yPercent: 50, opacity: 0, filter: "blur(8px)" }, { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1 }), "<")
     .add(
       gsap.to(
         upperContainerRef.current,
@@ -86,9 +165,7 @@ export const startHeroAnimations = (
       }),
       "<",
     )
-    .add(gsap.fromTo("#short-bio", { yPercent: 50, opacity: 0, filter: "blur(8px)" }, { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1 }), "<")
-    .add(gsap.fromTo(badgeRef.current, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 1 }), "<")
-    .add(gsap.to(badgeRef.current, { xPercent: 10, duration: .5 }), "-=0.5")
+    .add(gsap.to(badgeRef.current, { xPercent: 10, duration: .5 }), "<")
     .add(
       gsap.fromTo(
         "#scroll-indicator .wrapper",
@@ -110,7 +187,6 @@ export const startHeroAnimations = (
       ),
       "<",
     )
-    .add(gsap.fromTo("#short-note", { yPercent: 50, opacity: 0, filter: "blur(8px)" }, { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1 }))
     .add(gsap.to(badgeImageRef.current, { rotate: 360, repeat: -1, duration: 10, ease: "none" }), "<");
 };
 

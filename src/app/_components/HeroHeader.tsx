@@ -1,7 +1,7 @@
 "use client";
-import { useLayoutEffect, useRef } from "react";
+import { LegacyRef, MutableRefObject, useLayoutEffect, useRef } from "react";
 import NavLink from "~/components/NavLink";
-import { animateLogo } from "../_animations";
+import { animateLinks, animateLogo } from "../_animations";
 
 export default function HeroHeader() {
   return (
@@ -14,20 +14,30 @@ export default function HeroHeader() {
 }
 
 const HeroNav = () => {
+  const navRefs: MutableRefObject<(HTMLDivElement | null)[]> = useRef([]);
+
+  useLayoutEffect(() => {
+    animateLinks(navRefs);
+  }, []);
+
   return (
-    <nav className="relative col-start-1 col-end-2 row-start-1 row-end-2 flex gap-5 sm:gap-10">
-      <NavLink className="self-center" href="#">
-        Bio
-      </NavLink>
-      <NavLink className="self-center" href="#">
-        Projects
-      </NavLink>
+    <nav className="relative col-start-1 col-end-2 row-start-1 row-end-2 flex gap-5 sm:gap-8">
+      <div ref={(ref) => {navRefs.current?.push(ref)}} className="flex">
+        <NavLink className="self-center" href="#">
+          Bio
+        </NavLink>
+      </div>
+      <div ref={(ref) => {navRefs.current?.push(ref)}} className="flex">
+        <NavLink className="self-center" href="#">
+          Works
+        </NavLink>
+      </div>
     </nav>
   );
 };
 
 const HeroLogo = () => {
-  const lettersRef = useRef<(HTMLSpanElement | null)[]>([]);
+  const lettersRef: MutableRefObject<(HTMLSpanElement | null)[]> = useRef([]);
 
   useLayoutEffect(() => {
     animateLogo(lettersRef);
@@ -35,8 +45,10 @@ const HeroLogo = () => {
 
   return (
     <div className="col-start-2 col-end-4 flex justify-center">
-      <a href="#" id="logo" className="font-serif text-[1.5em] font-black ">
-        <object data="/icons/logo.svg" className="text-inverted" width={50} type="image/svg+xml" />
+      <a href="#" id="logo" className="flex text-inverted font-serif text-2xl font-black">
+        {"kenny.".split('').map((char, iindex) => {
+          return <p ref={(ref)=> {if(ref) lettersRef.current?.push(ref)}} key={iindex}>{char}</p>; 
+        })}
       </a>
     </div>
   );
@@ -46,7 +58,7 @@ const HeroContact = () => {
   return (
     <div className="col-start-4 col-end-5 row-start-1 row-end-2 flex justify-end">
       <NavLink href="#" className="place-self-start self-center whitespace-nowrap">
-        Download Resumé
+        Let's talk
       </NavLink>
     </div>
   );
