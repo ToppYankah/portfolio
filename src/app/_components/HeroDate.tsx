@@ -1,3 +1,5 @@
+"use client";
+
 export default function HeroDate() {
     return (
       <div className="col-start-1 col-end-2 row-start-3 row-end-4 font-serif">

@@ -1,7 +1,6 @@
 "use client";
 import {
   LegacyRef,
-  useEffect,
   useLayoutEffect,
   useRef,
   useState
@@ -9,7 +8,6 @@ import {
 import Magnetic from "~/components/Magnetic";
 import useThemeDetector from "~/hooks/theme-detector";
 import { startHeroAnimations } from "../_animations";
-import useMediaQuery from "~/hooks/meda-query";
 
 export default ({
   onAnimationComplete,

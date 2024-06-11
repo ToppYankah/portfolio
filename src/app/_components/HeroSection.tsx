@@ -12,8 +12,6 @@ export default function HeroSection() {
     document.body.style.overflow = "hidden";
   }, []);
 
-
-
   return (
     <SectionLayout
       id="hero"
