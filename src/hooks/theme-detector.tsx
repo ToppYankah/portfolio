@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState } from "react";
 
 export default function useThemeDetector() {
@@ -12,6 +13,6 @@ export default function useThemeDetector() {
       darkThemeMq.addEventListener('change', mqListener);
       return () => darkThemeMq.removeEventListener('change', mqListener);
     }, []);
-    
+
     return isDarkTheme;
 }
