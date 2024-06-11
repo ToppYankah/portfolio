@@ -15,7 +15,7 @@ export default function HeroSection() {
   return (
     <SectionLayout
       id="hero"
-      className="grid-cols-[1fr_50px_50px_1fr] sm:grid-cols-4 grid max-h-[95vh] h-screen grid-rows-[auto_1fr_auto] gap-[20px] p-5 sm:px-[40px] sm:py-[20px] "
+      className="grid-cols-[1fr_50px_50px_1fr] sm:grid-cols-4 grid sm:max-h-[95vh] h-screen grid-rows-[auto_1fr_auto] gap-[20px] p-5 sm:px-[40px] sm:py-[20px] "
     >
       <HeroHeader />
       <HeroTitle onAnimationComplete={() => console.log("done")} />

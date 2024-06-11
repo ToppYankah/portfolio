@@ -1,5 +1,4 @@
 import dynamic from "next/dynamic";
-import HeroSection from "./_components/HeroSection";
 
 const DynamicHeroSection = dynamic(() => import("./_components/HeroSection"), {
   ssr: false,
