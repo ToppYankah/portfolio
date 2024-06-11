@@ -34,11 +34,9 @@ body {
 }
 
 #interactive-grid .grid-tile {
-    /* opacity: 0; */
-    /* transition: opacity 0.5s linear; */
-    /* background-color: var(--foreground-hex); */
-background-color: transparent;
-border-right: 1px solid var(--foreground-light-hex);
+    background-color: transparent;
+    transition: background 0.5s linear;
+    border-right: 1px solid var(--foreground-light-hex);
 }
 
 #interactive-grid .grid-tile.active {

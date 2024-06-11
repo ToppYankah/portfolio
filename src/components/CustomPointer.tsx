@@ -26,7 +26,7 @@ const CustomPointer = () => {
     <div
       ref={pointerRef}
       id="custom-pointer"
-      className={`${hoveredLink ? "scale" : ""} ${hoverText ? "with-content" : ""} hidden sm:flex`}
+      className={`${hoveredLink ? "scale" : ""} ${hoverText ? "with-content" : ""} hidden md:flex`}
     >
       {hoverText ? (
         <p

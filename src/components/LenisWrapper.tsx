@@ -1,6 +1,7 @@
 "use client";
 import Lenis from "lenis";
 import { useEffect } from "react";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
 export default function SmoothScroll({
   children,
@@ -19,7 +20,7 @@ export default function SmoothScroll({
   };
 
   useEffect(() => {
-    startLenis();
+    if(!ScrollTrigger.isTouch) startLenis();
   }, []);
 
   return children;
