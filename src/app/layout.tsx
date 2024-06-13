@@ -4,9 +4,8 @@ import { IBM_Plex_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import CustomPointer from "~/components/CustomPointer";
 import InteractiveGrid from "~/components/InteractiveGrid";
-import SmoothScroll from "~/components/LenisWrapper";
 import { CustomPointerContextProvider } from "~/context/custom-pointer-context";
-
+import SmoothScrollProvider from "~/context/smooth-scroll-context";
 
 const copyright_font = localFont({
   src: "../../public/fonts/Copyright.woff2",
@@ -41,7 +40,7 @@ export default function RootLayout({
       <body>
         <CustomPointerContextProvider>
           <InteractiveGrid />
-          <SmoothScroll>{children}</SmoothScroll>
+          <SmoothScrollProvider>{children}</SmoothScrollProvider>
           <CustomPointer />
         </CustomPointerContextProvider>
       </body>
