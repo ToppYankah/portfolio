@@ -1,13 +1,8 @@
 "use client";
-import {
-  LegacyRef,
-  useLayoutEffect,
-  useRef,
-  useState
-} from "react";
+import { LegacyRef, useLayoutEffect, useRef, useState } from "react";
 import Magnetic from "~/components/Magnetic";
 import useThemeDetector from "~/hooks/theme-detector";
-import { startHeroAnimations } from "../_animations";
+import * as animations from "../_animations";
 
 export default ({
   onAnimationComplete,
@@ -30,7 +25,7 @@ export default ({
   const isDarkTheme = useThemeDetector();
 
   useLayoutEffect(() => {
-    startHeroAnimations(
+    animations.startHeroAnimations(
       upperRef,
       middleRef,
       lowerRef,
@@ -46,53 +41,87 @@ export default ({
     );
   }, []);
 
+  const handleScaleUpRotatingLetters = () => {
+    animations.upscaleRotatingLetters(badgeImageRef);
+  };
+
+  const handleScaleDownRotatingLetters = () => {
+    animations.downscaleRotatingLetters(badgeImageRef);
+  };
+
   return (
     <div
       id="hero-title"
       ref={titleContainerRef}
-      className="col-start-1 col-end-5 sm:col-start-2 sm:col-end-4 row-start-2 row-end-3 flex justify-center"
+      className="col-start-1 col-end-5 row-start-2 row-end-3 flex justify-center sm:col-start-2 sm:col-end-4"
     >
-      <div className="max-w-[60%] sm:max-w-full flex flex-col justify-center">
+      <div className="flex max-w-[90%] sm:max-w-[100%] flex-col justify-center">
         <div className="flex items-center ">
           <div ref={upperRefContainer} className="">
-            <h1
-              className={`after:bg-color relative translate-x-0 whitespace-nowrap perspective-400`}
-            >
-              <span ref={upperRef} className="block font-serif text-[6.2rem] max-[950px]:text-[5rem] max-[800px]:text-[4rem] text-center sm:text-left">
+            <h1 className={`relative whitespace-nowrap perspective-400`}>
+              <span
+                ref={upperRef}
+                className="block font-serif text-[6.89vw] max-[1050px]:text-[9vw] max-[800px]:text-[10vw] max-[500px]:text-[11vw]"
+              >
                 Sculpting
               </span>
-              <span id="short-bio" className="block absolute text-sm font-sans top-1/3 left-full translate-x-8 opacity-90 max-[800px]:hidden">
-                Kenneth Topp Yankah is a front-end software<br />engineer who is passionate about designing<br />and developing digital experiences for web<br />and mobile.
+              <span
+                id="short-bio"
+                className="absolute left-full top-1/3 block translate-x-8 font-sans text-sm opacity-90 max-[800px]:hidden"
+              >
+                Kenneth Topp Yankah is a front-end software
+                <br />
+                engineer who is passionate about designing
+                <br />
+                and developing digital experiences for web
+                <br />
+                and mobile.
               </span>
             </h1>
           </div>
         </div>
         <div className="relative">
-          <h1
-            className={`after:bg-color whitespace-nowrap font-serif text-[6.2rem] max-[950px]:text-[5rem] max-[800px]:text-[4rem] perspective-400 relative min-h-[6rem] `}
-          >
-            <span ref={middleRef} className="block sm:relative absolute left-1/2 -translate-x-1/2">
+          <h1 className={`relative whitespace-nowrap perspective-400`}>
+            <span
+              ref={middleRef}
+              className="block text-center font-serif text-[6.89vw] max-[1050px]:text-[9vw] max-[800px]:text-[10vw] max-[500px]:text-[11vw]"
+            >
               Digital Dreams
             </span>
           </h1>
         </div>
         <div className="relative flex justify-end">
-          <div ref={badgeRef} className="self-center z-10 w-[15%] sm:w-[25%] min-w-[100px] absolute top-full left-0 sm:relative sm:top-0">
-            <img src={`/images/${isDarkTheme ? "dark-fsd" : "light-fsd"}.png`} className="rounded-full w-full aspect-square" ref={badgeImageRef} />
-            <div className="rounded-full w-[75%] aspect-square bg-gray-600 bg-opacity-[0.2] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center overflow-hidden">
+          <div
+            ref={badgeRef}
+            onMouseOver={handleScaleUpRotatingLetters}
+            onMouseOut={handleScaleDownRotatingLetters}
+            className="group absolute left-0 top-full z-10 w-[15%] min-w-[35%] self-center sm:relative sm:top-0 sm:min-w-[25%]"
+          >
+            <img
+              src={`/images/${isDarkTheme ? "dark-fsd2" : "light-fsd2"}.png`}
+              className="aspect-square w-full rounded-full"
+              ref={badgeImageRef}
+            />
+            <div className="absolute left-1/2 top-1/2 flex aspect-square w-[75%] -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden rounded-full bg-gray-600 bg-opacity-[0.2]">
               <Magnetic strength={0.2}>
-                <img src="/images/memoji.png" className="w-[55%]"/>
+                <img src="/images/memoji.png" className="w-[55%]" />
               </Magnetic>
             </div>
           </div>
           <div ref={lowerRefContainer} className="">
-            <h1
-              className={`after:bg-color relative translate-x-0 whitespace-nowrap text-[6.2rem] max-[950px]:text-[5rem] max-[800px]:text-[4rem] perspective-400`}
-            >
-              <span ref={lowerRef} className="block font-serif text-center sm:text-left">
+            <h1 className={`relative whitespace-nowrap perspective-400`}>
+              <span
+                ref={lowerRef}
+                className="block font-serif text-[6.89vw] max-[1050px]:text-[9vw] max-[800px]:text-[10vw] max-[500px]:text-[11vw]"
+              >
                 into Reality
               </span>
-              <span id="short-note" className="absolute text-sm font-sans -bottom-2 right-0">Driven by passion of art</span>
+              <span
+                id="short-note"
+                className="absolute -bottom-2 right-0 font-sans text-sm"
+              >
+                Driven by passion of art
+              </span>
             </h1>
           </div>
         </div>

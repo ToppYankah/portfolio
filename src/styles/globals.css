@@ -4,8 +4,9 @@
 
 :root {
     --foreground-hex: #1c110a;
-    --foreground-light-hex: #1c110a10;
+    --foreground-light-hex: #1c110a0c;
     --background-hex: #e0ddcf;
+    --background-hex: #ffffff;
     --custom-timing: cubic-bezier(0.15, 0.86, 0.66, 0.99);
 }
 

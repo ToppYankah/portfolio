@@ -10,7 +10,7 @@ export default function HeroSocials() {
         animateSocials(socialRefs);
     }, []);
     
-    return <div className="col-start-4 col-end-5 row-start-3 row-end-4 flex items-end justify-end">
+    return <div className="sm:col-start-4 col-start-1 col-end-5 row-start-3 row-end-4 flex items-end justify-end">
         <div ref={(ref) => {socialRefs.current?.push(ref)}}>
             <SocialIcon
                 url="https://github.com/ToppYankah"
@@ -47,16 +47,6 @@ export default function HeroSocials() {
                 fgColor='var(--foreground-hex)'
                 bgColor="#0000"
                 network='twitter'
-                target='_blank'
-                style={{width: "20%", minWidth: 30, maxWidth: 40}}
-            />
-        </div>
-        <div ref={(ref) => {socialRefs.current?.push(ref)}}>
-            <SocialIcon
-                url="https://www.linkedin.com/in/kenneth-yankah/"
-                fgColor='var(--foreground-hex)'
-                bgColor="#0000"
-                network='snapchat'
                 target='_blank'
                 style={{width: "20%", minWidth: 30, maxWidth: 40}}
             />

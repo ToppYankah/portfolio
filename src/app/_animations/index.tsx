@@ -8,20 +8,20 @@ gsap.registerPlugin(ScrollTrigger);
 export const animateLogo = (
   lettersRef: MutableRefObject<(HTMLSpanElement | null)[]>,
 ) => {
-    return gsap.fromTo(
+  return gsap.fromTo(
     lettersRef.current,
-      {
-        opacity: 0, 
-        rotateX: -90,
-        yPercent: 50, 
-        filter: "blur(8px)" 
+    {
+      opacity: 0,
+      rotateX: -90,
+      yPercent: 50,
+      filter: "blur(8px)",
     },
-      {
+    {
       opacity: 1,
       yPercent: 0,
       rotateX: 0,
       filter: "blur(0px)",
-      duration: .5,
+      duration: 0.5,
       stagger: 0.1,
     },
   );
@@ -31,68 +31,65 @@ export const animatePortfolioDate = (
   dateRef: MutableRefObject<HTMLParagraphElement | null>,
   portfolioRef: MutableRefObject<HTMLParagraphElement | null>,
 ) => {
-  return gsap
-    .fromTo(
-      [portfolioRef.current, dateRef.current],
-      {
-        opacity: 0,
-        rotateX: -45,
-        yPercent: 50,
-        filter: "blur(8px)"
-      },
-      {
-        opacity: 1,
-        yPercent: 0,
-        rotateX: 0,
-        filter: "blur(0px)",
-        duration: 1,
-        stagger: 0.2,
-      },
-    );
+  return gsap.fromTo(
+    [portfolioRef.current, dateRef.current],
+    {
+      opacity: 0,
+      rotateX: -45,
+      yPercent: 50,
+      filter: "blur(8px)",
+    },
+    {
+      opacity: 1,
+      yPercent: 0,
+      rotateX: 0,
+      filter: "blur(0px)",
+      duration: 1,
+      stagger: 0.2,
+    },
+  );
 };
 
 export const animateLinks = (
   linksRef: MutableRefObject<(HTMLDivElement | null)[]>,
 ) => {
-  return gsap
-    .fromTo(
-      linksRef,
-      {
-        opacity: 0,
-        yPercent: 50,
-        filter: "blur(8px)"
-      },
-      {
-        opacity: 1,
-        yPercent: 0,
-        filter: "blur(0px)",
-        duration: 1,
-        stagger: 0.2,
-      },
-    );
+  return gsap.fromTo(
+    linksRef,
+    {
+      opacity: 0,
+      yPercent: 50,
+      filter: "blur(8px)",
+    },
+    {
+      opacity: 1,
+      yPercent: 0,
+      filter: "blur(0px)",
+      duration: 1,
+      stagger: 0.2,
+    },
+  );
 };
 
 export const animateSocials = (
   socialsRef: MutableRefObject<(HTMLDivElement | null)[]>,
 ) => {
-  return gsap
-    .fromTo(
-      socialsRef.current,
-      {
-        opacity: 0,
-        rotateX: -45,
-        yPercent: 50,
-        filter: "blur(8px)"
-      },
-      {
-        opacity: 1,
-        yPercent: 0,
-        rotateX: 0,
-        filter: "blur(0px)",
-        duration: .5,
-        stagger: 0.2,
-      },
-    );
+  return gsap.fromTo(
+    socialsRef.current,
+    {
+      opacity: 0,
+      rotateX: -45,
+      yPercent: 50,
+      filter: "blur(8px)",
+    },
+    {
+      opacity: 1,
+      yPercent: 0,
+      rotateX: 0,
+      filter: "blur(0px)",
+      duration: 0.5,
+      stagger: 0.2,
+    },
+  );
 };
 
 export const startHeroAnimations = (
@@ -143,19 +140,30 @@ export const startHeroAnimations = (
           ease: "expo.out",
         },
       ),
-      "<"
+      "<",
     )
-    .add(gsap.fromTo(badgeRef.current, { yPercent: 50, xPercent: -10, opacity: 0, filter: "blur(8px)" }, { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1, delay: 1 }), "<")
-    .add(gsap.fromTo(["#short-bio", "#short-note"], { yPercent: 50, opacity: 0, filter: "blur(8px)" }, { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1 }), "<")
     .add(
-      gsap.to(
-        upperContainerRef.current,
-        {
-          duration: 1,
-          xPercent: -20,
-          ease: "expo.out",
-        },
+      gsap.fromTo(
+        badgeRef.current,
+        { yPercent: 50, xPercent: -10, opacity: 0, filter: "blur(8px)" },
+        { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1, delay: 1 },
       ),
+      "<",
+    )
+    .add(
+      gsap.fromTo(
+        ["#short-bio", "#short-note"],
+        { yPercent: 50, opacity: 0, filter: "blur(8px)" },
+        { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1 },
+      ),
+      "<",
+    )
+    .add(
+      gsap.to(upperContainerRef.current, {
+        duration: 1,
+        xPercent: -20,
+        ease: "expo.out",
+      }),
     )
     .add(
       gsap.to(lowerContainerRef.current, {
@@ -165,7 +173,7 @@ export const startHeroAnimations = (
       }),
       "<",
     )
-    .add(gsap.to(badgeRef.current, { xPercent: 10, duration: .5 }), "<")
+    .add(gsap.to(badgeRef.current, { xPercent: 10, duration: 0.5 }), "<")
     .add(
       gsap.fromTo(
         "#scroll-indicator .wrapper",
@@ -187,11 +195,19 @@ export const startHeroAnimations = (
       ),
       "<",
     )
-    .add(gsap.to(badgeImageRef.current, { rotate: 360, repeat: -1, duration: 10, ease: "none" }), "<");
+    .add(
+      gsap.to(badgeImageRef.current, {
+        rotate: 360,
+        repeat: -1,
+        duration: 10,
+        ease: "none",
+      }),
+      "<",
+    );
 };
 
 const sectionFadeAnimate = () =>
-gsap
+  gsap
     .timeline({
       scrollTrigger: {
         scrub: true,
@@ -207,7 +223,7 @@ gsap
           opacity: 1,
         },
         {
-          opacity: 0,
+          opacity: 1,
         },
       ),
     );
@@ -227,11 +243,29 @@ const titleScrollAnimate = (
     },
   });
 
-  tl
-    .add(gsap.fromTo(upperContainerRef.current, { xPercent: -20 }, { xPercent: -30 }))
-    .add(gsap.fromTo(lowerContainerRef.current, { xPercent: 10 }, { xPercent: 20 }), "<")
-    .add(gsap.fromTo(badgeRef.current, { scale: 1 }, { scale: 1.3 }), "<");
-  
+  tl.add(
+    gsap.fromTo(
+      upperContainerRef.current,
+      { xPercent: -20 },
+      { xPercent: -30 },
+    ),
+  )
+    .add(
+      gsap.fromTo(
+        lowerContainerRef.current,
+        { xPercent: 10 },
+        { xPercent: 20 },
+      ),
+      "<",
+    )
+    .add(
+      gsap.fromTo(
+        badgeRef.current,
+        { scale: 1 },
+        { scale: 1.2, xPercent: -10, yPercent: 10 },
+      ),
+      "<",
+    );
 };
 
 export function animateHeroScrollIndicator(
@@ -244,4 +278,24 @@ export function animateHeroScrollIndicator(
   );
 
   return tween;
+}
+
+export function upscaleRotatingLetters(
+  badgeImageRef: MutableRefObject<HTMLImageElement | null>,
+) {
+  return gsap.to(badgeImageRef.current, {
+    scale: 1.05,
+    duration: 0.5,
+    ease: "expo.out",
+  });
+}
+
+export function downscaleRotatingLetters(
+  badgeImageRef: MutableRefObject<HTMLImageElement | null>,
+) {
+  return gsap.to(badgeImageRef.current, {
+    scale: 1,
+    duration: 0.5,
+    ease: "expo.out",
+  });
 }
