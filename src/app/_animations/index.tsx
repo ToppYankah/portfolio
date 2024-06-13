@@ -101,27 +101,27 @@ export const startHeroAnimations = (
   upperContainerRef: MutableRefObject<HTMLDivElement | null>,
   lowerContainerRef: MutableRefObject<HTMLDivElement | null>,
   titleContainerRef: MutableRefObject<HTMLDivElement | null>,
-  onComplete: () => void,
+  { isMobile, onComplete }: { isMobile: boolean; onComplete: () => void },
 ) => {
   // gsap.timeline().add(slideIn()).add(activateNavLink());
-  gsap
-    .timeline({ onComplete: onComplete })
-    .add(
-      gsap.fromTo(
-        [upperRef.current, middleRef.current, lowerRef.current],
-        {
-          yPercent: 100,
-          duration: 2,
-        },
-        {
-          delay: 1,
-          yPercent: 0,
-          stagger: 0.2,
-          duration: 1.5,
-          ease: "expo.out",
-        },
-      ),
-    )
+  const tl = gsap.timeline({ onComplete: onComplete });
+
+  tl.add(
+    gsap.fromTo(
+      [upperRef.current, middleRef.current, lowerRef.current],
+      {
+        yPercent: 100,
+        duration: 2,
+      },
+      {
+        delay: 1,
+        yPercent: 0,
+        stagger: 0.2,
+        duration: 1.5,
+        ease: "expo.out",
+      },
+    ),
+  )
     .add(
       gsap.fromTo(
         [upperRef.current, middleRef.current, lowerRef.current],
@@ -157,23 +157,26 @@ export const startHeroAnimations = (
         { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1 },
       ),
       "<",
-    )
-    .add(
+    );
+
+  if (!isMobile) {
+    tl.add(
       gsap.to(upperContainerRef.current, {
         duration: 1,
         xPercent: -20,
         ease: "expo.out",
       }),
-    )
-    .add(
+    ).add(
       gsap.to(lowerContainerRef.current, {
         xPercent: 10,
         duration: 1,
         ease: "expo.out",
       }),
       "<",
-    )
-    .add(gsap.to(badgeRef.current, { xPercent: 10, duration: 0.5 }), "<")
+    );
+  }
+
+  tl.add(gsap.to(badgeRef.current, { xPercent: isMobile ? -10 : 10, duration: 0.5 }), "<")
     .add(
       gsap.fromTo(
         "#scroll-indicator .wrapper",
@@ -188,6 +191,7 @@ export const startHeroAnimations = (
               upperContainerRef,
               lowerContainerRef,
               badgeRef,
+              { isMobile },
             );
             sectionFadeAnimate();
           },
@@ -204,6 +208,8 @@ export const startHeroAnimations = (
       }),
       "<",
     );
+
+  return tl;
 };
 
 const sectionFadeAnimate = () =>
@@ -233,6 +239,7 @@ const titleScrollAnimate = (
   upperContainerRef: MutableRefObject<HTMLDivElement | null>,
   lowerContainerRef: MutableRefObject<HTMLDivElement | null>,
   badgeRef: MutableRefObject<HTMLDivElement | null>,
+  { isMobile }: { isMobile: boolean },
 ) => {
   const tl = gsap.timeline({
     scrollTrigger: {
@@ -246,15 +253,15 @@ const titleScrollAnimate = (
   tl.add(
     gsap.fromTo(
       upperContainerRef.current,
-      { xPercent: -20 },
-      { xPercent: -30 },
+      { xPercent: isMobile ? 0 : -20 },
+      { xPercent: isMobile ? -20 : -30 },
     ),
   )
     .add(
       gsap.fromTo(
         lowerContainerRef.current,
-        { xPercent: 10 },
-        { xPercent: 20 },
+        { xPercent: isMobile ? 0 : 10 },
+        { xPercent: isMobile ? 10 : 20 },
       ),
       "<",
     )
@@ -286,7 +293,7 @@ export function upscaleRotatingLetters(
   return gsap.to(badgeImageRef.current, {
     scale: 1.05,
     duration: 0.5,
-    ease: "expo.out",
+    ease: "back.out",
   });
 }
 

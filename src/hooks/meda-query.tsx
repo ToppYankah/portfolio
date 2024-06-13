@@ -1,12 +1,12 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState, useLayoutEffect } from "react";
 
 const useMediaQuery = () => {
   const [isDesktop, setIsDesktop] = useState(false);
   const [isTablet, setIsTablet] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const desktopMedia = window.matchMedia("(min-width: 1280px)");
     const tabletMedia = window.matchMedia(
       "(min-width: 768px) and (max-width: 1279px)",

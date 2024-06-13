@@ -3,6 +3,7 @@ import { LegacyRef, useLayoutEffect, useRef, useState } from "react";
 import Magnetic from "~/components/Magnetic";
 import useThemeDetector from "~/hooks/theme-detector";
 import * as animations from "../_animations";
+import useMediaQuery from "~/hooks/meda-query";
 
 export default ({
   onAnimationComplete,
@@ -23,9 +24,10 @@ export default ({
 
   const [isAnimationComplete, setIsAnimationComplete] = useState(false);
   const isDarkTheme = useThemeDetector();
+  const { isMobile } = useMediaQuery();
 
   useLayoutEffect(() => {
-    animations.startHeroAnimations(
+    const tl = animations.startHeroAnimations(
       upperRef,
       middleRef,
       lowerRef,
@@ -34,12 +36,19 @@ export default ({
       upperRefContainer,
       lowerRefContainer,
       titleContainerRef,
-      () => {
-        setIsAnimationComplete(true);
-        onAnimationComplete();
+      {
+        isMobile,
+        onComplete: () => {
+          setIsAnimationComplete(true);
+          onAnimationComplete();
+        },
       },
     );
-  }, []);
+
+    return () => {
+      tl.kill();
+    };
+  }, [isMobile]);
 
   const handleScaleUpRotatingLetters = () => {
     animations.upscaleRotatingLetters(badgeImageRef);
@@ -53,15 +62,15 @@ export default ({
     <div
       id="hero-title"
       ref={titleContainerRef}
-      className="col-start-1 col-end-5 row-start-2 row-end-3 flex justify-center sm:col-start-2 sm:col-end-4"
+      className="col-start-1 col-end-5 row-start-2 row-end-3 flex justify-center lg:col-start-2 lg:col-end-4"
     >
-      <div className="flex max-w-[90%] flex-col justify-center sm:max-w-[100%]">
-        <div className="flex items-center ">
+      <div className="flex max-w-[100%] sm:max-w-[70%] lg:max-w-[100%] flex-col justify-center">
+        <div className="flex items-center">
           <div ref={upperRefContainer} className="">
-            <h1 className={`relative whitespace-nowrap perspective-400`}>
+            <h1 className="relative whitespace-nowrap perspective-400">
               <span
                 ref={upperRef}
-                className="block font-serif text-[6.89vw] max-[1050px]:text-[9vw] max-[800px]:text-[10vw] max-[500px]:text-[11vw]"
+                className="block font-serif text-[clamp(4rem,6.89vw,6.5rem)] max-[1050px]:text-[9vw] max-[800px]:text-[10vw] max-[500px]:text-[11.5vw]"
               >
                 Sculpting
               </span>
@@ -81,10 +90,10 @@ export default ({
           </div>
         </div>
         <div className="relative">
-          <h1 className={`relative whitespace-nowrap perspective-400`}>
+          <h1 className="relative whitespace-nowrap perspective-400">
             <span
               ref={middleRef}
-              className="block text-center font-serif text-[6.89vw] max-[1050px]:text-[9vw] max-[800px]:text-[10vw] max-[500px]:text-[11vw]"
+              className="block text-center font-serif text-[clamp(4rem,6.89vw,6.5rem)] max-[1050px]:text-[9vw] max-[800px]:text-[10vw] max-[500px]:text-[11.5vw]"
             >
               Digital Dreams
             </span>
@@ -109,10 +118,10 @@ export default ({
             </div>
           </div>
           <div ref={lowerRefContainer} className="">
-            <h1 className={`relative whitespace-nowrap perspective-400`}>
+            <h1 className="relative whitespace-nowrap perspective-400">
               <span
                 ref={lowerRef}
-                className="block font-serif text-[6.89vw] max-[1050px]:text-[9vw] max-[800px]:text-[10vw] max-[500px]:text-[11vw]"
+                className="block font-serif text-[clamp(4rem,6.89vw,6.5rem)] max-[1050px]:text-[9vw] max-[800px]:text-[10vw] max-[500px]:text-[11.5vw]"
               >
                 into Reality
               </span>
