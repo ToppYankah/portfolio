@@ -1,6 +1,5 @@
 "use client";
-import { HTMLAttributes, ReactNode, useEffect } from "react";
-// import { sectionHideAnimation } from "../utils/global-animations";
+import { HTMLAttributes, ReactNode } from "react";
 
 const SectionLayout = ({
   id,
@@ -14,15 +13,6 @@ const SectionLayout = ({
   minContent?: boolean;
   children: ReactNode;
 } & HTMLAttributes<HTMLDivElement>) => {
-  useEffect(() => {
-    let tween: any | null;
-    // if (shouldFade) tween = sectionHideAnimation(id);
-
-    return () => {
-      tween?.kill();
-    };
-  }, []);
-
   return (
     <section
       id={id}
@@ -30,7 +20,7 @@ const SectionLayout = ({
     >
       <div
         {...attr}
-        className={`min-h-max w-screen max-w-[1500px] ${attr.className}`}
+        className={`min-h-max w-screen max-w-[1500px] p-5 sm:px-[40px] sm:py-[20px] ${attr.className}`}
       >
         {children}
       </div>
@@ -39,4 +29,3 @@ const SectionLayout = ({
 };
 
 export default SectionLayout;
-
