@@ -1,7 +1,7 @@
 "use client";
 import { LegacyRef, MutableRefObject, useLayoutEffect, useRef } from "react";
 import NavLink from "~/components/NavLink";
-import { animateLinks, animateLogo } from "../../../_animations";
+import { animateLinks, animateLogo } from "../animations";
 
 export default function HeroHeader() {
   return (

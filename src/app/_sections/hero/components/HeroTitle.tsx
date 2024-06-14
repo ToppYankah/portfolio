@@ -2,7 +2,7 @@
 import { LegacyRef, useLayoutEffect, useRef, useState } from "react";
 import Magnetic from "~/components/Magnetic";
 import useThemeDetector from "~/hooks/theme-detector";
-import * as animations from "../../../_animations";
+import * as animations from "../animations";
 import useMediaQuery from "~/hooks/meda-query";
 
 export default ({

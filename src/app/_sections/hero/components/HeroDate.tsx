@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { animatePortfolioDate } from "../../../_animations";
+import { animatePortfolioDate } from "../animations";
 
 export default function HeroDate() {
   const portfolioRef = useRef<HTMLParagraphElement>(null);

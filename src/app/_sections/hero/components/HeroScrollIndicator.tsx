@@ -1,7 +1,7 @@
 "use client";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
-import { animateHeroScrollIndicator } from "../../../_animations";
+import { animateHeroScrollIndicator } from "../animations";
 
 export default function () {
   return (

@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { SocialIcon } from "react-social-icons";
-import { animateSocials } from "../../../_animations";
+import { animateSocials } from "../animations";
 
 export default function HeroSocials() {
   const socialRefs = useRef<(HTMLDivElement | null)[]>([]);
