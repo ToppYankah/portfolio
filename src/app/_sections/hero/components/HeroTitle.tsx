@@ -2,7 +2,7 @@
 import { LegacyRef, useLayoutEffect, useRef, useState } from "react";
 import Magnetic from "~/components/Magnetic";
 import useThemeDetector from "~/hooks/theme-detector";
-import * as animations from "../_animations";
+import * as animations from "../../../_animations";
 import useMediaQuery from "~/hooks/meda-query";
 
 export default ({
@@ -64,7 +64,7 @@ export default ({
       ref={titleContainerRef}
       className="col-start-1 col-end-5 row-start-2 row-end-3 flex justify-center lg:col-start-2 lg:col-end-4"
     >
-      <div className="flex max-w-[100%] sm:max-w-[70%] lg:max-w-[100%] flex-col justify-center">
+      <div className="flex max-w-[100%] flex-col justify-center sm:max-w-[70%] lg:max-w-[100%]">
         <div className="flex items-center">
           <div ref={upperRefContainer} className="">
             <h1 className="relative whitespace-nowrap perspective-400">

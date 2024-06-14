@@ -1,8 +1,11 @@
 import dynamic from "next/dynamic";
 
-const DynamicHeroSection = dynamic(() => import("./_components/HeroSection"), {
-  ssr: false,
-});
+const DynamicHeroSection = dynamic(
+  () => import("./_sections/hero/HeroSection"),
+  {
+    ssr: false,
+  },
+);
 
 export default function HomePage() {
   return (

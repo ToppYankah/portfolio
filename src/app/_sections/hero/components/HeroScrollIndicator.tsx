@@ -1,11 +1,11 @@
 "use client";
 import gsap from "gsap";
 import { useEffect, useRef } from "react";
-import { animateHeroScrollIndicator } from "../_animations";
+import { animateHeroScrollIndicator } from "../../../_animations";
 
 export default function () {
   return (
-    <div className="col-start-2 col-end-4 row-start-3 row-end-4 items-end justify-center hidden sm:flex">
+    <div className="col-start-2 col-end-4 row-start-3 row-end-4 hidden items-end justify-center sm:flex">
       <div id="scroll-indicator" className="overflow-hidden">
         <div className="wrapper flex items-center gap-2">
           <p className="text-sm">Scroll</p>
@@ -29,7 +29,7 @@ const AnimatedArrow = () => {
   }, []);
 
   return (
-    <div className="flex max-h-[18px] items-end overflow-hidden pointer-events-none">
+    <div className="pointer-events-none flex max-h-[18px] items-end overflow-hidden">
       <div className="flex flex-col">
         {Array(3)
           .fill("")
@@ -39,7 +39,7 @@ const AnimatedArrow = () => {
               ref={(ref) => {
                 arrowsRef.current.push(ref);
               }}
-              className="border-inverted block h-3 w-3 rotate-45 border-b-2 border-r-2"
+              className="block h-3 w-3 rotate-45 border-b-2 border-r-2 border-inverted"
             ></span>
           ))}
       </div>
