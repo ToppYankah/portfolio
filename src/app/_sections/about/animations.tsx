@@ -95,10 +95,10 @@ export function animatePersonalInfo(
     .fromTo(
       personalInfoRefs.current,
       {
-        yPercent: 50,
+        yPercent: 10,
       },
       {
-        yPercent: -50,
+        yPercent: -20,
         ease: "expo.out",
         stagger: 0.1,
         markers: true,

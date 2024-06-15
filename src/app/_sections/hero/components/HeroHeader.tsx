@@ -58,9 +58,9 @@ const HeroLogo = () => {
       <a
         href="#"
         id="logo"
-        className="text-inverted text-md flex font-sans font-black"
+        className="text-inverted text-md flex font-serif font-black"
       >
-        {"KENNY.".split("").map((char, iindex) => {
+        {"Kenny".split("").map((char, iindex) => {
           return (
             <p
               ref={(ref) => {
