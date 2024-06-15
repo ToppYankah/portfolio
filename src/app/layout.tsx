@@ -35,6 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning={true}
       className={`${copyright_font.variable} ${ibm_plex_sans.className}`}
     >
       <body>

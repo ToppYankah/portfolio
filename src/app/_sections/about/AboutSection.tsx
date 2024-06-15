@@ -48,7 +48,7 @@ export default function AboutSection() {
       </SectionTitle>
       <div
         ref={imageContainerRef}
-        className="col-start-2 col-end-3 row-start-2 row-end-4 min-h-[clamp(300px,60vh,800px)] w-[clamp(200px,100%,600px)] overflow-hidden rounded-full max-[999px]:w-[clamp(200px,50vw,400px)] max-[599px]:w-[clamp(100px,80vw,500px)] bg-black"
+        className="col-start-2 col-end-3 row-start-2 row-end-4 min-h-[clamp(300px,60vh,800px)] w-[clamp(200px,100%,600px)] overflow-hidden rounded-full bg-black max-[999px]:w-[clamp(200px,50vw,400px)] max-[599px]:w-[clamp(100px,80vw,500px)]"
       >
         <img
           ref={imageRef}
@@ -113,12 +113,13 @@ export default function AboutSection() {
           >
             Personal Profile
           </h4>
-          <p className="flex flex-col pl-5 text-sm">
+          <p className="flex flex-col gap-1 pl-5 text-sm">
             {[
               "Kenneth Topp Yankah",
               `${new Date().getFullYear() - 2000} years old`,
-              "Male",
-              "Ghanaian 🇬🇭",
+              "Male (He/Him)",
+              "🇬🇭 Ghanaian",
+              "Frontend Developer",
             ].map((text, index) => (
               <span
                 key={index}

@@ -48,9 +48,8 @@ export const animateSectionTitle = (
         {
           opacity: 1,
           rotateX: 0,
-          delay: 0.5,
           yPercent: 0,
-          duration: 2,
+          duration: 1,
           stagger: 0.05,
           filter: "blur(0px)",
           ease: "expo.out",
@@ -70,7 +69,6 @@ export const animateRotatingBadge = (
   });
 };
 
-
 export function upscaleRotatingLetters(
   badgeImageRef: MutableRefObject<HTMLImageElement | null>,
 ) {
@@ -89,4 +87,29 @@ export function downscaleRotatingLetters(
     duration: 0.5,
     ease: "expo.out",
   });
+}
+
+export function toggleFloatingMemojiAnimation(
+  floatingBadgeRef: MutableRefObject<HTMLDivElement | null>,
+) {
+  return gsap.fromTo(
+    floatingBadgeRef.current,
+    {
+      opacity: 0,
+      scale: 0.5,
+    },
+    {
+      scale: 1,
+      opacity: 1,
+      yoyo: true,
+      duration: 1,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "bottom top",
+        end: "bottom -50",
+        scrub: true,
+      },
+    },
+  );
 }

@@ -84,8 +84,11 @@ export default ({
           </h1>
         </div>
         <div className="relative flex justify-end">
-          <MemojiBadge ref={badgeRef} />
-          <div ref={lowerRefContainer} className="">
+          <MemojiBadge
+            ref={badgeRef}
+            className="absolute left-0 top-full self-center sm:relative sm:top-0 w-[clamp(120px,50%,300px)] max-w-[35%] sm:max-w-[30%]"
+          />
+          <div ref={lowerRefContainer}>
             <h1 className="relative whitespace-nowrap perspective-400">
               <span
                 ref={lowerRef}

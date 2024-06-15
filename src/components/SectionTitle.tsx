@@ -21,9 +21,12 @@ export default function SectionTitle({
     { scope: containerRef },
   );
 
-  const renderTitleLine = (text: string) => {
+  const renderTitleLine = (text: string, index: number) => {
     return (
-      <div className="flex font-serif text-[clamp(35px,5vw,48px)] leading-[clamp(38px,5.2vw,60px)]">
+      <div
+        key={"title-line-" + index}
+        className="flex font-serif text-[clamp(35px,5vw,48px)] leading-[clamp(38px,5.2vw,60px)]"
+      >
         {text.split("").map((char, index) => (
           <span
             key={"title-char-" + index}
@@ -40,7 +43,7 @@ export default function SectionTitle({
   };
 
   return (
-    <div {...rest} className={`flex flex-col text-center  ${className}`}>
+    <div {...rest} className={`flex flex-col text-center ${className}`}>
       {label && (
         <div ref={containerRef} className="self-start font-sans text-sm">
           {label.split("").map((char, index) => (
@@ -55,7 +58,7 @@ export default function SectionTitle({
           ))}
         </div>
       )}
-      {children.split("\\n").map((line, index) => renderTitleLine(line))}
+      {children.split("\\n").map((line, index) => renderTitleLine(line, index))}
     </div>
   );
 }

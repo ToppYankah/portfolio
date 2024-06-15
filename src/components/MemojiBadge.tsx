@@ -3,6 +3,7 @@ import { useGSAP } from "@gsap/react";
 import {
   ForwardedRef,
   HTMLAttributes,
+  HTMLProps,
   MutableRefObject,
   forwardRef,
   useRef,
@@ -15,11 +16,8 @@ import {
 import Magnetic from "~/components/Magnetic";
 import useThemeDetector from "~/hooks/theme-detector";
 
-const MemojiBadge = forwardRef(
-  (
-    props: HTMLAttributes<HTMLDivElement>,
-    ref: ForwardedRef<HTMLDivElement>,
-  ) => {
+const MemojiBadge = forwardRef<HTMLDivElement, HTMLProps<HTMLDivElement>>(
+  (props, ref: ForwardedRef<HTMLDivElement>) => {
     const isDarkTheme = useThemeDetector();
     const badgeImageRef: MutableRefObject<HTMLImageElement | null> =
       useRef(null);
@@ -45,10 +43,10 @@ const MemojiBadge = forwardRef(
         ref={ref}
         onMouseOver={handleScaleUpRotatingLetters}
         onMouseOut={handleScaleDownRotatingLetters}
-        className="group absolute left-0 top-full z-10 w-[15%] min-w-[35%] self-center sm:relative sm:top-0 sm:min-w-[25%]"
+        {...props}
       >
         <img
-          src={`/images/${isDarkTheme ? "dark-fsd" : "light-fsd2"}.png`}
+          src={`/images/${isDarkTheme ? "dark-fsd3" : "light-fsd3"}.png`}
           className="aspect-square w-full rounded-full"
           ref={badgeImageRef}
         />

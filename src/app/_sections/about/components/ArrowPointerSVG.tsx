@@ -20,12 +20,12 @@ export default function ArrowPointerSVG() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       ref={svgBoxRef}
-      className="aspect-square h-min w-[80%] max-[599px]:hidden self-end"
+      className="aspect-square h-min w-[80%] self-end max-[599px]:hidden"
     >
       <path
         d="M6.87982 0.440186C6.87982 0.440186 -25.8523 345.724 84.2469 508.534C194.346 671.345 470.339 650.622 579.694 641.695"
         stroke="var(--foreground-hex)"
-        stroke-width="6"
+        strokeWidth="6"
         ref={arrowLineRef}
       />
       <path
