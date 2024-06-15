@@ -97,7 +97,7 @@ export const startHeroAnimations = (
   middleRef: MutableRefObject<HTMLHeadingElement | null>,
   lowerRef: MutableRefObject<HTMLHeadingElement | null>,
   badgeRef: MutableRefObject<HTMLDivElement | null>,
-  badgeImageRef: MutableRefObject<HTMLImageElement | null>,
+  // badgeImageRef: MutableRefObject<HTMLImageElement | null>,
   upperContainerRef: MutableRefObject<HTMLDivElement | null>,
   lowerContainerRef: MutableRefObject<HTMLDivElement | null>,
   titleContainerRef: MutableRefObject<HTMLDivElement | null>,
@@ -164,50 +164,44 @@ export const startHeroAnimations = (
       gsap.to(upperContainerRef.current, {
         duration: 1,
         xPercent: -20,
-        ease: "expo.out",
+        ease: "power4.out",
       }),
+      "-=2",
     ).add(
       gsap.to(lowerContainerRef.current, {
         xPercent: 10,
         duration: 1,
-        ease: "expo.out",
+        ease: "power4.out",
       }),
       "<",
     );
   }
 
-  tl.add(gsap.to(badgeRef.current, { xPercent: isMobile ? -10 : 10, duration: 0.5 }), "<")
-    .add(
-      gsap.fromTo(
-        "#scroll-indicator .wrapper",
-        { yPercent: -100 },
-        {
-          yPercent: 0,
-          duration: 1,
-          onComplete: () => {
-            onComplete();
-            titleScrollAnimate(
-              titleContainerRef,
-              upperContainerRef,
-              lowerContainerRef,
-              badgeRef,
-              { isMobile },
-            );
-            sectionFadeAnimate();
-          },
+  tl.add(
+    gsap.to(badgeRef.current, { xPercent: isMobile ? -10 : 10, duration: 0.5 }),
+    "<",
+  ).add(
+    gsap.fromTo(
+      "#scroll-indicator .wrapper",
+      { yPercent: -100 },
+      {
+        yPercent: 0,
+        duration: 1,
+        onComplete: () => {
+          onComplete();
+          titleScrollAnimate(
+            titleContainerRef,
+            upperContainerRef,
+            lowerContainerRef,
+            badgeRef,
+            { isMobile },
+          );
+          sectionFadeAnimate();
         },
-      ),
-      "<",
-    )
-    .add(
-      gsap.to(badgeImageRef.current, {
-        rotate: 360,
-        repeat: -1,
-        duration: 10,
-        ease: "none",
-      }),
-      "<",
-    );
+      },
+    ),
+    "<",
+  );
 
   return tl;
 };
@@ -285,24 +279,4 @@ export function animateHeroScrollIndicator(
   );
 
   return tween;
-}
-
-export function upscaleRotatingLetters(
-  badgeImageRef: MutableRefObject<HTMLImageElement | null>,
-) {
-  return gsap.to(badgeImageRef.current, {
-    scale: 1.05,
-    duration: 0.5,
-    ease: "back.out",
-  });
-}
-
-export function downscaleRotatingLetters(
-  badgeImageRef: MutableRefObject<HTMLImageElement | null>,
-) {
-  return gsap.to(badgeImageRef.current, {
-    scale: 1,
-    duration: 0.5,
-    ease: "expo.out",
-  });
 }

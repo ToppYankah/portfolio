@@ -58,3 +58,35 @@ export const animateSectionTitle = (
       ),
     );
 };
+
+export const animateRotatingBadge = (
+  imageRef: MutableRefObject<HTMLImageElement | null>,
+) => {
+  return gsap.to(imageRef.current, {
+    rotate: 360,
+    repeat: -1,
+    duration: 10,
+    ease: "none",
+  });
+};
+
+
+export function upscaleRotatingLetters(
+  badgeImageRef: MutableRefObject<HTMLImageElement | null>,
+) {
+  return gsap.to(badgeImageRef.current, {
+    scale: 1.05,
+    duration: 0.5,
+    ease: "back.out",
+  });
+}
+
+export function downscaleRotatingLetters(
+  badgeImageRef: MutableRefObject<HTMLImageElement | null>,
+) {
+  return gsap.to(badgeImageRef.current, {
+    scale: 1,
+    duration: 0.5,
+    ease: "expo.out",
+  });
+}

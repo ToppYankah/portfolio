@@ -1,9 +1,8 @@
 "use client";
-import { LegacyRef, useLayoutEffect, useRef, useState } from "react";
-import Magnetic from "~/components/Magnetic";
-import useThemeDetector from "~/hooks/theme-detector";
-import * as animations from "../animations";
+import { LegacyRef, useLayoutEffect, useRef } from "react";
+import MemojiBadge from "~/components/MemojiBadge";
 import useMediaQuery from "~/hooks/meda-query";
+import * as animations from "../animations";
 
 export default ({
   onAnimationComplete,
@@ -11,7 +10,6 @@ export default ({
   onAnimationComplete: () => void;
 }) => {
   const badgeRef: LegacyRef<HTMLDivElement> = useRef(null);
-  const badgeImageRef: LegacyRef<HTMLImageElement> = useRef(null);
 
   const upperRef: LegacyRef<HTMLHeadingElement> = useRef(null);
   const lowerRef: LegacyRef<HTMLHeadingElement> = useRef(null);
@@ -22,8 +20,6 @@ export default ({
   const lowerRefContainer: LegacyRef<HTMLDivElement> = useRef(null);
   const titleContainerRef: LegacyRef<HTMLDivElement> = useRef(null);
 
-  const [isAnimationComplete, setIsAnimationComplete] = useState(false);
-  const isDarkTheme = useThemeDetector();
   const { isMobile } = useMediaQuery();
 
   useLayoutEffect(() => {
@@ -32,16 +28,12 @@ export default ({
       middleRef,
       lowerRef,
       badgeRef,
-      badgeImageRef,
       upperRefContainer,
       lowerRefContainer,
       titleContainerRef,
       {
         isMobile,
-        onComplete: () => {
-          setIsAnimationComplete(true);
-          onAnimationComplete();
-        },
+        onComplete: onAnimationComplete,
       },
     );
 
@@ -49,14 +41,6 @@ export default ({
       tl.kill();
     };
   }, [isMobile]);
-
-  const handleScaleUpRotatingLetters = () => {
-    animations.upscaleRotatingLetters(badgeImageRef);
-  };
-
-  const handleScaleDownRotatingLetters = () => {
-    animations.downscaleRotatingLetters(badgeImageRef);
-  };
 
   return (
     <div
@@ -100,23 +84,7 @@ export default ({
           </h1>
         </div>
         <div className="relative flex justify-end">
-          <div
-            ref={badgeRef}
-            onMouseOver={handleScaleUpRotatingLetters}
-            onMouseOut={handleScaleDownRotatingLetters}
-            className="group absolute left-0 top-full z-10 w-[15%] min-w-[35%] self-center sm:relative sm:top-0 sm:min-w-[25%]"
-          >
-            <img
-              src={`/images/${isDarkTheme ? "dark-fsd" : "light-fsd2"}.png`}
-              className="aspect-square w-full rounded-full"
-              ref={badgeImageRef}
-            />
-            <div className="absolute left-1/2 top-1/2 flex aspect-square w-[75%] -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden rounded-full bg-gray-600 bg-opacity-[0.2]">
-              <Magnetic strength={0.2}>
-                <img src="/images/memoji.png" className="w-[55%]" />
-              </Magnetic>
-            </div>
-          </div>
+          <MemojiBadge ref={badgeRef} />
           <div ref={lowerRefContainer} className="">
             <h1 className="relative whitespace-nowrap perspective-400">
               <span
@@ -138,12 +106,3 @@ export default ({
     </div>
   );
 };
-
-/*
-Breakpoint prefix	Minimum width	CSS
-sm	640px	@media (min-width: 640px) { ... }
-md	768px	@media (min-width: 768px) { ... }
-lg	1024px	@media (min-width: 1024px) { ... }
-xl	1280px	@media (min-width: 1280px) { ... }
-2xl	1536px	@media (min-width: 1536px) { ... }
-*/
