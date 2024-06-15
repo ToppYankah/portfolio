@@ -21,3 +21,38 @@ export const animatePointer = (
     y: clientY - (halfHeight + halfPHeight),
   });
 };
+
+export const animateSectionTitle = (
+  containerRef: MutableRefObject<HTMLDivElement | null>,
+  textCharsRef: MutableRefObject<(HTMLSpanElement | null)[]>,
+) => {
+  return gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 30%",
+        end: "top 0%",
+        // scrub: true,
+      },
+    })
+    .add(
+      gsap.fromTo(
+        textCharsRef.current,
+        {
+          opacity: 0,
+          rotateX: -40,
+          yPercent: 100,
+          filter: "blur(15px)",
+        },
+        {
+          opacity: 1,
+          rotateX: 0,
+          yPercent: 0,
+          stagger: 0.05,
+          duration: 2,
+          filter: "blur(0px)",
+          ease: "expo.out",
+        },
+      ),
+    );
+};
