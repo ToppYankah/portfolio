@@ -15,7 +15,7 @@ import ArrowPointerSVG from "./components/ArrowPointerSVG";
 export default function AboutSection() {
   const bioText1Ref = useRef<HTMLDivElement | null>(null);
   const imageContainerRef = useRef<HTMLDivElement | null>(null);
-  const rotatingStarRef = useRef<HTMLSpanElement | null>(null);
+  const rotatingStarRef = useRef<SVGSVGElement | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
   const sectionRef = useRef<HTMLDivElement | null>(null);
   const shortBioRef = useRef<HTMLDivElement | null>(null);
@@ -69,11 +69,22 @@ export default function AboutSection() {
       >
         <div
           ref={bioText1Ref}
-          className="flex w-[clamp(100%,100%,100%)] items-start gap-5 max-[999px]:bg-color max-[999px]:p-2"
+          className="flex w-[clamp(100%,100%,100%)] items-start gap-3 max-[999px]:bg-color max-[999px]:p-2"
         >
-          <span ref={rotatingStarRef} className="text-2xl leading-[20px]">
-            ✴
-          </span>
+          <svg
+            width="112"
+            height="116"
+            viewBox="0 0 112 116"
+            fill="none"
+            ref={rotatingStarRef}
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5"
+          >
+            <path
+              d="M57 0L64.5496 42.3231L102.346 21.8376L73.9637 54.1281L113.546 70.9062L70.6039 68.8487L82.1653 110.256L57 75.4L31.8347 110.256L43.3961 68.8487L0.454182 70.9062L40.0363 54.1281L11.6538 21.8376L49.4504 42.3231L57 0Z"
+              fill="var(--foreground-hex)"
+            />
+          </svg>
           <p className="text-left text-sm">
             I'm a creative problem solver with a passion for frontend
             development. I have over 5 years of experience in crafting

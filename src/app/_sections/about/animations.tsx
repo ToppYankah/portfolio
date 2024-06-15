@@ -47,7 +47,7 @@ export function animateImageBanner(
 }
 
 export function animateRotatingStar(
-  rotatingStarRef: MutableRefObject<HTMLSpanElement | null>,
+  rotatingStarRef: MutableRefObject<SVGSVGElement | null>,
 ) {
   return gsap.to(rotatingStarRef.current, {
     rotate: 360,
