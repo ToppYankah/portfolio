@@ -58,24 +58,27 @@ export function animateRotatingStar(
 }
 
 export function animateBioText(
-  bioTextRef: MutableRefObject<HTMLParagraphElement | null>,
+  bioTextRef: MutableRefObject<HTMLDivElement | null>,
 ) {
-  return gsap.fromTo(
-    bioTextRef.current,
-    {
-      opacity: 0,
-      rotateX: -45,
-      yPercent: 100,
-      filter: "blur(12px)",
-    },
-    {
-      opacity: 1,
-      rotateX: 0,
-      yPercent: 0,
-      duration: 1,
-      filter: "blur(0px)",
-    },
-  );
+  return gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "#about-section",
+        start: "top top",
+        end: "50% 30%",
+        scrub: true,
+      },
+    })
+    .fromTo(
+      bioTextRef.current,
+      {
+        yPercent: 50,
+      },
+      {
+        yPercent: 0,
+        ease: "none",
+      },
+    );
 }
 
 export function animatePersonalInfo(
@@ -88,7 +91,7 @@ export function animatePersonalInfo(
       scrollTrigger: {
         trigger: "#about-section",
         start: "top top",
-        end: "bottom 90%",
+        end: "50% 30%",
         scrub: true,
       },
     })
@@ -99,9 +102,9 @@ export function animatePersonalInfo(
       },
       {
         yPercent: -20,
-        ease: "expo.out",
         stagger: 0.1,
         markers: true,
+        ease: "none",
       },
     );
 }

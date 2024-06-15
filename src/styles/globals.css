@@ -20,6 +20,12 @@
     }
 }
 
+::selection {
+    background: var(--foreground-light-hex);
+}
+
+
+
 body {
     overflow-x: hidden;
     color: var(--foreground-hex);

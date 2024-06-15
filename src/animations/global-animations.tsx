@@ -23,16 +23,17 @@ export const animatePointer = (
 };
 
 export const animateSectionTitle = (
-  containerRef: MutableRefObject<HTMLDivElement | null>,
+  containerRef: MutableRefObject<
+    (HTMLDivElement | null)[] | HTMLDivElement | null
+  >,
   textCharsRef: MutableRefObject<(HTMLSpanElement | null)[]>,
 ) => {
   return gsap
     .timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "top 30%",
+        start: "bottom 70%",
         end: "top 0%",
-        // scrub: true,
       },
     })
     .add(
@@ -47,9 +48,10 @@ export const animateSectionTitle = (
         {
           opacity: 1,
           rotateX: 0,
+          delay: 0.5,
           yPercent: 0,
-          stagger: 0.05,
           duration: 2,
+          stagger: 0.05,
           filter: "blur(0px)",
           ease: "expo.out",
         },
