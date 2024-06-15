@@ -48,13 +48,13 @@ export default function AboutSection() {
       </SectionTitle>
       <div
         ref={imageContainerRef}
-        className="col-start-2 col-end-3 row-start-2 row-end-4 min-h-[clamp(300px,60vh,800px)] w-[clamp(200px,100%,600px)] overflow-hidden max-[999px]:w-[clamp(200px,50vw,400px)] max-[599px]:w-[clamp(100px,80vw,500px)]"
+        className="col-start-2 col-end-3 row-start-2 row-end-4 min-h-[clamp(300px,60vh,800px)] w-[clamp(200px,100%,600px)] overflow-hidden rounded-full max-[999px]:w-[clamp(200px,50vw,400px)] max-[599px]:w-[clamp(100px,80vw,500px)] bg-black"
       >
         <img
           ref={imageRef}
           alt="About Banner"
           src={"/images/about-banner.jpg"}
-          className="h-full w-full scale-[1.2] object-cover object-center"
+          className="h-full w-full scale-[1.3] object-cover object-center"
         />
       </div>
       <div

@@ -15,7 +15,7 @@ export function animateImageBanner(
       scrollTrigger: {
         trigger: "#about-section",
         start: "top bottom",
-        end: "50% 20%",
+        end: "bottom top",
         scrub: true,
       },
     })
@@ -26,7 +26,7 @@ export function animateImageBanner(
           yPercent: -30,
         },
         {
-          yPercent: 20,
+          yPercent: 80,
           ease: "none",
         },
       ),
@@ -38,7 +38,7 @@ export function animateImageBanner(
           yPercent: 10,
         },
         {
-          yPercent: -15,
+          yPercent: -35,
           ease: "none",
         },
       ),
