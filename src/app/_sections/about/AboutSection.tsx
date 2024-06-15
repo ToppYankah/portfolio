@@ -38,7 +38,7 @@ export default function AboutSection() {
     <SectionLayout
       ref={sectionRef}
       id="about-section"
-      className="relative grid grid-cols-[1fr_45vw_auto] grid-rows-[auto_1fr_auto] gap-10 perspective-origin-bottom perspective-400 max-[599px]:grid-cols-[1fr_auto_1fr] max-[599px]:gap-x-0"
+      className="relative grid grid-cols-[1fr_45vw_auto] grid-rows-[auto_1fr_auto] gap-10 perspective-origin-bottom perspective-400 max-[599px]:grid-cols-[1fr_auto_1fr] max-[599px]:gap-x-0 max-[599px]:gap-y-14"
     >
       <SectionTitle
         label="About"
