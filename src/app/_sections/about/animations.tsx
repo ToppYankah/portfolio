@@ -13,7 +13,7 @@ export function animateImageBanner(
   return gsap
     .timeline({
       scrollTrigger: {
-        trigger: "#about-section",
+        trigger: "#about",
         start: "top bottom",
         end: "bottom top",
         scrub: true,
@@ -63,7 +63,7 @@ export function animateBioText(
   return gsap
     .timeline({
       scrollTrigger: {
-        trigger: "#about-section",
+        trigger: "#about",
         start: "top top",
         end: "50% 30%",
         scrub: true,
@@ -89,7 +89,7 @@ export function animatePersonalInfo(
   return gsap
     .timeline({
       scrollTrigger: {
-        trigger: "#about-section",
+        trigger: "#about",
         start: "top top",
         end: "50% 30%",
         scrub: true,
@@ -115,7 +115,7 @@ export function animateShortBio(
   return gsap
     .timeline({
       scrollTrigger: {
-        trigger: "#about-section",
+        trigger: "#about",
         start: "top 50%",
         end: "bottom 90%",
         scrub: true,

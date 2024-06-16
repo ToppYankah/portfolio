@@ -6,10 +6,12 @@ export default function SectionTitle({
   label,
   children,
   className,
+  labelClassName,
   ...rest
 }: {
   label?: string;
   children: string;
+  labelClassName?: string;
 } & React.AllHTMLAttributes<HTMLDivElement>) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const textCharsRef = useRef<(HTMLSpanElement | null)[]>([]);
@@ -45,7 +47,10 @@ export default function SectionTitle({
   return (
     <div {...rest} className={`flex flex-col text-center ${className}`}>
       {label && (
-        <div ref={containerRef} className="self-start font-sans text-sm">
+        <div
+          ref={containerRef}
+          className={`self-start font-sans text-sm ${labelClassName}`}
+        >
           {label.split("").map((char, index) => (
             <span
               key={"label-char-" + index}

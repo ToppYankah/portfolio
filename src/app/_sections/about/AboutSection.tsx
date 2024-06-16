@@ -37,14 +37,14 @@ export default function AboutSection() {
   return (
     <SectionLayout
       ref={sectionRef}
-      id="about-section"
-      className="relative grid grid-cols-[1fr_45vw_auto] grid-rows-[auto_1fr_auto] gap-10 perspective-origin-bottom perspective-400 max-[599px]:grid-cols-[1fr_auto_1fr] max-[599px]:gap-x-0 max-[599px]:gap-y-14"
+      id="about"
+      className="relative grid grid-cols-[1fr_45%_auto] grid-rows-[auto_1fr_auto] gap-10 perspective-origin-bottom perspective-400 max-[599px]:grid-cols-[1fr_auto_1fr] max-[599px]:gap-x-0 max-[599px]:gap-y-14"
     >
       <SectionTitle
         label="About"
         className=" col-start-1 col-end-4 pb-10 pt-52 max-[999px]:pt-32 max-[639px]:pt-0"
       >
-        Cross-Platform\nFrontend&nbsp;\nDeveloper
+        Cross-Platform\nFrontend&nbsp;Developer
       </SectionTitle>
       <div
         ref={imageContainerRef}

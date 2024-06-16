@@ -127,9 +127,9 @@ export const startHeroAnimations = (
         [upperRef.current, middleRef.current, lowerRef.current],
         {
           opacity: 0,
-          rotateX: -40,
-          duration: 2,
-          filter: "blur(15px)",
+          rotateX: -50,
+          duration: 1.5,
+          filter: "blur(30px)",
         },
         {
           opacity: 1,
@@ -166,7 +166,7 @@ export const startHeroAnimations = (
         xPercent: -20,
         ease: "power4.out",
       }),
-      "-=2",
+      "-=1.5",
     ).add(
       gsap.to(lowerContainerRef.current, {
         xPercent: 10,
