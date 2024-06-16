@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 :root {
+    --dark-hex: #000;
+    --light-hex: #e0ddcf;
     --foreground-hex: #1c110a;
     --foreground-light-hex: #1c110a0c;
     --background-hex: #e0ddcf;
@@ -14,9 +16,9 @@
     :root {
         --foreground-hex: #e0ddcf;
         --foreground-light-hex: #e0ddcf10;
-        --background-hex: #040f16;
-        --background-hex: #080808;
         --background-hex: #000;
+        /* --background-hex: #040f16; */
+        /* --background-hex: #080808; */
     }
 }
 

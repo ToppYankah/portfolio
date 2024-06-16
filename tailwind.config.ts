@@ -12,12 +12,20 @@ export default {
       backgroundColor: {
         inverted: 'var(--foreground-hex)',
         color: 'var(--background-hex)',
+        light: 'var(--light-hex)',
+        dark: 'var(--dark-hex)',
+      },
+      colors: {
+        light: 'var(--light-hex)',
+        dark: 'var(--dark-hex)',
       },
       backgroundOpacity: {
         10: '0.1',
       },
       borderColor: {
         inverted: 'var(--foreground-hex)',
+        light: 'var(--light-hex)',
+        dark: 'var(--dark-hex)',
       }
     },
   },

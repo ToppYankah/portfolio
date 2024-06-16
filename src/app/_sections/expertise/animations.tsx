@@ -1,96 +1,125 @@
 import gsap from "gsap";
+import { MutableRefObject } from "react";
 
 export function animateScreenOutlines(
+  mainScreenRef: React.RefObject<SVGSVGElement>,
   screenOutline1Ref: React.RefObject<SVGRectElement>,
   screenOutline2Ref: React.RefObject<SVGRectElement>,
 ) {
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: screenOutline1Ref.current,
-      start: "top bottom",
-      end: "top 50%",
-      scrub: true,
-    },
-  });
-
-  tl.add(
-    gsap.fromTo(
-      screenOutline1Ref.current,
-      {
-        yPercent: 0,
-        xPercent: 0,
-      },
-      {
-        yPercent: -15,
-        xPercent: 10,
-      },
-    ),
-  ).add(
-    gsap.fromTo(
-      screenOutline2Ref.current,
-      {
-        yPercent: 0,
-        xPercent: 0,
-      },
-      {
-        yPercent: -30,
-        xPercent: 20,
-      },
-    ),
-    "<",
-  );
-
-  return tl;
-}
-
-export function animateExpertiseItems() {
   return gsap
     .timeline({
       scrollTrigger: {
-        trigger: "#expertise",
-        start: "top 50%",
-        end: "top top",
+        trigger: screenOutline1Ref.current,
+        start: "top 80%",
+        end: "top 30%",
         scrub: true,
       },
     })
     .add(
       gsap.fromTo(
-        ".expertise-item",
+        mainScreenRef.current,
+        { rotateY: 0, rotateX: 0 },
+        { rotateY: 40, rotateX: 0 },
+      ),
+    )
+    .add(
+      gsap.fromTo(
+        screenOutline1Ref.current,
         {
-          yPercent: 100,
-          opacity: 0,
+          yPercent: 0,
+          xPercent: 0,
         },
         {
-          yPercent: -10,
-          opacity: 1,
-          stagger: 1,
+          yPercent: -15,
+          xPercent: 10,
         },
       ),
+      "<",
+    )
+    .add(
+      gsap.fromTo(
+        screenOutline2Ref.current,
+        {
+          yPercent: 0,
+          xPercent: 0,
+        },
+        {
+          yPercent: -30,
+          xPercent: 20,
+        },
+      ),
+      "<",
     );
 }
 
-export function animateSideImage(
-  imageContainerRef: React.RefObject<HTMLDivElement>,
-  imageRef: React.RefObject<HTMLImageElement>,
+export function animateExpertiseItems(
+  scopeRef: MutableRefObject<HTMLDivElement | null>,
+  expertiseItemsRef: MutableRefObject<(HTMLDivElement | null)[]>,
 ) {
   return gsap
     .timeline({
       scrollTrigger: {
-        trigger: imageContainerRef.current,
-        start: "top bottom",
-        end: "bottom top",
+        trigger: scopeRef.current,
+        start: "top 90%",
+        end: "top 30%",
         scrub: true,
       },
     })
     .add(
       gsap.fromTo(
-        imageRef.current,
+        expertiseItemsRef.current,
         {
-          yPercent: 10,
+          yPercent: 100,
         },
         {
-          yPercent: -10,
+          yPercent: 0,
+          stagger: 0.25,
         },
       ),
     );
 }
+
+export const animateTopShape = (
+  containerRef: MutableRefObject<HTMLDivElement | null>,
+) => {
+  return gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top 80%",
+        end: "top 30%",
+        scrub: true,
+      },
+    })
+    .add(gsap.to("svg.main", { opacity: 0.08, scale: 0.95 }), "<")
+    .add(
+      gsap.to("svg.mid", {
+        xPercent: 20,
+        yPercent: 10,
+        opacity: 0.2,
+        scale: 0.98,
+      }),
+      "<",
+    )
+    .add(gsap.to("svg.top", { xPercent: 50, yPercent: 20, opacity: 0.5 }), "<");
+};
+
+export const animateBottomShape = (
+  containerRef: MutableRefObject<HTMLDivElement | null>,
+) => {
+  return gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "top bottom",
+        end: "top 30%",
+        scrub: true,
+      },
+    })
+    .add(gsap.to("svg.main", { opacity: 0.08 }), "<")
+    .add(gsap.to("svg.mid", { xPercent: -20, yPercent: 10, opacity: 0.2 }), "<")
+    .add(
+      gsap.to("svg.top", { xPercent: -50, yPercent: 20, opacity: 0.5 }),
+      "<",
+    );
+};

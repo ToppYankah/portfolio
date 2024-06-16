@@ -10,6 +10,7 @@ export default function HomePage() {
       <HeroSection />
       <AboutSection />
       <ExpertiseSection />
+      <div className="h-screen"></div>
       {/* <WorksSection /> */}
       <FloatingMemojiBadge />
     </main>
