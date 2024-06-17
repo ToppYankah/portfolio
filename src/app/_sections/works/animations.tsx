@@ -170,7 +170,7 @@ export function animateProjectCoverImageParallax(
       gsap.fromTo(
         imageRef.current,
         { scale: 1.25, xPercent: 10 },
-        { xPercent: -20 },
+        { xPercent: -10 },
       ),
     );
 }
