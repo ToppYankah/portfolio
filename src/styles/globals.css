@@ -16,7 +16,7 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --accent-hex: #2a2522;
+        --accent-hex: #222222;
         --foreground-hex: #e0ddcf;
         --foreground-light-hex: #e0ddcf10;
         --background-hex: #000;
