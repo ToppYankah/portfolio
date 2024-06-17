@@ -18,9 +18,9 @@ const WorkSectionTitle = () => {
     <div ref={scopeRef}>
       <div className="title-scope flex flex-col font-serif text-[clamp(50px,7vw,120px)] leading-[1.2em]">
         <h1 className="upper">The Moment</h1>
-        <div className="middle flex items-center gap-[clamp(20px,4vw,40px)]">
+        <div className="middle flex items-center gap-[clamp(20px,.6vw,40px)]">
           <div className="rounded-full bg-accent px-14 pb-1 pt-4">
-            <h1 className="flex text-[clamp(20px,5.5vw,150px)] leading-[clamp(20px,7vw,150px)]">
+            <h1 className="flex text-[clamp(20px,5.5vw,150px)] leading-[1.2em]">
               <Magnetic>
                 <span className="glass block">🔥</span>
               </Magnetic>

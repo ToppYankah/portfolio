@@ -1,5 +1,8 @@
 import gsap from "gsap";
 import { MutableRefObject } from "react";
+import MotionPathPlugin from "gsap/dist/MotionPathPlugin";
+
+gsap.registerPlugin(MotionPathPlugin);
 
 export function animateSectionItems({ total }: { total: number }) {
   return gsap
@@ -188,4 +191,41 @@ export function animateConclusionHeading(
       },
     })
     .add(gsap.fromTo(titleRefs.current, { xPercent: -50 }, { xPercent: 0 }));
+}
+
+export function animateFinalScrollIndicator(
+  pathRef: MutableRefObject<SVGPathElement | null>,
+  rectRef: MutableRefObject<SVGRectElement | null>,
+  ellipseRef: MutableRefObject<SVGEllipseElement | null>,
+) {
+  return gsap
+    .timeline({
+      scrollTrigger: {
+        trigger: "#works",
+        start: "bottom 140%",
+        end: "bottom 100%",
+        scrub: true,
+      },
+    })
+    .add(
+      gsap.to(rectRef.current, {
+        motionPath: {
+          align: pathRef.current || undefined,
+          path: pathRef.current || undefined,
+          alignOrigin: [0.5, 0.5],
+        },
+        ease: "none",
+      }),
+    )
+    .add(
+      gsap.to(ellipseRef.current, {
+        motionPath: {
+          align: pathRef.current || undefined,
+          path: pathRef.current || undefined,
+          alignOrigin: [0.5, 0],
+        },
+        ease: "none",
+      }),
+      "<",
+    );
 }

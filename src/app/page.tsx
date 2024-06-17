@@ -9,9 +9,9 @@ import WorksSectionMobile from "./_sections/works/WorkSectionMobile";
 export default function HomePage() {
   return (
     <div className="min-h-screen">
-      <HeroSection />
+      {/* <HeroSection />
       <AboutSection />
-      <ExpertiseSection />
+      <ExpertiseSection /> */}
       <div className="max-[999px]:hidden">
         <WorksSectionDesktop />
       </div>

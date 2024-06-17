@@ -14,7 +14,7 @@ export default function WorkSectionConclusion() {
   });
 
   return (
-    <div className="flex min-h-screen min-w-full flex-col items-center justify-center">
+    <div className="relative flex min-h-screen min-w-full flex-col items-center justify-center">
       <h1
         ref={(ref) => {
           titleRefs.current.push(ref);
@@ -54,6 +54,55 @@ export default function WorkSectionConclusion() {
           More Projects &rarr;
         </NavLink>
       </div>
+      <FinalScrollIndicator />
     </div>
   );
 }
+
+const FinalScrollIndicator = () => {
+  const pathRef = useRef<SVGPathElement | null>(null);
+  const rectRef = useRef<SVGRectElement | null>(null);
+  const ellipseRef = useRef<SVGEllipseElement | null>(null);
+
+  useGSAP(() => {
+    animations.animateFinalScrollIndicator(pathRef, rectRef, ellipseRef);
+  });
+
+  return (
+    <svg
+      width="55"
+      height="150"
+      viewBox="0 0 55 400"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="absolute bottom-0 left-1/2 -translate-x-1/2"
+    >
+      <path
+        d="M29 94L29 327"
+        stroke="var(--foreground-hex)"
+        strokeWidth="5"
+        strokeLinecap="round"
+        ref={pathRef}
+      />
+      <rect
+        x="2.5"
+        y="3.44727"
+        width="50"
+        height="90.5263"
+        rx="25"
+        stroke="var(--foreground-hex)"
+        strokeWidth="5"
+        fill="var(--background-hex)"
+        ref={rectRef}
+      />
+      <ellipse
+        cx="27.5"
+        cy="69"
+        rx="16.5"
+        ry="17"
+        fill="var(--foreground-hex)"
+        ref={ellipseRef}
+      />
+    </svg>
+  );
+};
