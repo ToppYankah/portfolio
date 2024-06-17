@@ -1,6 +1,9 @@
 "use client";
 import gsap from "gsap";
 import { MutableRefObject } from "react";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export const animatePointer = (
   pointerRef: MutableRefObject<HTMLDivElement>,

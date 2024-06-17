@@ -7,7 +7,7 @@ export function animateSectionItems({ total }: { total: number }) {
       scrollTrigger: {
         trigger: "#works",
         start: "top -=30%",
-        end: "bottom bottom",
+        end: "bottom 130%",
         scrub: true,
       },
     })
@@ -15,7 +15,7 @@ export function animateSectionItems({ total }: { total: number }) {
       gsap.fromTo(
         ".section-items-wrapper",
         { translateX: 0 },
-        { translateX: `${-(total * 65)}vw` },
+        { translateX: `${-(total * 65 + 100)}vw` },
       ),
     );
 }
@@ -87,12 +87,16 @@ export function animateScrollIndicator() {
       },
     })
     .add(
-      gsap.to(".scroll-indicator", {
-        xPercent: 50,
-        onComplete: () => {
-          animateProjectElementsReveal();
+      gsap.fromTo(
+        ".scroll-indicator",
+        { yPercent: 100 },
+        {
+          xPercent: 50,
+          onComplete: () => {
+            animateProjectElementsReveal();
+          },
         },
-      }),
+      ),
     );
 }
 
@@ -121,8 +125,34 @@ export function animateProjectElementsReveal() {
     );
 }
 
+export function animateProjectTagReveal(
+  tagsRef: MutableRefObject<(HTMLParagraphElement | null)[]>,
+) {
+  return gsap.to(tagsRef.current, {
+    rotateX: 0,
+    filter: "blur(0px)",
+    translateY: 0,
+    opacity: 1,
+    stagger: 0.1,
+    duration: 0.5,
+  });
+}
+
 export function animateProjectNameReveal(
   nameCharsRef: MutableRefObject<(HTMLSpanElement | null)[]>,
+) {
+  return gsap.to(nameCharsRef.current, {
+    rotateX: 0,
+    filter: "blur(0px)",
+    translateY: 0,
+    opacity: 1,
+    stagger: 0.05,
+    duration: 0.5,
+  });
+}
+
+export function animateProjectCoverImageParallax(
+  imageRef: MutableRefObject<HTMLImageElement | null>,
   index: number,
 ) {
   const offset = index * 55;
@@ -131,52 +161,31 @@ export function animateProjectNameReveal(
     .timeline({
       scrollTrigger: {
         trigger: "#works",
-        start: `top -=${offset}%`,
-        end: `top -=${offset * 1.2}%`,
+        start: `top -=30%`,
+        end: `top -=${100 + offset * 1.5}%`,
+        scrub: true,
       },
     })
     .add(
       gsap.fromTo(
-        nameCharsRef.current,
-        { rotateX: -45, filter: "blur(12px)", yPercent: 150, opacity: 0 },
-        {
-          rotateX: 0,
-          filter: "blur(0px)",
-          yPercent: 0,
-          opacity: 1,
-          stagger: 0.05,
-          duration: 0.5,
-        },
+        imageRef.current,
+        { xPercent: 20, scale: 1.5 },
+        { xPercent: -20 },
       ),
     );
 }
 
-export function animateProjectTagReveal(
-  nameCharsRef: MutableRefObject<(HTMLParagraphElement | null)[]>,
-  index: number,
+export function animateConclusionHeading(
+  titleRefs: MutableRefObject<(HTMLHeadingElement | null)[]>,
 ) {
-  const offset = index * 55;
-
   return gsap
     .timeline({
       scrollTrigger: {
         trigger: "#works",
-        start: `top -=${offset}%`,
-        end: `top -=${offset * 1.2}%`,
+        start: "bottom 400%",
+        end: "bottom 140%",
+        scrub: true,
       },
     })
-    .add(
-      gsap.fromTo(
-        nameCharsRef.current,
-        { rotateX: -45, filter: "blur(12px)", yPercent: 150, opacity: 0 },
-        {
-          rotateX: 0,
-          filter: "blur(0px)",
-          yPercent: 0,
-          opacity: 1,
-          stagger: 0.2,
-          duration: 1,
-        },
-      ),
-    );
+    .add(gsap.fromTo(titleRefs.current, { xPercent: -50 }, { xPercent: 0 }));
 }

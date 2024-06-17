@@ -1,9 +1,6 @@
 "use client";
 import gsap from "gsap";
-import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import { MutableRefObject } from "react";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export const animateLogo = (
   lettersRef: MutableRefObject<(HTMLSpanElement | null)[]>,

@@ -29,11 +29,10 @@
     background: var(--foreground-light-hex);
 }
 
-
-
 body {
     overflow-x: hidden;
     color: var(--foreground-hex);
+    font-family: var(--font-ibm-plex);
     background: var(--background-hex);
 }
 

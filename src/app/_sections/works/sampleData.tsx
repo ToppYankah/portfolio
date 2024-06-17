@@ -26,7 +26,7 @@ export const projects: Project[] = [
   },
   {
     linkUrl: "#",
-    name: "Aura AQ",
+    name: "Aura",
     label: "Mobile App",
     tags: [
       "Mobile App",

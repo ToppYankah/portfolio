@@ -1,21 +1,21 @@
 "use client";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
+import Magnetic from "~/components/Magnetic";
 import SectionTitle from "~/components/SectionTitle";
 import SectionLayout from "~/layouts/section-layout";
 import * as animations from "./animations";
-import Magnetic from "~/components/Magnetic";
 
 export default function ExpertiseSection() {
   const scopeRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="sm:mt-52 mt-32">
+    <div className="mt-32 sm:mt-52">
       <SectionLayout
         id="expertise"
         ref={scopeRef}
         darkMode={true}
-        className="text-light mt-32 grid grid-cols-2 grid-rows-[auto_auto_auto] gap-10 gap-y-32 max-[899px]:grid-cols-1 max-[899px]:grid-rows-none max-[899px]:gap-y-10 sm:mt-52"
+        className="mt-32 grid grid-cols-2 grid-rows-[auto_auto_auto] gap-10 gap-y-32 text-light max-[899px]:grid-cols-1 max-[899px]:grid-rows-none max-[899px]:gap-y-10 sm:mt-52"
       >
         <SectionTitle
           className="col-start-1 col-end-3 row-start-1 row-end-2 items-center pt-0 max-[899px]:col-end-2 max-[899px]:mb-10 sm:pt-32"
@@ -329,7 +329,7 @@ const WebDevExpertise = ({}) => {
                   <span className="text-sm font-semibold">
                     {expertise.label}
                   </span>
-                  <div className="border-light flex-1 border-b-2 border-dotted opacity-50" />
+                  <div className="flex-1 border-b-2 border-dotted border-light opacity-50" />
                   <span className="text-sm opacity-70">{expertise.level}</span>
                 </div>
               </div>
@@ -443,7 +443,7 @@ const MobileDevExpertise = ({}) => {
                   <span className="text-sm font-semibold">
                     {expertise.label}
                   </span>
-                  <div className="border-light flex-1 border-b-2 border-dotted opacity-50" />
+                  <div className="flex-1 border-b-2 border-dotted border-light opacity-50" />
                   <span className="text-sm opacity-70">{expertise.level}</span>
                 </div>
               </div>

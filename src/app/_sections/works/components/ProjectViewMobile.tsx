@@ -13,15 +13,15 @@ const ProjectViewMobile = forwardRef(
           />
         </div>
         <div className="flex justify-center pt-5">
-          <h2 className="font-serif text-[clamp(25px,50vw,40px)]">
+          <h2 className="font-serif text-[clamp(25px,9vw,30px)]">
             {project.name}
           </h2>
         </div>
         {project.tags && (
-          <div className="flex flex-wrap justify-center gap-x-2  py-3">
+          <div className="flex flex-wrap justify-center gap-x-5 gap-y-2 py-3">
             {project.tags.map((tag, index) => (
               <span
-                className="whitespace-nowrap text-sm"
+                className="whitespace-nowrap text-xs"
                 key={project.name + "-tag-" + index}
               >
                 <b className="bg-accent rounded-lg p-2 py-0">#</b> {tag}

@@ -8,10 +8,10 @@ import WorksSectionMobile from "./_sections/works/WorkSectionMobile";
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen">
-      <HeroSection />
+    <div className="min-h-screen">
+      {/* <HeroSection />
       <AboutSection />
-      <ExpertiseSection />
+      <ExpertiseSection /> */}
       <div className="max-[999px]:hidden">
         <WorksSectionDesktop />
       </div>
@@ -20,6 +20,6 @@ export default function HomePage() {
       </div>
       <div className="h-screen"></div>
       <FloatingMemojiBadge />
-    </main>
+    </div>
   );
 }

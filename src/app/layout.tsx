@@ -15,6 +15,7 @@ const copyright_font = localFont({
 const ibm_plex_sans = IBM_Plex_Sans({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
+  variable: "--font-ibm-plex",
 });
 
 const devTag = " (Dev Mode)";

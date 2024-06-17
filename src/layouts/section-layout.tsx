@@ -29,7 +29,7 @@ const SectionLayout = forwardRef(
       >
         <div
           {...attr}
-          className={`min-h-max w-screen max-w-[1500px] ${includePadding ? "p-5 sm:px-[40px] sm:py-[20px]" : ""} ${attr.className}`}
+          className={`min-h-max w-screen max-w-screen-2xl ${includePadding ? "p-5 sm:px-[40px] sm:py-[20px]" : ""} ${attr.className}`}
         >
           {children}
         </div>
