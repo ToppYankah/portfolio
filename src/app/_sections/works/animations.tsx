@@ -169,8 +169,8 @@ export function animateProjectCoverImageParallax(
     .add(
       gsap.fromTo(
         imageRef.current,
-        { xPercent: 20, scale: 1.5 },
-        { xPercent: -20 },
+        { backgroundPositionX: 100, backgroundSize: 100 },
+        { backgroundPositionX: -100 },
       ),
     );
 }
