@@ -6,7 +6,9 @@
     --dark-hex: #000;
     --light-hex: #e0ddcf;
     --foreground-hex: #1c110a;
+    --accent-hex: #ffe1cf;
     --foreground-light-hex: #1c110a0c;
+    --foreground-50-hex: #1c110a55;
     --background-hex: #e0ddcf;
     --background-hex: #ffffff;
     --custom-timing: cubic-bezier(0.15, 0.86, 0.66, 0.99);
@@ -14,6 +16,7 @@
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --accent-hex: #2a2522;
         --foreground-hex: #e0ddcf;
         --foreground-light-hex: #e0ddcf10;
         --background-hex: #000;
@@ -70,5 +73,8 @@ body {
 }
 
 #custom-pointer.scale.with-content {
-    border-radius: 0%;
+    @apply min-h-[8rem] min-w-[8rem] max-h-[8rem] max-w-[8rem] bg-black bg-opacity-40 text-white;
+    mix-blend-mode: normal;
+    backdrop-filter: blur(12px);
+    padding: 2rem;
 }

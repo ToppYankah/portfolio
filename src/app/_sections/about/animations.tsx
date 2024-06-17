@@ -23,10 +23,10 @@ export function animateImageBanner(
       gsap.fromTo(
         imageRef.current,
         {
-          yPercent: -30,
+          yPercent: -10,
         },
         {
-          yPercent: 80,
+          yPercent: 100,
           ease: "none",
         },
       ),
@@ -103,7 +103,6 @@ export function animatePersonalInfo(
       {
         yPercent: -20,
         stagger: 0.1,
-        markers: true,
         ease: "none",
       },
     );

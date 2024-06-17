@@ -10,12 +10,15 @@ export default {
         serif: ["var(--font-copyright)", ...fontFamily.serif],
       },
       backgroundColor: {
+        "inverted-light": "var(--foreground-50-hex)",
         inverted: 'var(--foreground-hex)',
         color: 'var(--background-hex)',
         light: 'var(--light-hex)',
         dark: 'var(--dark-hex)',
+        accent: "var(--accent-hex)"
       },
       colors: {
+        inverted: 'var(--background-hex)',
         light: 'var(--light-hex)',
         dark: 'var(--dark-hex)',
       },

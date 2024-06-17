@@ -1,6 +1,6 @@
 "use client";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import SectionTitle from "~/components/SectionTitle";
 import SectionLayout from "~/layouts/section-layout";
 import {
@@ -11,6 +11,7 @@ import {
   animateShortBio,
 } from "./animations";
 import ArrowPointerSVG from "./components/ArrowPointerSVG";
+import { PointerContext } from "~/context/custom-pointer-context";
 
 export default function AboutSection() {
   const bioText1Ref = useRef<HTMLDivElement | null>(null);
@@ -22,6 +23,7 @@ export default function AboutSection() {
   const personalInfoRefs = useRef<
     (HTMLSpanElement | HTMLHeadingElement | HTMLDivElement | null)[]
   >([]);
+  const { setHoveredLink } = useContext(PointerContext);
 
   useGSAP(
     () => {
@@ -33,6 +35,14 @@ export default function AboutSection() {
     },
     { scope: sectionRef },
   );
+
+  const handleMouseEnter = () => {
+    setHoveredLink(true, "Yep! That's Me");
+  };
+
+  const handleMouseLeave = () => {
+    setHoveredLink(false, null);
+  };
 
   return (
     <SectionLayout
@@ -48,6 +58,8 @@ export default function AboutSection() {
       </SectionTitle>
       <div
         ref={imageContainerRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
         className="col-start-2 col-end-3 row-start-2 row-end-4 min-h-[clamp(300px,60vh,800px)] w-[clamp(200px,100%,600px)] overflow-hidden rounded-full bg-black max-[999px]:w-[clamp(200px,50vw,400px)] max-[599px]:w-[clamp(100px,80vw,500px)]"
       >
         <img

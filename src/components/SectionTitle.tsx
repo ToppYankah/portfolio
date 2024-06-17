@@ -49,7 +49,7 @@ export default function SectionTitle({
       {label && (
         <div
           ref={containerRef}
-          className={`self-start font-sans text-sm ${labelClassName}`}
+          className={`self-start font-sans text-xs mb-2 uppercase ${labelClassName}`}
         >
           {label.split("").map((char, index) => (
             <span

@@ -10,26 +10,28 @@ export default function ExpertiseSection() {
   const scopeRef = useRef<HTMLDivElement>(null);
 
   return (
-    <SectionLayout
-      id="expertise"
-      ref={scopeRef}
-      title="Expertise"
-      className="bg-dark text-light grid grid-cols-2 grid-rows-[auto_auto_auto] gap-10 gap-y-32 max-[899px]:grid-cols-1 max-[899px]:grid-rows-none max-[899px]:gap-y-10 mt-52"
-    >
-      <SectionTitle
-        className="col-start-1 col-end-3 row-start-1 row-end-2 items-center pt-32 max-[899px]:col-end-2 max-[899px]:mb-10"
-        labelClassName="self-center"
-        label="Stack Experience"
+    <div className="sm:mt-52 mt-32">
+      <SectionLayout
+        id="expertise"
+        ref={scopeRef}
+        darkMode={true}
+        className="text-light mt-32 grid grid-cols-2 grid-rows-[auto_auto_auto] gap-10 gap-y-32 max-[899px]:grid-cols-1 max-[899px]:grid-rows-none max-[899px]:gap-y-10 sm:mt-52"
       >
-        Areas &nbsp;of &nbsp;&nbsp;Expertise
-      </SectionTitle>
+        <SectionTitle
+          className="col-start-1 col-end-3 row-start-1 row-end-2 items-center pt-0 max-[899px]:col-end-2 max-[899px]:mb-10 sm:pt-32"
+          labelClassName="self-center"
+          label="Stack Experience"
+        >
+          Areas &nbsp;of &nbsp;&nbsp;Expertise
+        </SectionTitle>
 
-      <AngleBracketSVG />
-      <WebDevExpertise />
-      <MobileDevExpertise />
-      <CurlyBracketSVG />
-      <div className="mb-20"></div>
-    </SectionLayout>
+        <AngleBracketSVG />
+        <WebDevExpertise />
+        <MobileDevExpertise />
+        <CurlyBracketSVG />
+        <div className="mb-20"></div>
+      </SectionLayout>
+    </div>
   );
 }
 
@@ -359,7 +361,10 @@ const MobileDevExpertise = ({}) => {
   );
 
   return (
-    <div ref={scopeRef} className="expertise-item flex justify-end max-[999px]:justify-center">
+    <div
+      ref={scopeRef}
+      className="expertise-item flex justify-end max-[999px]:justify-center"
+    >
       <div className="flex w-[80%] gap-5 perspective-600 max-[499px]:w-[100%] max-[499px]:flex-col  max-[499px]:items-start max-[499px]:gap-0">
         <svg
           width="107"

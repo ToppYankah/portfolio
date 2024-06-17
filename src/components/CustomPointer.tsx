@@ -26,15 +26,12 @@ const CustomPointer = () => {
     <div
       ref={pointerRef}
       id="custom-pointer"
-      className={`${hoveredLink ? "scale" : ""} ${hoverText ? "with-content" : ""} hidden md:flex`}
+      className={`${hoveredLink ? "scale" : ""} ${hoverText ? "with-content" : ""} hidden items-center justify-center md:flex`}
     >
       {hoverText ? (
-        <p
-          className="block text-black mix-blend-difference"
-          style={{ margin: 10 }}
-        >
+        <span className="block text-center text-sm leading-tight text-white mix-blend-difference">
           {hoverText}
-        </p>
+        </span>
       ) : (
         ""
       )}
