@@ -1,23 +1,17 @@
 "use client";
 import { useGSAP } from "@gsap/react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import SectionTitle from "~/components/SectionTitle";
 import SectionLayout from "~/layouts/section-layout";
 import * as animations from "./animations";
 import KeepScrollingIndicator from "./components/KeepScrollingIndicator";
 import ProjectView from "./components/ProjectViewDesktop";
+import WorkSectionConclusion from "./components/WorkSectionConclusion";
 import WorkSectionTitle from "./components/WorkSectionTitle";
 import { projects } from "./sampleData";
-import { useSmoothScroll } from "~/context/smooth-scroll-context";
-import WorkSectionConclusion from "./components/WorkSectionConclusion";
 
 export default function WorksSectionDesktop() {
   const sectionScopeRef = useRef<HTMLDivElement | null>(null);
-  const { startSmoothScroll } = useSmoothScroll();
-
-  useEffect(() => {
-    startSmoothScroll();
-  }, []);
 
   useGSAP(
     () => {
