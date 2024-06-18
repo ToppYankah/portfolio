@@ -3,12 +3,12 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import SectionTitle from "~/components/SectionTitle";
 import SectionLayout from "~/layouts/section-layout";
-import * as animations from "./animations";
-import KeepScrollingIndicator from "./components/KeepScrollingIndicator";
-import ProjectView from "./components/ProjectViewDesktop";
-import WorkSectionConclusion from "./components/WorkSectionConclusion";
-import WorkSectionTitle from "./components/WorkSectionTitle";
-import { projects } from "./sampleData";
+import * as animations from "../animations";
+import KeepScrollingIndicator from "./KeepScrollingIndicator";
+import ProjectView from "./ProjectViewDesktop";
+import WorkSectionConclusion from "./WorkSectionConclusion";
+import WorkSectionTitle from "./WorkSectionTitle";
+import { projects } from "../sampleData";
 
 export default function WorksSectionDesktop() {
   const sectionScopeRef = useRef<HTMLDivElement | null>(null);

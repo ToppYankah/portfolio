@@ -1,10 +1,9 @@
 "use client";
 import FloatingMemojiBadge from "~/components/FloatingMemojiBadge";
 import AboutSection from "./_sections/about/AboutSection";
-import HeroSection from "./_sections/hero/HeroSection";
-import WorksSectionDesktop from "./_sections/works/WorksSectionDesktop";
 import ExpertiseSection from "./_sections/expertise/ExpertiseSection";
-import WorksSectionMobile from "./_sections/works/WorkSectionMobile";
+import HeroSection from "./_sections/hero/HeroSection";
+import WorkSection from "./_sections/works/WorkSection";
 
 export default function HomePage() {
   return (
@@ -12,12 +11,7 @@ export default function HomePage() {
       <HeroSection />
       <AboutSection />
       <ExpertiseSection />
-      <div className="max-[999px]:hidden">
-        <WorksSectionDesktop />
-      </div>
-      <div className="min-[1000px]:hidden">
-        <WorksSectionMobile />
-      </div>
+      <WorkSection />
       <div className="h-screen"></div>
       <FloatingMemojiBadge />
     </div>

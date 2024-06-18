@@ -1,7 +1,7 @@
 import SectionTitle from "~/components/SectionTitle";
 import SectionLayout from "~/layouts/section-layout";
-import { projects } from "./sampleData";
-import ProjectViewMobile from "./components/ProjectViewMobile";
+import { projects } from "../sampleData";
+import ProjectViewMobile from "./ProjectViewMobile";
 
 export default function WorksSectionMobile() {
   return (
@@ -9,8 +9,10 @@ export default function WorksSectionMobile() {
       <SectionTitle label="Selected Works" className="mt-32">
         The&nbsp;Moment\nYou&nbsp;have&nbsp;Been\nWaiting&nbsp;For
       </SectionTitle>
-    <div className="mt-20 flex flex-wrap max-[720px]:gap-5 gap-10">
-        {projects.map((project, index) => <ProjectViewMobile project={project} />)}
+      <div className="mt-20 flex flex-wrap gap-10 max-[720px]:gap-5">
+        {projects.map((project, index) => (
+          <ProjectViewMobile project={project} />
+        ))}
       </div>
     </SectionLayout>
   );

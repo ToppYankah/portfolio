@@ -51,7 +51,7 @@ export default function WorkSectionConclusion() {
       </h1>
       <div className="mt-10 flex justify-center">
         <NavLink href="#" className="text-sm">
-          More Projects &rarr;
+          See More Projects &rarr;
         </NavLink>
       </div>
       <FinalScrollIndicator />
