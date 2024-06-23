@@ -1,32 +1,33 @@
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
+@tailwind components;
 
 :root {
     --dark-hex: #000;
     --light-hex: #e0ddcf;
     --foreground-hex: #1c110a;
-    --accent-hex: #ffe1cf;
+    --accent-hex: #fff1e8;
+    --accent-deep-hex: #ffe5d5;
+    --accent-light-hex: #fff1e880;
     --foreground-light-hex: #1c110a0c;
     --foreground-50-hex: #1c110a55;
     --background-hex: #e0ddcf;
     --background-hex: #ffffff;
-    --custom-timing: cubic-bezier(0.15, 0.86, 0.66, 0.99);
+    --load-animation-bezier: cubic-bezier(0.8, 0.19, 0.09, 1.16);
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --accent-hex: #222222;
+        --accent-hex: #1e1a17;
+        --accent-light-hex: #1e1a1780;
         --foreground-hex: #e0ddcf;
         --foreground-light-hex: #e0ddcf10;
         --background-hex: #000;
-        /* --background-hex: #040f16; */
-        /* --background-hex: #080808; */
     }
 }
 
 ::selection {
-    background: var(--foreground-light-hex);
+    background: var(--accent-hex);
 }
 
 body {
@@ -34,6 +35,16 @@ body {
     color: var(--foreground-hex);
     font-family: var(--font-ibm-plex);
     background: var(--background-hex);
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 ::-webkit-scrollbar-track {
@@ -58,7 +69,7 @@ body {
 
 
 #custom-pointer {
-    @apply pointer-events-none fixed left-1/2 top-1/2 z-[1000] min-h-[0.75rem] min-w-[0.75rem] bg-white;
+    @apply pointer-events-none fixed left-1/2 top-1/2 z-[10] min-h-[0.75rem] min-w-[0.75rem] bg-white;
     transition: all 0.3s ease-out;
     color: var(--background-hex);
     mix-blend-mode: difference;
@@ -72,8 +83,78 @@ body {
 }
 
 #custom-pointer.scale.with-content {
-    @apply min-h-[8rem] min-w-[8rem] max-h-[8rem] max-w-[8rem] bg-black bg-opacity-40 text-white;
+    @apply min-h-[7rem] min-w-[7rem] max-h-[7rem] max-w-[7rem] bg-black bg-opacity-40 text-white;
     mix-blend-mode: normal;
     backdrop-filter: blur(12px);
     padding: 2rem;
+}
+
+#cover-sheet, 
+#modal {
+    --animation-duration: .8s;
+    --animation-delay: .1s;
+    --closing-end-clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    --opened-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    --closed-clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+}
+
+#cover-sheet.opening, 
+#cover-sheet.opening .cover-sheet-wrapper,
+#modal.opening, 
+#modal.opening .modal-wrapper
+ {
+    animation: open-animation var(--animation-duration) var(--load-animation-bezier);
+}
+#cover-sheet.opening .cover-sheet-wrapper,
+#modal.opening .modal-wrapper
+ {
+    animation-delay: var(--animation-delay);
+}
+#cover-sheet.opened, 
+#cover-sheet.opened .cover-sheet-wrapper,
+#modal.opened, 
+#modal.opened .modal-wrapper
+ {
+    clip-path: var(--opened-clip-path);
+}
+
+#cover-sheet.closing, 
+#cover-sheet.closing .cover-sheet-wrapper,
+#modal.closing, 
+#modal.closing .modal-wrapper {
+    animation: close-animation var(--animation-duration) var(--load-animation-bezier);
+}
+#cover-sheet.closing, 
+#modal.closing {
+    animation-delay: var(--animation-delay);
+}
+#cover-sheet.closed, 
+#cover-sheet.closed .cover-sheet-wrapper, 
+#modal.closed, 
+#modal.closed .modal-wrapper {
+    clip-path: var(--closed-clip-path);
+}
+
+@keyframes open-animation {
+    0%{
+        clip-path: var(--closed-clip-path);
+    }
+
+    100% {
+        clip-path: var(--opened-clip-path);
+    }
+}
+
+@keyframes close-animation {
+    0%{
+        clip-path: var(--opened-clip-path);
+    }
+
+    100% {
+        clip-path: var(--closing-end-clip-path);
+    }  
+}
+
+button {
+    @apply py-4 px-7 rounded-full text-sm focus:border-inverted focus:outline-none active:border-inverted active:outline-none;
 }

@@ -9,6 +9,7 @@ export function animateScreenOutlines(
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: screenOutline1Ref.current,
         start: "top 80%",
         end: "top 30%",
@@ -85,6 +86,7 @@ export const animateTopShape = (
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: containerRef.current,
         start: "top 80%",
         end: "top 30%",
@@ -110,6 +112,7 @@ export const animateBottomShape = (
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: containerRef.current,
         start: "top bottom",
         end: "top 30%",

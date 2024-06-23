@@ -10,8 +10,8 @@ export default function WorksSectionMobile() {
         The&nbsp;Moment\nYou&nbsp;have&nbsp;Been\nWaiting&nbsp;For
       </SectionTitle>
       <div className="mt-20 flex flex-wrap gap-10 max-[720px]:gap-5">
-        {projects.map((project, index) => (
-          <ProjectViewMobile project={project} />
+        {projects.map((project) => (
+          <ProjectViewMobile key={project.name} project={project} />
         ))}
       </div>
     </SectionLayout>

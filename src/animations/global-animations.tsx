@@ -5,43 +5,36 @@ import ScrollTrigger from "gsap/dist/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export const animatePointer = (
-  pointerRef: MutableRefObject<HTMLDivElement>,
-  clientX: number,
-  clientY: number,
-) => {
-  const { width, height } = pointerRef?.current?.getBoundingClientRect();
+export const animatePointer = (clientX: number, clientY: number) => {
+  const bounds = document
+    .getElementById("custom-pointer")
+    ?.getBoundingClientRect();
 
   const halfWidth = window.innerWidth * 0.5,
     halfHeight = window.innerHeight * 0.5,
-    halfPHeight = height * 0.5,
-    halfPWidth = width * 0.5;
+    halfPHeight = (bounds?.height ?? 0) * 0.5,
+    halfPWidth = (bounds?.width ?? 0) * 0.5;
 
-  gsap.to(pointerRef?.current, {
+  gsap.to("#custom-pointer", {
     ease: "none",
-    duration: -1,
+    duration: 0,
     x: clientX - (halfWidth + halfPWidth),
     y: clientY - (halfHeight + halfPHeight),
   });
 };
 
-export const animateSectionTitle = (
-  containerRef: MutableRefObject<
-    (HTMLDivElement | null)[] | HTMLDivElement | null
-  >,
-  textCharsRef: MutableRefObject<(HTMLSpanElement | null)[]>,
-) => {
+export const animateSectionTitle = () => {
   return gsap
     .timeline({
       scrollTrigger: {
-        trigger: containerRef.current,
-        start: "bottom 70%",
-        end: "top 0%",
+        invalidateOnRefresh: true,
+        trigger: ".title-container",
+        start: "bottom 80%",
       },
     })
     .add(
       gsap.fromTo(
-        textCharsRef.current,
+        ".text-char",
         {
           opacity: 0,
           rotateX: -40,
@@ -52,8 +45,8 @@ export const animateSectionTitle = (
           opacity: 1,
           rotateX: 0,
           yPercent: 0,
-          duration: 1,
-          stagger: 0.05,
+          duration: 0.5,
+          stagger: 0.04,
           filter: "blur(0px)",
           ease: "expo.out",
         },
@@ -108,11 +101,41 @@ export function toggleFloatingMemojiAnimation(
       duration: 1,
       ease: "power4.out",
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: "#hero",
         start: "bottom top",
         end: "bottom -50",
         scrub: true,
       },
     },
+  );
+}
+
+export function animateAvailableForWork() {
+  return gsap.to(".part", {
+    xPercent: -100,
+    repeat: -1,
+    duration: 8,
+    ease: "none",
+    scrollTrigger: {
+      invalidateOnRefresh: true,
+      trigger: "#reviews",
+    },
+  });
+}
+
+export function animateModalLabel() {
+  return gsap.fromTo(
+    ".modal-label span",
+    { y: 30, filter: "blur(20px)" },
+    { y: 0, filter: "blur(0px)", stagger: 0.1, duration: 0.5 },
+  );
+}
+
+export function animateModalContent() {
+  return gsap.fromTo(
+    ".content *",
+    { opacity: 0, y: 50 },
+    { opacity: 1, y: 0, stagger: 0.03, duration: 0.5 },
   );
 }

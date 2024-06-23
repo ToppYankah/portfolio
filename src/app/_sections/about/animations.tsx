@@ -6,13 +6,14 @@ import MotionPathPlugin from "gsap/dist/MotionPathPlugin";
 
 gsap.registerPlugin(MotionPathPlugin, ScrollTrigger);
 
-export function animateImageBanner(
+export function animateProfilePhoto(
   imageContainerRef: MutableRefObject<HTMLDivElement | null>,
   imageRef: MutableRefObject<HTMLImageElement | null>,
 ) {
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: "#about",
         start: "top bottom",
         end: "bottom top",
@@ -26,7 +27,7 @@ export function animateImageBanner(
           yPercent: -10,
         },
         {
-          yPercent: 100,
+          yPercent: 50,
           ease: "none",
         },
       ),
@@ -63,6 +64,7 @@ export function animateBioText(
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: "#about",
         start: "top top",
         end: "50% 30%",
@@ -89,6 +91,7 @@ export function animatePersonalInfo(
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: "#about",
         start: "top top",
         end: "50% 30%",
@@ -114,6 +117,7 @@ export function animateShortBio(
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: "#about",
         start: "top 50%",
         end: "bottom 90%",
@@ -140,6 +144,7 @@ export function animateArrowLine(
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: svgBoxRef.current,
         start: "10% 98%",
         end: "top 25%",

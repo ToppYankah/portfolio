@@ -1,22 +1,25 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 import { SocialIcon } from "react-social-icons";
 import { animateSocials } from "../animations";
 
 export default function HeroSocials() {
-  const socialRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const scopeRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    animateSocials(socialRefs);
-  }, []);
+  useGSAP(
+    () => {
+      animateSocials();
+    },
+    { scope: scopeRef },
+  );
 
   return (
-    <div className="col-start-1 col-end-5 row-start-3 row-end-4 flex items-end justify-end sm:col-start-4">
-      <div
-        ref={(ref) => {
-          socialRefs.current?.push(ref);
-        }}
-      >
+    <div
+      ref={scopeRef}
+      className="col-start-1 col-end-5 row-start-3 row-end-4 flex items-end justify-end sm:col-start-4"
+    >
+      <div className="social-item">
         <SocialIcon
           url="https://github.com/ToppYankah"
           fgColor="var(--foreground-hex)"
@@ -26,11 +29,7 @@ export default function HeroSocials() {
           style={{ width: "20%", minWidth: 30, maxWidth: 40 }}
         />
       </div>
-      <div
-        ref={(ref) => {
-          socialRefs.current?.push(ref);
-        }}
-      >
+      <div className="social-item">
         <SocialIcon
           url="https://www.linkedin.com/in/kenneth-yankah/"
           fgColor="var(--foreground-hex)"
@@ -40,11 +39,7 @@ export default function HeroSocials() {
           style={{ width: "20%", minWidth: 30, maxWidth: 40 }}
         />
       </div>
-      <div
-        ref={(ref) => {
-          socialRefs.current?.push(ref);
-        }}
-      >
+      <div className="social-item">
         <SocialIcon
           url="https://www.linkedin.com/in/kenneth-yankah/"
           fgColor="var(--foreground-hex)"
@@ -54,11 +49,7 @@ export default function HeroSocials() {
           style={{ width: "20%", minWidth: 30, maxWidth: 40 }}
         />
       </div>
-      <div
-        ref={(ref) => {
-          socialRefs.current?.push(ref);
-        }}
-      >
+      <div className="social-item">
         <SocialIcon
           url="https://www.linkedin.com/in/kenneth-yankah/"
           fgColor="var(--foreground-hex)"

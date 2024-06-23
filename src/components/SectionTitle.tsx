@@ -1,5 +1,5 @@
 import { useGSAP } from "@gsap/react";
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { animateSectionTitle } from "~/animations/global-animations";
 
 export default function SectionTitle({
@@ -13,14 +13,13 @@ export default function SectionTitle({
   children: string;
   labelClassName?: string;
 } & React.AllHTMLAttributes<HTMLDivElement>) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const textCharsRef = useRef<(HTMLSpanElement | null)[]>([]);
+  const scopeRef = useRef<HTMLDivElement | null>(null);
 
   useGSAP(
     () => {
-      animateSectionTitle(containerRef, textCharsRef);
+      animateSectionTitle();
     },
-    { scope: containerRef },
+    { scope: scopeRef },
   );
 
   const renderTitleLine = (text: string, index: number) => {
@@ -30,13 +29,7 @@ export default function SectionTitle({
         className="flex font-serif text-[clamp(35px,5vw,48px)] leading-[clamp(38px,5.2vw,60px)]"
       >
         {text.split("").map((char, index) => (
-          <span
-            key={"title-char-" + index}
-            className="block"
-            ref={(ref) => {
-              textCharsRef.current.push(ref);
-            }}
-          >
+          <span key={"title-char-" + index} className="text-char block">
             {char}
           </span>
         ))}
@@ -45,25 +38,27 @@ export default function SectionTitle({
   };
 
   return (
-    <div {...rest} className={`flex flex-col text-center ${className}`}>
+    <div
+      {...rest}
+      ref={scopeRef}
+      className={`flex flex-col text-center ${className}`}
+    >
       {label && (
         <div
-          ref={containerRef}
-          className={`self-start font-sans text-xs mb-2 uppercase ${labelClassName}`}
+          className={`mb-2 self-start font-sans text-xs uppercase ${labelClassName}`}
         >
           {label.split("").map((char, index) => (
-            <span
-              key={"label-char-" + index}
-              ref={(ref) => {
-                textCharsRef.current.push(ref);
-              }}
-            >
+            <span key={"label-char-" + index} className="text-char">
               {char}
             </span>
           ))}
         </div>
       )}
-      {children.split("\\n").map((line, index) => renderTitleLine(line, index))}
+      <div className="title-container">
+        {children
+          .split("\\n")
+          .map((line, index) => renderTitleLine(line, index))}
+      </div>
     </div>
   );
 }

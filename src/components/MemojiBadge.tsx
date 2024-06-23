@@ -50,7 +50,7 @@ const MemojiBadge = forwardRef<HTMLDivElement, HTMLProps<HTMLDivElement>>(
           className="aspect-square w-full rounded-full"
           ref={badgeImageRef}
         />
-        <div className="absolute left-1/2 top-1/2 flex aspect-square w-[75%] -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden rounded-full bg-accent bg-opacity-[0.2]">
+        <div className="absolute left-1/2 top-1/2 flex aspect-square w-[75%] -translate-x-1/2 -translate-y-1/2 items-center justify-center overflow-hidden rounded-full border-4 border-bg bg-accent bg-opacity-[0.2]">
           <Magnetic strength={0.2}>
             <img src="/images/memoji.png" className="w-[55%]" />
           </Magnetic>

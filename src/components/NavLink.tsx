@@ -13,7 +13,7 @@ const NavLink = ({ active, children, className, ...props }: NavLinkProps) => {
     <Magnetic>
       <a
         {...props}
-        className={`relative group self-start overflow-hidden text-sm ${className || ""}`}
+        className={`group relative self-start overflow-hidden text-sm ${className || ""}`}
       >
         <div
           className={`pointer-events-none flex max-h-[1.5em] flex-col before:absolute before:bottom-0 before:left-0 before:h-[2px] before:w-full before:origin-left  before:transition-transform before:duration-500 before:content-['_'] group-hover:before:scale-x-100 ${active ? "before:scale-x-[0.5]" : "before:scale-x-0"} before:bg-inverted`}

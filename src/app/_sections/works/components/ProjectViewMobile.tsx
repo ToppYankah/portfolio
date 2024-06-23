@@ -1,15 +1,15 @@
 import { ForwardedRef, forwardRef } from "react";
-import { Project } from "~/app/_interfaces/interfaces";
+import { Project } from "~/interfaces/interfaces";
 
 const ProjectViewMobile = forwardRef(
   ({ project }: { project: Project }, ref: ForwardedRef<HTMLDivElement>) => {
     return (
-      <div className="min-w-[300px] flex-1">
-        <div className="bg-inverted-light h-[clamp(250px,60%,500px)] w-full overflow-hidden rounded-full">
+      <div className="min-w-[300px] flex-1 min-[700px]:max-w-[50%]">
+        <div className="h-[clamp(250px,60%,500px)] w-full overflow-hidden rounded-full bg-inverted-light">
           <img
             src={project.imageUrl}
             alt={project.name}
-            className="h-full w-full"
+            className="h-full w-full object-cover"
           />
         </div>
         <div className="flex justify-center pt-5">
@@ -24,7 +24,7 @@ const ProjectViewMobile = forwardRef(
                 className="whitespace-nowrap text-xs"
                 key={project.name + "-tag-" + index}
               >
-                <b className="bg-accent rounded-lg p-2 py-0">#</b> {tag}
+                <b className="rounded-lg bg-accent p-2 py-0">#</b> {tag}
               </span>
             ))}
           </div>

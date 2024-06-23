@@ -2,9 +2,8 @@
 import { useGSAP } from "@gsap/react";
 import { useContext, useRef } from "react";
 import { PointerContext } from "~/context/custom-pointer-context";
+import { Project } from "~/interfaces/interfaces";
 import * as animations from "../animations";
-import { Project } from "~/app/_interfaces/interfaces";
-import Magnetic from "~/components/Magnetic";
 
 const ProjectView = ({
   project,
@@ -58,12 +57,12 @@ const ProjectView = ({
   return (
     <div
       ref={containerRef}
-      className="work-item flex min-h-screen min-w-[65vw] items-center gap-10 px-20"
+      className="work-item flex min-h-screen min-w-[65%] items-center gap-10"
     >
       <div
         onMouseOut={handleMouseOut}
         onMouseOver={() => handleMouseOver("See\nProject")}
-        className="cover-image h-[clamp(500px,80vh,1000px)] w-[clamp(300px,50%,450px)] min-w-[clamp(300px,60%,450px)] overflow-hidden rounded-full bg-black hover:cursor-pointer"
+        className="cover-image h-[clamp(500px,65vh,1000px)] w-[clamp(300px,50%,450px)] min-w-[clamp(300px,60%,450px)] overflow-hidden rounded-[3rem] bg-black hover:cursor-pointer"
       >
         <img
           ref={coverImageRef}
@@ -106,7 +105,7 @@ const ProjectView = ({
           {project.name.split("\n").map((line, index) => (
             <h2
               key={project.name + "-line-" + index}
-              className="work-name-line flex font-serif text-[clamp(20px,50vw,4rem)] leading-[1em]"
+              className="work-name-line flex font-serif text-[clamp(20px,5vw,4rem)] leading-[1em]"
             >
               {line.split("").map((char, index) =>
                 char ? (

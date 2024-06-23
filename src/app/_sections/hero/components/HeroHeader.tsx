@@ -1,5 +1,6 @@
 "use client";
-import { LegacyRef, MutableRefObject, useLayoutEffect, useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { useRef } from "react";
 import NavLink from "~/components/NavLink";
 import { animateLinks, animateLogo } from "../animations";
 
@@ -14,30 +15,26 @@ export default function HeroHeader() {
 }
 
 const HeroNav = () => {
-  const navRefs: MutableRefObject<(HTMLDivElement | null)[]> = useRef([]);
+  const navScopeRef = useRef<HTMLDivElement | null>(null);
 
-  useLayoutEffect(() => {
-    animateLinks(navRefs);
-  }, []);
+  useGSAP(
+    () => {
+      animateLinks();
+    },
+    { scope: navScopeRef },
+  );
 
   return (
-    <nav className="relative col-start-1 col-end-2 row-start-1 row-end-2 flex gap-5 sm:gap-8">
-      <div
-        ref={(ref) => {
-          navRefs.current?.push(ref);
-        }}
-        className="flex"
-      >
+    <nav
+      ref={navScopeRef}
+      className="relative col-start-1 col-end-2 row-start-1 row-end-2 flex gap-5 sm:gap-8"
+    >
+      <div className="link-item flex">
         <NavLink className="self-center" href="#">
           Bio
         </NavLink>
       </div>
-      <div
-        ref={(ref) => {
-          navRefs.current?.push(ref);
-        }}
-        className="flex"
-      >
+      <div className="link-item flex">
         <NavLink className="self-center" href="#">
           Works
         </NavLink>
@@ -47,27 +44,21 @@ const HeroNav = () => {
 };
 
 const HeroLogo = () => {
-  const lettersRef: MutableRefObject<(HTMLSpanElement | null)[]> = useRef([]);
+  const scopeRef = useRef<HTMLDivElement | null>(null);
 
-  useLayoutEffect(() => {
-    animateLogo(lettersRef);
-  }, []);
+  useGSAP(
+    () => {
+      animateLogo();
+    },
+    { scope: scopeRef },
+  );
 
   return (
-    <div className="col-start-2 col-end-4 flex justify-center">
-      <a
-        href="#"
-        id="logo"
-        className="text-xl flex font-serif font-black"
-      >
-        {"Kenny".split("").map((char, iindex) => {
+    <div ref={scopeRef} className="col-start-2 col-end-4 flex justify-center">
+      <a href="#" id="logo" className="flex font-serif text-xl font-black">
+        {"Kenny".split("").map((char, index) => {
           return (
-            <p
-              ref={(ref) => {
-                if (ref) lettersRef.current?.push(ref);
-              }}
-              key={iindex}
-            >
+            <p className="logo-char" key={char + index}>
               {char}
             </p>
           );
@@ -78,14 +69,28 @@ const HeroLogo = () => {
 };
 
 const HeroContact = () => {
+  const navScopeRef = useRef<HTMLDivElement | null>(null);
+
+  useGSAP(
+    () => {
+      animateLinks();
+    },
+    { scope: navScopeRef },
+  );
+
   return (
-    <div className="col-start-4 col-end-5 row-start-1 row-end-2 flex justify-end">
-      <NavLink
-        href="#"
-        className="place-self-start self-center whitespace-nowrap"
-      >
-        Let's talk
-      </NavLink>
-    </div>
+    <nav
+      ref={navScopeRef}
+      className="col-start-4 col-end-5 row-start-1 row-end-2 flex justify-end"
+    >
+      <div className="link-item flex">
+        <NavLink
+          href="#"
+          className="place-self-start self-center whitespace-nowrap"
+        >
+          Let's talk
+        </NavLink>
+      </div>
+    </nav>
   );
 };

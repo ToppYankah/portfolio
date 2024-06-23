@@ -1,10 +1,11 @@
 "use client";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, {
+  HTMLAttributes,
   MutableRefObject,
   ReactElement,
   useContext,
-  useEffect,
   useRef,
 } from "react";
 import { PointerContext } from "~/context/custom-pointer-context";
@@ -13,11 +14,12 @@ const Magnetic = ({
   message,
   children,
   strength = 0.5,
+  ...rest
 }: {
   children: ReactElement;
   message?: string | null;
   strength?: number;
-}) => {
+} & HTMLAttributes<HTMLDivElement>) => {
   const { setHoveredLink } = useContext(PointerContext);
   const ref: MutableRefObject<HTMLElement | null> = useRef(null);
 
@@ -43,13 +45,13 @@ const Magnetic = ({
   const handleMouseEnter = (e: MouseEvent) =>
     setHoveredLink(true, message ?? null);
 
-  useEffect(() => {
+  useGSAP(() => {
     ref.current?.addEventListener("mousemove", handleMouseMove);
     ref.current?.addEventListener("mouseleave", handleMouseLeave);
     ref.current?.addEventListener("mouseenter", handleMouseEnter);
-  }, []);
+  });
 
-  return React.cloneElement(children, { ref });
+  return React.cloneElement(children, { ref, ...rest });
 };
 
 export default Magnetic;

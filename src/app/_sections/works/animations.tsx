@@ -4,29 +4,79 @@ import MotionPathPlugin from "gsap/dist/MotionPathPlugin";
 
 gsap.registerPlugin(MotionPathPlugin);
 
-export function animateSectionItems({ total }: { total: number }) {
+export function animateConclusionHeading(
+  titleRefs: MutableRefObject<(HTMLHeadingElement | null)[]>,
+) {
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
+        trigger: "#works",
+        start: "bottom 400%",
+        end: "bottom 140%",
+        scrub: true,
+      },
+    })
+    .add(gsap.fromTo(titleRefs.current, { xPercent: -50 }, { xPercent: 0 }));
+}
+
+export function animateFinalScrollIndicator(
+  pathRef: MutableRefObject<SVGPathElement | null>,
+  rectRef: MutableRefObject<SVGRectElement | null>,
+  ellipseRef: MutableRefObject<SVGEllipseElement | null>,
+) {
+  return gsap
+    .timeline({
+      scrollTrigger: {
+        invalidateOnRefresh: true,
+        trigger: "#works",
+        start: "bottom 140%",
+        end: "bottom 100%",
+        scrub: true,
+      },
+    })
+    .add(
+      gsap.to(rectRef.current, {
+        motionPath: {
+          align: pathRef.current || undefined,
+          path: pathRef.current || undefined,
+          alignOrigin: [0.5, 0.5],
+        },
+        ease: "none",
+      }),
+    )
+    .add(
+      gsap.to(ellipseRef.current, {
+        motionPath: {
+          align: pathRef.current || undefined,
+          path: pathRef.current || undefined,
+          alignOrigin: [0.5, 0],
+        },
+        ease: "none",
+      }),
+      "<",
+    );
+}
+
+export function animateSectionItems({ xValue }: { xValue: number }) {
+  return gsap
+    .timeline({
+      scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: "#works",
         start: "top -=30%",
         end: "bottom 130%",
         scrub: true,
       },
     })
-    .add(
-      gsap.fromTo(
-        ".section-items-wrapper",
-        { translateX: 0 },
-        { translateX: `${-(total * 65 + 100)}vw` },
-      ),
-    );
+    .add(gsap.to(".section-items-wrapper", { x: -xValue }));
 }
 
 export function animateScrollBall() {
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: ".svgScope",
         start: "top bottom",
       },
@@ -52,8 +102,8 @@ export function animateSectionTitle() {
         scrub: true,
       },
     })
-    .add(gsap.from(".middle", { xPercent: 5 }))
-    .add(gsap.from(".upper", { xPercent: 15 }), "<")
+    .add(gsap.from(".upper", { xPercent: 15 }))
+    .add(gsap.from(".middle", { xPercent: 5 }), "<")
     .add(gsap.from(".lower", { xPercent: 8 }), "<");
 }
 
@@ -61,6 +111,7 @@ export function animateProjectElementsSneak() {
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: "#works",
         start: "top bottom",
         end: "top 10%",
@@ -83,6 +134,7 @@ export function animateScrollIndicator() {
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: "#works",
         start: "top top",
         end: "top -=30%",
@@ -107,6 +159,7 @@ export function animateProjectElementsReveal() {
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: "#works",
         start: "top -=30%",
         end: "top -=70%",
@@ -163,6 +216,7 @@ export function animateProjectCoverImageParallax(
   return gsap
     .timeline({
       scrollTrigger: {
+        invalidateOnRefresh: true,
         trigger: "#works",
         start: `top -=30%`,
         end: `top -=${100 + offset * 1.5}%`,
@@ -175,57 +229,5 @@ export function animateProjectCoverImageParallax(
         { scale: 1.25, xPercent: 10 },
         { xPercent: -10 },
       ),
-    );
-}
-
-export function animateConclusionHeading(
-  titleRefs: MutableRefObject<(HTMLHeadingElement | null)[]>,
-) {
-  return gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: "#works",
-        start: "bottom 400%",
-        end: "bottom 140%",
-        scrub: true,
-      },
-    })
-    .add(gsap.fromTo(titleRefs.current, { xPercent: -50 }, { xPercent: 0 }));
-}
-
-export function animateFinalScrollIndicator(
-  pathRef: MutableRefObject<SVGPathElement | null>,
-  rectRef: MutableRefObject<SVGRectElement | null>,
-  ellipseRef: MutableRefObject<SVGEllipseElement | null>,
-) {
-  return gsap
-    .timeline({
-      scrollTrigger: {
-        trigger: "#works",
-        start: "bottom 140%",
-        end: "bottom 100%",
-        scrub: true,
-      },
-    })
-    .add(
-      gsap.to(rectRef.current, {
-        motionPath: {
-          align: pathRef.current || undefined,
-          path: pathRef.current || undefined,
-          alignOrigin: [0.5, 0.5],
-        },
-        ease: "none",
-      }),
-    )
-    .add(
-      gsap.to(ellipseRef.current, {
-        motionPath: {
-          align: pathRef.current || undefined,
-          path: pathRef.current || undefined,
-          alignOrigin: [0.5, 0],
-        },
-        ease: "none",
-      }),
-      "<",
     );
 }

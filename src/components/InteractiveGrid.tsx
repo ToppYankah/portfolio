@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 
 const GridSquare = ({ active = false }: { active: boolean }) => {
   return (
@@ -13,7 +13,7 @@ const GridSquare = ({ active = false }: { active: boolean }) => {
 export default () => {
   const [activeGrid, setActiveGrid] = useState<number | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleMouseMove = (event: MouseEvent) => {
       const gridSize = 10;
       const windowHeight = window.innerHeight;
@@ -42,7 +42,7 @@ export default () => {
   return (
     <div
       id="interactive-grid"
-      className="pointer-events-none fixed inset-0 grid grid-cols-10 grid-rows-10"
+      className="pointer-events-none fixed inset-0 z-[2] grid grid-cols-10 grid-rows-10"
     >
       {Array.from({ length: 100 }).map((_, index) => (
         <GridSquare key={index} active={activeGrid == index} />

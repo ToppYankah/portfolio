@@ -37,7 +37,7 @@
     "**/*.cjs",
     "**/*.js",
     ".next/types/**/*.ts",
-    "src/**/*.ts" // Added to fix the error
+    "src/**/*" // Changed to include all files in src directory
   ],
   "exclude": ["node_modules"]
 }

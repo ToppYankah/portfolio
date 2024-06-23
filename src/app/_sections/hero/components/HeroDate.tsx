@@ -1,23 +1,29 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { animatePortfolioDate } from "../animations";
+import { useGSAP } from "@gsap/react";
 
 export default function HeroDate() {
-  const portfolioRef = useRef<HTMLParagraphElement>(null);
-  const dateRef = useRef<HTMLParagraphElement>(null);
+  const scopeRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    animatePortfolioDate(dateRef, portfolioRef);
-  }, []);
+  useGSAP(
+    () => {
+      animatePortfolioDate();
+    },
+    { scope: scopeRef },
+  );
 
   return (
-    <div className="col-start-1 col-end-4 row-start-3 row-end-4 font-serif sm:col-end-2">
+    <div
+      ref={scopeRef}
+      className="col-start-1 col-end-4 row-start-3 row-end-4 font-serif sm:col-end-2"
+    >
       <h2 className="whitespace-nowrap text-5xl perspective-400 max-[800px]:text-4xl max-[640px]:text-3xl">
-        <p ref={portfolioRef}>Portfolio</p>
+        <p className="portfolio-text">Portfolio</p>
       </h2>
       <h2 className="whitespace-nowrap text-5xl perspective-400 max-[800px]:text-4xl max-[640px]:text-3xl">
-        <p ref={dateRef}>2024</p>
+        <p className="date-text">2024</p>
       </h2>
     </div>
   );

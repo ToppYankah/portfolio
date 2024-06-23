@@ -2,11 +2,9 @@
 import gsap from "gsap";
 import { MutableRefObject } from "react";
 
-export const animateLogo = (
-  lettersRef: MutableRefObject<(HTMLSpanElement | null)[]>,
-) => {
+export const animateLogo = () => {
   return gsap.fromTo(
-    lettersRef.current,
+    ".logo-char",
     {
       opacity: 0,
       rotateX: -90,
@@ -24,16 +22,13 @@ export const animateLogo = (
   );
 };
 
-export const animatePortfolioDate = (
-  dateRef: MutableRefObject<HTMLParagraphElement | null>,
-  portfolioRef: MutableRefObject<HTMLParagraphElement | null>,
-) => {
+export const animatePortfolioDate = () => {
   return gsap.fromTo(
-    [portfolioRef.current, dateRef.current],
+    [".portfolio-text", ".date-text"],
     {
       opacity: 0,
-      rotateX: -45,
-      yPercent: 50,
+      rotateX: -50,
+      yPercent: 100,
       filter: "blur(8px)",
     },
     {
@@ -47,11 +42,9 @@ export const animatePortfolioDate = (
   );
 };
 
-export const animateLinks = (
-  linksRef: MutableRefObject<(HTMLDivElement | null)[]>,
-) => {
+export const animateLinks = () => {
   return gsap.fromTo(
-    linksRef,
+    ".link-item",
     {
       opacity: 0,
       yPercent: 50,
@@ -67,11 +60,9 @@ export const animateLinks = (
   );
 };
 
-export const animateSocials = (
-  socialsRef: MutableRefObject<(HTMLDivElement | null)[]>,
-) => {
+export const animateSocials = () => {
   return gsap.fromTo(
-    socialsRef.current,
+    ".social-item",
     {
       opacity: 0,
       rotateX: -45,
@@ -89,50 +80,42 @@ export const animateSocials = (
   );
 };
 
-export const startHeroAnimations = (
-  upperRef: MutableRefObject<HTMLHeadingElement | null>,
-  middleRef: MutableRefObject<HTMLHeadingElement | null>,
-  lowerRef: MutableRefObject<HTMLHeadingElement | null>,
-  badgeRef: MutableRefObject<HTMLDivElement | null>,
-  // badgeImageRef: MutableRefObject<HTMLImageElement | null>,
-  upperContainerRef: MutableRefObject<HTMLDivElement | null>,
-  lowerContainerRef: MutableRefObject<HTMLDivElement | null>,
-  titleContainerRef: MutableRefObject<HTMLDivElement | null>,
-  { isMobile, onComplete }: { isMobile: boolean; onComplete: () => void },
-) => {
-  // gsap.timeline().add(slideIn()).add(activateNavLink());
+export const startHeroAnimations = ({
+  isMobile,
+  onComplete,
+}: {
+  isMobile: boolean;
+  onComplete: () => void;
+}) => {
   const tl = gsap.timeline({ onComplete: onComplete });
 
   tl.add(
     gsap.fromTo(
-      [upperRef.current, middleRef.current, lowerRef.current],
+      [".title-upper", ".title-middle", ".title-lower"],
       {
         yPercent: 100,
-        duration: 2,
       },
       {
-        delay: 1,
         yPercent: 0,
         stagger: 0.2,
-        duration: 1.5,
+        duration: 2,
         ease: "expo.out",
       },
     ),
   )
     .add(
       gsap.fromTo(
-        [upperRef.current, middleRef.current, lowerRef.current],
+        [".title-upper", ".title-middle", ".title-lower"],
         {
           opacity: 0,
-          rotateX: -50,
-          duration: 1.5,
+          rotateX: -40,
           filter: "blur(30px)",
         },
         {
           opacity: 1,
           rotateX: 0,
           stagger: 0.2,
-          duration: 2.5,
+          duration: 2,
           filter: "blur(0px)",
           ease: "expo.out",
         },
@@ -141,7 +124,7 @@ export const startHeroAnimations = (
     )
     .add(
       gsap.fromTo(
-        badgeRef.current,
+        ".title-badge",
         { yPercent: 50, xPercent: -10, opacity: 0, filter: "blur(8px)" },
         { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1, delay: 1 },
       ),
@@ -149,7 +132,7 @@ export const startHeroAnimations = (
     )
     .add(
       gsap.fromTo(
-        ["#short-bio", "#short-note"],
+        [".title-short-bio", ".title-short-note"],
         { yPercent: 50, opacity: 0, filter: "blur(8px)" },
         { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1 },
       ),
@@ -158,14 +141,14 @@ export const startHeroAnimations = (
 
   if (!isMobile) {
     tl.add(
-      gsap.to(upperContainerRef.current, {
+      gsap.to(".title-upper-container", {
         duration: 1,
         xPercent: -20,
         ease: "power4.out",
       }),
       "-=1.5",
     ).add(
-      gsap.to(lowerContainerRef.current, {
+      gsap.to(".title-lower-container", {
         xPercent: 10,
         duration: 1,
         ease: "power4.out",
@@ -175,105 +158,58 @@ export const startHeroAnimations = (
   }
 
   tl.add(
-    gsap.to(badgeRef.current, { xPercent: isMobile ? -10 : 10, duration: 0.5 }),
-    "<",
-  ).add(
-    gsap.fromTo(
-      "#scroll-indicator .wrapper",
-      { yPercent: -100 },
-      {
-        yPercent: 0,
-        duration: 1,
-        onComplete: () => {
-          onComplete();
-          titleScrollAnimate(
-            titleContainerRef,
-            upperContainerRef,
-            lowerContainerRef,
-            badgeRef,
-            { isMobile },
-          );
-          sectionFadeAnimate();
-        },
+    gsap.to(".title-badge", {
+      xPercent: isMobile ? -10 : 10,
+      duration: 0.5,
+      onComplete: () => {
+        onComplete();
+        heroScrollAnimate(isMobile);
       },
-    ),
+    }),
     "<",
   );
 
   return tl;
 };
 
-const sectionFadeAnimate = () =>
-  gsap
-    .timeline({
-      scrollTrigger: {
-        scrub: true,
-        trigger: "#hero",
-        start: "80% 40%",
-        end: "bottom top",
-      },
-    })
-    .add(
-      gsap.fromTo(
-        "#hero",
-        {
-          opacity: 1,
-        },
-        {
-          opacity: 0,
-        },
-      ),
-    );
-
-const titleScrollAnimate = (
-  titleContainerRef: MutableRefObject<HTMLDivElement | null>,
-  upperContainerRef: MutableRefObject<HTMLDivElement | null>,
-  lowerContainerRef: MutableRefObject<HTMLDivElement | null>,
-  badgeRef: MutableRefObject<HTMLDivElement | null>,
-  { isMobile }: { isMobile: boolean },
-) => {
+const heroScrollAnimate = (isMobile: boolean) => {
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: titleContainerRef.current,
+      invalidateOnRefresh: true,
+      trigger: "#hero-title",
       start: "top top",
       end: "bottom top",
       scrub: true,
     },
   });
 
-  tl.add(
-    gsap.fromTo(
-      upperContainerRef.current,
-      { xPercent: isMobile ? 0 : -20 },
-      { xPercent: isMobile ? -20 : -30 },
-    ),
-  )
+  tl.add(gsap.to(".title-upper-container", { xPercent: isMobile ? -20 : -30 }))
     .add(
-      gsap.fromTo(
-        lowerContainerRef.current,
-        { xPercent: isMobile ? 0 : 10 },
-        { xPercent: isMobile ? 10 : 20 },
-      ),
+      gsap.to(".title-lower-container", { xPercent: isMobile ? 10 : 20 }),
       "<",
     )
     .add(
-      gsap.fromTo(
-        badgeRef.current,
-        { scale: 1 },
-        { scale: 1.2, xPercent: -10, yPercent: 10 },
-      ),
+      gsap.to(".title-badge", { scale: 1.2, xPercent: -10, yPercent: 10 }),
       "<",
     );
 };
 
-export function animateHeroScrollIndicator(
-  arrowsRef: MutableRefObject<(HTMLSpanElement | null)[]>,
-) {
-  const tween = gsap.fromTo(
-    arrowsRef.current,
+export function animateHeroScrollIndicator() {
+  return gsap.fromTo(
+    ".indicator-wrapper",
+    { yPercent: -100 },
+    {
+      yPercent: 0,
+      duration: 1,
+      delay: 2,
+    },
+  );
+}
+
+export function animateHeroScrollIndicatorArrows() {
+  return gsap.fromTo(
+    ".scroll-down-arrow",
     { yPercent: 0 },
     { yPercent: 100, repeat: -1, duration: 0.5, ease: "none" },
   );
-
-  return tween;
 }

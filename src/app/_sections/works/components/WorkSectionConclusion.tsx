@@ -5,16 +5,25 @@ import { useRef } from "react";
 import Magnetic from "~/components/Magnetic";
 import NavLink from "~/components/NavLink";
 import * as animations from "../animations";
+import { useWorkSectionDimensions } from "./WorksSectionDesktop";
 
 export default function WorkSectionConclusion() {
+  const { minHeight, regionWidth } = useWorkSectionDimensions();
   const titleRefs = useRef<(HTMLHeadingElement | null)[]>([]);
 
-  useGSAP(() => {
-    animations.animateConclusionHeading(titleRefs);
-  });
+  useGSAP(
+    () => {
+      if (!minHeight) return;
+      animations.animateConclusionHeading(titleRefs);
+    },
+    { dependencies: [minHeight] },
+  );
 
   return (
-    <div className="relative flex min-h-screen min-w-full flex-col items-center justify-center">
+    <div
+      className="relative flex min-h-screen flex-col items-center justify-center"
+      style={{ minWidth: regionWidth }}
+    >
       <h1
         ref={(ref) => {
           titleRefs.current.push(ref);
@@ -60,13 +69,18 @@ export default function WorkSectionConclusion() {
 }
 
 const FinalScrollIndicator = () => {
+  const { minHeight } = useWorkSectionDimensions();
   const pathRef = useRef<SVGPathElement | null>(null);
   const rectRef = useRef<SVGRectElement | null>(null);
   const ellipseRef = useRef<SVGEllipseElement | null>(null);
 
-  useGSAP(() => {
-    animations.animateFinalScrollIndicator(pathRef, rectRef, ellipseRef);
-  });
+  useGSAP(
+    () => {
+      if (!minHeight) return;
+      animations.animateFinalScrollIndicator(pathRef, rectRef, ellipseRef);
+    },
+    { dependencies: [minHeight] },
+  );
 
   return (
     <svg

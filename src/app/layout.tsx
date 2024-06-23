@@ -6,10 +6,17 @@ import CustomPointer from "~/components/CustomPointer";
 import InteractiveGrid from "~/components/InteractiveGrid";
 import { CustomPointerContextProvider } from "~/context/custom-pointer-context";
 import SmoothScrollProvider from "~/context/smooth-scroll-context";
+import { ModalContextProvider } from "~/context/modal-context";
+import { CoverSheetContextProvider } from "~/context/cover-sheet-context";
 
 const copyright_font = localFont({
   src: "../../public/fonts/Copyright.woff2",
   variable: "--font-copyright",
+});
+
+const alt_font = localFont({
+  src: "../../public/fonts/smooth-sans-bold.otf",
+  variable: "--font-alt",
 });
 
 const ibm_plex_sans = IBM_Plex_Sans({
@@ -37,13 +44,17 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning={true}
-      className={`${copyright_font.variable} ${ibm_plex_sans.className}`}
+      className={`${alt_font.className} ${copyright_font.variable} ${ibm_plex_sans.className}`}
     >
       <body>
         <CustomPointerContextProvider>
-          <InteractiveGrid />
-          <SmoothScrollProvider>{children}</SmoothScrollProvider>
-          <CustomPointer />
+          <CoverSheetContextProvider>
+            <ModalContextProvider>
+              <InteractiveGrid />
+              <SmoothScrollProvider>{children}</SmoothScrollProvider>
+              <CustomPointer />
+            </ModalContextProvider>
+          </CoverSheetContextProvider>
         </CustomPointerContextProvider>
       </body>
     </html>
