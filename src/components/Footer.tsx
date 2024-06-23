@@ -162,7 +162,7 @@ const AvailableForWork = () => {
 
   return (
     <div ref={scopeRef} className="mb-20 flex">
-      {Array(10)
+      {Array(20)
         .fill("Available for work")
         .map((text, i) => (
           <div key={text + i} className="part flex items-center text-light">

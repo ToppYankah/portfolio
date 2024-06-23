@@ -19,7 +19,7 @@ export default function ExpertiseSection() {
       className="grid grid-cols-2 grid-rows-[auto_auto_auto] gap-10 gap-y-32 text-light max-[899px]:grid-cols-1 max-[899px]:grid-rows-none max-[899px]:gap-y-10"
     >
       <SectionTitle
-        className="col-start-1 col-end-3 row-start-1 row-end-2 items-center pt-0 max-[899px]:col-end-2 max-[899px]:mb-10 sm:pt-32"
+        className="col-start-1 col-end-3 row-start-1 row-end-2 items-center pt-20 max-[899px]:col-end-2 max-[899px]:mb-10 sm:pt-32"
         labelClassName="self-center"
         label="Stack Experience"
       >

@@ -5,7 +5,7 @@ const ProjectViewMobile = forwardRef(
   ({ project }: { project: Project }, ref: ForwardedRef<HTMLDivElement>) => {
     return (
       <div className="min-w-[300px] flex-1 min-[700px]:max-w-[50%]">
-        <div className="h-[clamp(250px,60%,500px)] w-full overflow-hidden rounded-full bg-inverted-light">
+        <div className="h-[clamp(250px,60%,500px)] w-full overflow-hidden rounded-[2rem] bg-inverted-light">
           <img
             src={project.imageUrl}
             alt={project.name}
