@@ -56,7 +56,7 @@ export default function Footer() {
               onClick={handleOpenContactForm}
               onMouseEnter={() => setHoveredLink(true, null)}
               onMouseLeave={() => setHoveredLink(false, null)}
-              className="ml-5 inline-block -translate-y-[clamp(0px,1vw,1rem)] cursor-pointer rounded-full bg-accent-deep px-[clamp(1rem,2vw,2rem)] py-[clamp(.3rem,2vw,1.25rem)] font-sans text-[clamp(20px,1.5vw,25px)] leading-[1em] text-dark"
+              className="bg-accent-deep ml-5 inline-block -translate-y-[clamp(0px,1vw,1rem)] cursor-pointer rounded-full px-[clamp(1rem,2vw,2rem)] py-[clamp(.3rem,2vw,1.25rem)] font-sans text-[clamp(20px,1.5vw,25px)] leading-[1em] text-dark"
             >
               Let's Go!
             </span>
@@ -162,14 +162,16 @@ const AvailableForWork = () => {
 
   return (
     <div ref={scopeRef} className="mb-20 flex">
-      {Array(10).fill(
-        <div className="part flex items-center text-light">
-          <h1 className="text-md whitespace-nowrap font-alt font-bold uppercase leading-[1em]">
-            Available for work
-          </h1>
-          <div className="mx-8 overflow-hidden rounded-full bg-light p-1"></div>
-        </div>,
-      )}
+      {Array(10)
+        .fill("Available for work")
+        .map((text, i) => (
+          <div key={text + i} className="part flex items-center text-light">
+            <h1 className="text-md whitespace-nowrap font-alt font-bold uppercase leading-[1em]">
+              {text}
+            </h1>
+            <div className="mx-8 overflow-hidden rounded-full bg-light p-1"></div>
+          </div>
+        ))}
     </div>
   );
 };
