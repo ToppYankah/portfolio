@@ -58,7 +58,7 @@ body {
 #interactive-grid .grid-tile {
     background-color: transparent;
     transition: background 0.5s linear;
-    border-right: 1px solid var(--foreground-light-hex);
+    /* border-right: 1px solid var(--foreground-light-hex); */
 }
 
 #interactive-grid .grid-tile.active {

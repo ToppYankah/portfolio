@@ -68,7 +68,11 @@ export default function WorksSectionDesktop() {
         [tl1, tl2, tl3].map((tl) => tl.kill());
       };
     },
-    { scope: sectionScopeRef, dependencies: [projects, dimensions] },
+    {
+      revertOnUpdate: true,
+      scope: sectionScopeRef,
+      dependencies: [projects, dimensions],
+    },
   );
 
   return (

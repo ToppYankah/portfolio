@@ -96,7 +96,7 @@ export const startHeroAnimations = ({
         yPercent: 100,
       },
       {
-        yPercent: 0,
+        yPercent: isMobile ? -50 : 0,
         stagger: 0.2,
         duration: 2,
         ease: "expo.out",
@@ -126,7 +126,7 @@ export const startHeroAnimations = ({
       gsap.fromTo(
         ".title-badge",
         { yPercent: 50, xPercent: -10, opacity: 0, filter: "blur(8px)" },
-        { yPercent: 0, opacity: 1, filter: "blur(0px)", duration: 1, delay: 1 },
+        { yPercent: isMobile ? -40 : 0, opacity: 1, filter: "blur(0px)", duration: 1, delay: 1 },
       ),
       "<",
     )

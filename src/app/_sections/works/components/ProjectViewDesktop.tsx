@@ -4,6 +4,8 @@ import { useContext, useRef } from "react";
 import { PointerContext } from "~/context/custom-pointer-context";
 import { Project } from "~/interfaces/interfaces";
 import * as animations from "../animations";
+import { useRouter } from "next/navigation";
+import { useCoverSheet } from "~/context/cover-sheet-context";
 
 const ProjectView = ({
   project,
@@ -12,6 +14,8 @@ const ProjectView = ({
   project: Project;
   index: number;
 }) => {
+  const router = useRouter();
+  const { show: showSheet } = useCoverSheet();
   const { setHoveredLink } = useContext(PointerContext);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const nameCharsRef = useRef<(HTMLSpanElement | null)[]>([]);
@@ -54,12 +58,15 @@ const ProjectView = ({
     setHoveredLink(false, null);
   };
 
+  const handleClick = () => showSheet(() => router.push("/project"));
+
   return (
     <div
       ref={containerRef}
       className="work-item flex min-h-screen min-w-[65%] items-center gap-10"
     >
       <div
+        onClick={handleClick}
         onMouseOut={handleMouseOut}
         onMouseOver={() => handleMouseOver("See\nProject")}
         className="cover-image h-[clamp(500px,65vh,1000px)] w-[clamp(300px,50%,450px)] min-w-[clamp(300px,60%,450px)] overflow-hidden rounded-[3rem] bg-black hover:cursor-pointer"
@@ -81,7 +88,8 @@ const ProjectView = ({
               }}
               className="translate-y-[150%] opacity-0 blur-[12px] -rotate-y-45"
             >
-              <b className="rounded-lg bg-accent p-2 py-0">#</b> No Tags
+              <b className="bg-accent-deep rounded-lg p-2 py-0 text-black">#</b>{" "}
+              No Tags
             </p>
           ) : (
             project.tags?.map((tag, index) => (
@@ -92,7 +100,10 @@ const ProjectView = ({
                 key={project.name + "-tag-" + index}
                 className="translate-y-[150%] opacity-0 blur-[12px] -rotate-y-45"
               >
-                <b className="rounded-lg bg-accent p-2 py-0">#</b> {tag}
+                <b className="bg-accent-deep rounded-lg p-2 py-0 text-black">
+                  #
+                </b>{" "}
+                {tag}
               </p>
             ))
           )}

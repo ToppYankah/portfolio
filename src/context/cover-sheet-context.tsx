@@ -29,6 +29,11 @@ export const CoverSheetContextProvider = ({
   };
 
   const hide = (cb?: () => void) => {
+    if (state !== "opened") {
+      if (cb) cb();
+      return;
+    }
+
     setState("closing");
     setTimeout(() => {
       setState("closed");
