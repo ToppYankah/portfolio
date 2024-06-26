@@ -1,19 +1,12 @@
+import Link from "next/link";
 import { ForwardedRef, forwardRef, useState } from "react";
-import {
-  SupportLikeQuestionStar1Bold,
-  SupportLikeQuestionStarOutline,
-} from "react-icons-sax";
 import Magnetic from "~/components/Magnetic";
-import { useModal } from "~/context/modal-context";
-import ReviewModal from "./ReviewModal";
+import { StarIcon as StarIconBold } from "@heroicons/react/24/solid";
+import { StarIcon as StarIconOutline } from "@heroicons/react/24/outline";
+import { useRating } from "~/context/rating-context";
 
 const VisitorRate = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
-  const [rate, setRate] = useState<number>(0);
-  const { showModal } = useModal();
-
-  const handleSubmitRating = () => {
-    showModal(<ReviewModal rating={rate} />, "Review");
-  };
+  const { rating, setRating } = useRating();
 
   return (
     <div
@@ -29,21 +22,22 @@ const VisitorRate = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
           .map((_, i) => (
             <StarItem
               key={"star-" + i}
-              highlight={rate >= i + 1}
-              onSelect={() => setRate(i + 1)}
+              highlight={rating >= i + 1}
+              onSelect={() => setRating(i + 1)}
             />
           ))}
         <div className="h-[1px] flex-1 bg-inverted" />
         <Magnetic>
           <div
-            onClick={handleSubmitRating}
-            className={`leading-1em cursor-pointer rounded-full ${rate < 1 ? "pointer-events-none bg-accent opacity-70" : "bg-inverted"}`}
+            className={`leading-1em cursor-pointer rounded-full ${rating < 1 ? "pointer-events-none bg-accent opacity-70" : "bg-inverted"}`}
           >
-            <p
-              className={`px-3 py-2 text-xs font-bold leading-[1em] ${rate < 1 ? "" : "text-inverted"}`}
-            >
-              submit
-            </p>
+            <Link href={`/review/${rating}`} passHref>
+              <p
+                className={`px-3 py-2 text-xs font-bold leading-[1em] ${rating < 1 ? "" : "text-inverted"}`}
+              >
+                submit
+              </p>
+            </Link>
           </div>
         </Magnetic>
       </div>
@@ -61,12 +55,12 @@ const StarItem = ({
   return (
     <Magnetic>
       <div onClick={onSelect} className="relative cursor-pointer">
-        <SupportLikeQuestionStarOutline
-          size={18}
+        <StarIconOutline
+          width={20}
           className={`${highlight ? "text-orange-500" : ""}`}
         />
-        <SupportLikeQuestionStar1Bold
-          size={18}
+        <StarIconBold
+          width={20}
           className={`absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ${highlight ? "" : "opacity-0"} text-orange-500`}
         />
       </div>

@@ -1,32 +1,47 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { ReactNode, createContext, useContext, useState } from "react";
-import ModalView from "~/components/ModalView";
 import { ModalData, ModalInterface } from "~/interfaces/interfaces";
 
 const ModalContext = createContext<ModalInterface>({
   showModal: () => {},
   closeModal: () => {},
+  data: { state: "closed" },
 });
 
 export const useModal = () => useContext<ModalInterface>(ModalContext);
 
-export const ModalContextProvider = ({ children }: { children: ReactNode }) => {
-  const [data, setData] = useState<ModalData>({ node: null, state: "closed" });
+export const ModalContextProvider = ({
+  children,
+  node,
+}: {
+  node: ReactNode;
+  children: ReactNode;
+}) => {
+  const router = useRouter();
+  const [data, setData] = useState<ModalData>({ state: "closed" });
 
-  const showModal = (node: ReactNode, label?: string) => {
+  const showModal = (callback?: () => void | null, label?: string) => {
     setData({ ...data, state: "opening" });
-    setTimeout(() => setData({ node, state: "opened", label }), 800);
+    setTimeout(() => {
+      setData({ state: "opened", label });
+      if (callback !== undefined) callback();
+    }, 800);
   };
 
   const closeModal = () => {
     setData({ ...data, state: "closing" });
-    setTimeout(() => setData({ node: null, state: "closed" }), 800);
+    setTimeout(() => {
+      setData({ state: "closed" });
+      router.back();
+    }, 800);
   };
 
   return (
-    <ModalContext.Provider value={{ showModal, closeModal }}>
-      <ModalView data={data} />
+    <ModalContext.Provider value={{ data, showModal, closeModal }}>
+      {node}
       {children}
+      <div id="modal-root" />
     </ModalContext.Provider>
   );
 };

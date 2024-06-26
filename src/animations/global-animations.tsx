@@ -128,7 +128,7 @@ export function animateModalLabel() {
   return gsap.fromTo(
     ".modal-label span",
     { y: 30, filter: "blur(20px)" },
-    { y: 0, filter: "blur(0px)", stagger: 0.1, duration: 0.5 },
+    { y: 0, filter: "blur(0px)", stagger: 0.1, duration: 0.5, delay: 0.8 },
   );
 }
 

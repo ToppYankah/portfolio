@@ -17,11 +17,11 @@ const Checkbox = ({ label }: { label: string }) => {
       />
       <div
         onClick={() => setIsChecked(!isChecked)}
-        className={`h-5 w-5 cursor-pointer rounded-md bg-black dark:bg-white ${isChecked ? "bg-opacity-100 dark:bg-opacity-100" : "bg-opacity-10 dark:bg-opacity-20"}`}
+        className={`grid place-content-center h-5 w-5 cursor-pointer rounded-md bg-black dark:bg-white ${isChecked ? "bg-opacity-100 dark:bg-opacity-100" : "bg-opacity-10 dark:bg-opacity-20"}`}
       >
         <CheckIcon
           className={`${isChecked ? "text-inverted" : "text-transparent"}`}
-          fontSize={10}
+          width={15}
         />
       </div>
       <label htmlFor={`checkmark-${id}`} className="cursor-pointer opacity-70">

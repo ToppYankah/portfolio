@@ -6,7 +6,8 @@ import { PointerContext } from "~/context/custom-pointer-context";
 import SectionLayout from "~/layouts/section-layout";
 import NavLink from "./NavLink";
 import { useModal } from "~/context/modal-context";
-import ContactForm from "./modals/ContactForm";
+import { useSmoothScroll } from "~/context/smooth-scroll-context";
+import Link from "next/link";
 
 const contacts: { label: string; link: string }[] = [
   {
@@ -29,12 +30,8 @@ const services: string[] = [
 const findMe: string[] = ["Haatso, Accra, Ghana", "GMT 00:00:00"];
 
 export default function Footer() {
-  const { showModal } = useModal();
+  const { lenis } = useSmoothScroll();
   const { setHoveredLink } = useContext(PointerContext);
-
-  const handleOpenContactForm = () => {
-    showModal(<ContactForm />, "Contact");
-  };
 
   return (
     <SectionLayout
@@ -42,7 +39,7 @@ export default function Footer() {
       darkMode
       minContent
       className="min-h-[70vh]"
-      containerclassname="pt-1 max-h-[100vh] overflow-auto"
+      containerclassname="pt-1 max-h-[100vh] overflow-auto max-w-[100%] overflow-hidden"
     >
       <AvailableForWork />
       <div className="my-20 flex">
@@ -52,14 +49,15 @@ export default function Footer() {
             Ready to build
             <br />
             the next
-            <span
-              onClick={handleOpenContactForm}
-              onMouseEnter={() => setHoveredLink(true, null)}
-              onMouseLeave={() => setHoveredLink(false, null)}
-              className="bg-accent-deep ml-5 inline-block -translate-y-[clamp(0px,1vw,1rem)] cursor-pointer rounded-full px-[clamp(1rem,2vw,2rem)] py-[clamp(.3rem,2vw,1.25rem)] font-sans text-[clamp(20px,1.5vw,25px)] leading-[1em] text-dark"
-            >
-              Let's Go!
-            </span>
+            <Link href="/contact">
+              <span
+                onMouseEnter={() => setHoveredLink(true, null)}
+                onMouseLeave={() => setHoveredLink(false, null)}
+                className="ml-5 inline-block -translate-y-[clamp(0px,1vw,1rem)] cursor-pointer rounded-full bg-accent-deep px-[clamp(1rem,2vw,2rem)] py-[clamp(.3rem,2vw,1.25rem)] font-sans text-[clamp(20px,1.5vw,25px)] leading-[1em] text-dark"
+              >
+                Let's Go!
+              </span>
+            </Link>
             <br />
             Deal Breaker?
           </p>
@@ -93,7 +91,11 @@ export default function Footer() {
           ))}
         </div>
         <div className="flex min-w-[200px] self-end">
-          <NavLink href="" className="mt-auto text-sm">
+          <NavLink
+            href="#top"
+            className="mt-auto text-sm"
+            onClick={() => lenis?.scrollTo("#top")}
+          >
             Back to top
             {/* <ArrowArrow2Twotone className="ml-2" size={15} /> */}
           </NavLink>

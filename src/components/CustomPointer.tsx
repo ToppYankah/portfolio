@@ -1,6 +1,6 @@
 "use client";
 import { useGSAP } from "@gsap/react";
-import { MutableRefObject, useContext, useRef } from "react";
+import { useContext } from "react";
 import { animatePointer } from "~/animations/global-animations";
 import { PointerContext } from "~/context/custom-pointer-context";
 

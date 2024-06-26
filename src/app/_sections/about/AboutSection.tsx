@@ -45,7 +45,7 @@ export default function AboutSection() {
   };
 
   return (
-    <div ref={sectionRef}>
+    <div ref={sectionRef} className="pt-52 max-[999px]:pt-32">
       <SectionLayout
         id="about"
         containerclassname="pb-32"
@@ -53,7 +53,7 @@ export default function AboutSection() {
       >
         <SectionTitle
           label="About"
-          className=" col-start-1 col-end-4 pb-10 pt-52 max-[999px]:pt-32 max-[639px]:pt-0"
+          className=" col-start-1 col-end-4 pb-10 max-[639px]:pt-0"
         >
           Cross-Platform\nFrontend&nbsp;Developer
         </SectionTitle>

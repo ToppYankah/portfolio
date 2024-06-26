@@ -1,5 +1,4 @@
 import "~/styles/globals.css";
-
 import { IBM_Plex_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import CustomPointer from "~/components/CustomPointer";
@@ -8,6 +7,7 @@ import { CustomPointerContextProvider } from "~/context/custom-pointer-context";
 import SmoothScrollProvider from "~/context/smooth-scroll-context";
 import { ModalContextProvider } from "~/context/modal-context";
 import { CoverSheetContextProvider } from "~/context/cover-sheet-context";
+import RatingContextProvider from "~/context/rating-context";
 
 const copyright_font = localFont({
   src: "../../public/fonts/Copyright.woff2",
@@ -33,12 +33,15 @@ export const metadata = {
   title: "Kenny Yankz" + envTag,
   description: "Porfolio website showcasing Kenny's projects",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
+  metadataBase: new URL("https://kennyyankz.vercel.app"),
 };
 
 export default function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <html
@@ -47,13 +50,16 @@ export default function RootLayout({
       className={`${alt_font.className} ${copyright_font.variable} ${ibm_plex_sans.className}`}
     >
       <body>
+        <div id="top" />
+        <InteractiveGrid />
         <CustomPointerContextProvider>
           <CoverSheetContextProvider>
-            <ModalContextProvider>
-              <InteractiveGrid />
-              <SmoothScrollProvider>{children}</SmoothScrollProvider>
-              <CustomPointer />
-            </ModalContextProvider>
+            <RatingContextProvider>
+              <ModalContextProvider node={modal}>
+                <SmoothScrollProvider>{children}</SmoothScrollProvider>
+                <CustomPointer />
+              </ModalContextProvider>
+            </RatingContextProvider>
           </CoverSheetContextProvider>
         </CustomPointerContextProvider>
       </body>

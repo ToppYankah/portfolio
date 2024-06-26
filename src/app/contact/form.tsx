@@ -1,6 +1,8 @@
-import { ReducerAction, useEffect, useReducer, useState } from "react";
-import Input from "../Input";
-import TextArea from "../TextArea";
+"use client";
+import { useEffect, useReducer, useState } from "react";
+import CheckButton from "~/components/CheckButton";
+import Input from "~/components/Input";
+import TextArea from "~/components/TextArea";
 
 const services: string[] = [
   "Web Development",
@@ -13,7 +15,7 @@ const services: string[] = [
   "Consultation",
 ];
 
-const budget: string[] = ["300-500", "500-800", "800K-1K", "> 2K"];
+const budget: string[] = ["300-500", "500-800", "800-1K", "> 2K"];
 
 interface FormAction<Payload> {
   payload: Payload;
@@ -155,39 +157,3 @@ export default function ContactForm() {
     </div>
   );
 }
-
-const CheckButton = ({
-  text,
-  check,
-  onCheck,
-}: {
-  text: string;
-  check?: boolean;
-  onCheck?: () => void;
-}) => {
-  const [isChecked, setIsChecked] = useState(false);
-
-  useEffect(() => {
-    if (check !== undefined) setIsChecked(check);
-  }, [check]);
-
-  const handleCheck = () => {
-    setIsChecked(!isChecked);
-    if (onCheck) onCheck();
-  };
-
-  return (
-    <button
-      tabIndex={0}
-      onClick={handleCheck}
-      className={`cursor-pointer rounded-full ${isChecked ? "bg-accent-deep" : "bg-gray-100 dark:bg-white/10"} p-0`}
-    >
-      <input type="checkbox" className="hidden" />
-      <p
-        className={`whitespace-nowrap px-7 py-4 text-sm ${isChecked ? "text-black" : ""}`}
-      >
-        {text}
-      </p>
-    </button>
-  );
-};

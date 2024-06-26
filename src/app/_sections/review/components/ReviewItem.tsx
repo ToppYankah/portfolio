@@ -1,6 +1,6 @@
 "use client";
-import { SupportLikeQuestionStar1Bold } from "react-icons-sax";
 import { Review } from "~/interfaces/interfaces";
+import { StarIcon } from "@heroicons/react/24/solid";
 
 const ReviewItem = ({ review }: { review: Review }) => {
   return (
@@ -24,8 +24,8 @@ const ReviewItem = ({ review }: { review: Review }) => {
           </p>
         </div>
         <div className="flex items-center gap-1">
-          <SupportLikeQuestionStar1Bold
-            size={16}
+          <StarIcon
+            width={18}
             className="text-orange-500 "
           />
           <span className="text-sm font-bold leading-[1em]">

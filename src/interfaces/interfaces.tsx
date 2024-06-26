@@ -21,13 +21,14 @@ export interface Review {
 
 export interface ModalData {
   label?: string;
-  node: ReactNode;
+  // node: ReactNode;
   state: CoverSheetState;
 }
 
 export interface ModalInterface {
-  closeModal: () => void;
-  showModal: (modal: ReactNode, label?: string) => void;
+  data: ModalData;
+  closeModal: (callback?: () => void) => void;
+  showModal: (callback?: () => void, label?: string) => void;
 }
 
 export interface CoverSheetInterface {

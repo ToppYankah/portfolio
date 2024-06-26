@@ -39,5 +39,5 @@
     ".next/types/**/*.ts",
     "src/**/*" // Changed to include all files in src directory
   ],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", "**/node_modules"]
 }

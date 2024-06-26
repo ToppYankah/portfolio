@@ -2,7 +2,9 @@
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 import NavLink from "~/components/NavLink";
+import { useModal } from "~/context/modal-context";
 import { animateLinks, animateLogo } from "../animations";
+import { useSmoothScroll } from "~/context/smooth-scroll-context";
 
 export default function HeroHeader() {
   return (
@@ -16,6 +18,7 @@ export default function HeroHeader() {
 
 const HeroNav = () => {
   const navScopeRef = useRef<HTMLDivElement | null>(null);
+  const { lenis } = useSmoothScroll();
 
   useGSAP(
     () => {
@@ -30,12 +33,20 @@ const HeroNav = () => {
       className="relative col-start-1 col-end-2 row-start-1 row-end-2 flex gap-5 sm:gap-8"
     >
       <div className="link-item flex">
-        <NavLink className="self-center" href="#">
+        <NavLink
+          className="self-center"
+          href="#about"
+          onClick={() => lenis?.scrollTo("#about")}
+        >
           Bio
         </NavLink>
       </div>
       <div className="link-item flex">
-        <NavLink className="self-center" href="#">
+        <NavLink
+          className="self-center"
+          href="#works"
+          onClick={() => lenis?.scrollTo("#works")}
+        >
           Works
         </NavLink>
       </div>
@@ -81,11 +92,19 @@ const HeroContact = () => {
   return (
     <nav
       ref={navScopeRef}
-      className="col-start-4 col-end-5 row-start-1 row-end-2 flex justify-end"
+      className="col-start-4 col-end-5 row-start-1 row-end-2 flex justify-end gap-5 sm:gap-8"
     >
       <div className="link-item flex">
         <NavLink
-          href="#"
+          href="/#review"
+          className="place-self-start self-center whitespace-nowrap"
+        >
+          Reviews
+        </NavLink>
+      </div>
+      <div className="link-item flex">
+        <NavLink
+          href="/contact"
           className="place-self-start self-center whitespace-nowrap"
         >
           Let's talk

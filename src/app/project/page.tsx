@@ -42,14 +42,19 @@ export default function Page() {
         <ProjectPageHeader />
         <ProjectInfo />
       </SectionLayout>
+      <img
+        alt="web-mockup"
+        src="images/mockups/mobile2.png"
+        className="z-[30] max-h-[80vh] w-full object-cover"
+      />
+      <ProjectChallenge />
       <SectionLayout id="about" minContent>
         <img
           alt="web-mockup"
-          src="images/mockups/mobile2.png"
-          className="z-[30] max-h-[80vh] w-full rounded-[2.5rem] object-cover"
+          src="images/mockups/web1.png"
+          className="z-[30] max-h-[80vh] w-full rounded-[3rem] object-cover"
         />
       </SectionLayout>
-      <ProjectChallenge />
       <ProjectDetail />
     </main>
   );
@@ -81,7 +86,7 @@ const ProjectInfo = () => {
 const ProjectChallenge = () => {
   return (
     <SectionLayout id="challenge" minContent>
-      <div className="flex flex-wrap gap-5 px-5 py-16 sm:gap-10 sm:px-10 sm:py-32 sm:pr-32">
+      <div className="flex flex-wrap gap-5 px-5 py-16 sm:gap-10 sm:px-10 sm:py-52 sm:pr-32">
         <div className="flex flex-1 sm:justify-end">
           <div className="">
             <p className="text-xs uppercase">Problem Statment</p>
@@ -90,7 +95,7 @@ const ProjectChallenge = () => {
             </h1>
           </div>
         </div>
-        <div className="flex min-w-[300px] max-w-[500px] flex-[2] flex-col gap-5 pt-[1em] sm:gap-10">
+        <div className="flex min-w-[300px] max-w-[600px] flex-[2] flex-col gap-5 pt-[1em] sm:gap-10">
           <p>
             This is one of the most complex websites we have ever built. The
             difficulty was not only in the fact that it should have become an
@@ -112,20 +117,20 @@ const ProjectChallenge = () => {
 
 const ProjectDetail = () => {
   return (
-    <SectionLayout id={"section-detail"} className="px-10 sm:px-20">
-      <div className="flex flex-wrap gap-5 sm:gap-10">
-        {/* <div className="flex max-w-[400px] flex-col">
+    <SectionLayout id={"section-detail"}>
+      <div className="flex flex-wrap gap-5 md:py-52 py-32 sm:gap-10 px:10 sm:px-12 ">
+        <div className="flex max-w-[500px] flex-col">
           <span className="text-xs uppercase">Detail Label</span>
           <h1 className="font-serif text-[clamp(30px,5vw,40px)] leading-tight">
-            Detail Title <br /> Comes Here
+            Detail Title Comes Here
           </h1>
           <p className="mt-5 sm:mt-10">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Magni
             aspernatur voluptas omnis. Saepe minus odio animi nam deleniti
             pariatur cupiditate eum cumque veritatis earum perferendis.
           </p>
-        </div> */}
-        <div className="grid md:grid-cols-2 gap-14 sm:gap-y-14 lg:max-w-[80%]">
+        </div>
+        <div className="grid gap-14 sm:gap-20 md:grid-cols-2 lg:max-w-[75%]">
           {[
             "/images/mockups/mobile1.png",
             "/images/mockups/mobile2.png",
@@ -134,12 +139,12 @@ const ProjectDetail = () => {
           ].map((src, i) => (
             <div
               key={"img-" + i}
-              className={`flex w-full flex-1 flex-col ${(i + 1) % 2 !== 0 ? "md:-translate-y-32" : "md:translate-y-10"}`}
+              className={`flex w-full flex-1 flex-col ${(i + 1) % 2 !== 0 ? "md:translate-y-20" : "md:-translate-y-20"}`}
             >
               <img
                 src={src}
                 alt=""
-                className="h-full w-full rounded-[2.5rem] object-cover"
+                className="w-full rounded-[2.5rem] object-cover aspect-[1/1.3]"
               />
               <p className="mt-5 pr-10">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum

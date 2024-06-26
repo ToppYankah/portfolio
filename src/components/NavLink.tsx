@@ -1,5 +1,6 @@
 "use client";
-import { AnchorHTMLAttributes } from "react";
+import Link from "next/link";
+import { AnchorHTMLAttributes, RefAttributes } from "react";
 import Magnetic from "./Magnetic";
 
 type NavLinkProps = {
@@ -8,11 +9,19 @@ type NavLinkProps = {
   active?: boolean;
 } & AnchorHTMLAttributes<HTMLAnchorElement>;
 
-const NavLink = ({ active, children, className, ...props }: NavLinkProps) => {
+const NavLink = ({
+  active,
+  children,
+  className,
+  href,
+  ...props
+}: NavLinkProps) => {
   return (
     <Magnetic>
-      <a
+      <Link
+        passHref
         {...props}
+        href={href || "#"}
         className={`group relative self-start overflow-hidden text-sm ${className || ""}`}
       >
         <div
@@ -25,7 +34,7 @@ const NavLink = ({ active, children, className, ...props }: NavLinkProps) => {
             {children}
           </span>
         </div>
-      </a>
+      </Link>
     </Magnetic>
   );
 };
