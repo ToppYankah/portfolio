@@ -32,3 +32,25 @@ export const posts = createTable(
     nameIndex: index("name_idx").on(example.name),
   })
 );
+
+// export const projects = createTable(
+//   "projects",
+//   { 
+//     id: serial("id").primaryKey(),
+//     name: varchar("name", { length: 256 }).notNull(),
+//     description: text("description").notNull(),
+//     type: varchar("type", {length: 20}).$type<"mobile" | "web" | "ui/ux">(),
+//     tags: varchar("tags", {length: 50}).array().notNull().default(sql`'ARRAY[]::text[]`),
+//     featuredImageUrls: varchar("featured_image_urls", { length: 1024 }).array().notNull().default(sql`'ARRAY[]::varchar[]`),
+//     thumbnailUrl: varchar("thumbnail_url", { length: 1024 }).notNull(),
+//     challenge: text("challenge").notNull(),
+//     linkUrl: varchar("link_url", {length: 1024}).notNull(),
+//     createdAt: timestamp("created_at", { withTimezone: true })
+//       .default(sql`CURRENT_TIMESTAMP`)
+//       .notNull(),
+//     updatedAt: timestamp("updatedAt", { withTimezone: true }),
+//   },
+//   (example) => ({
+//     nameIndex: index("name_idx").on(example.name),
+//   })
+// );
