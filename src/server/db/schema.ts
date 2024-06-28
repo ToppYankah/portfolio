@@ -20,7 +20,7 @@ export const createTable = pgTableCreator((name) => `portfolio_${name}`);
 
 export const posts = createTable(
   "post",
-  {
+  { 
     id: serial("id").primaryKey(),
     name: varchar("name", { length: 256 }),
     createdAt: timestamp("created_at", { withTimezone: true })
