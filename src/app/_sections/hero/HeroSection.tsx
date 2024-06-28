@@ -16,13 +16,15 @@ export default function HeroSection() {
   const { startSmoothScroll } = useSmoothScroll();
   const scopeRef = useRef<HTMLDivElement | null>(null);
 
-  // Instantly hide the body overflow
-  document.body.style.overflow = "hidden";
-
   const handleAnimationComplete = () => {
     startSmoothScroll();
     document.body.style.overflow = "auto";
   };
+
+  if (typeof window !== "undefined") {
+    // Instantly hide the body overflow
+    document.body.style.overflow = "hidden";
+  }
 
   useGSAP(
     () => {
