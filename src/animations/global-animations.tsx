@@ -95,6 +95,7 @@ export function toggleFloatingMemojiAnimation(
       scale: 0.5,
     },
     {
+      autoAlpha: 0,
       scale: 1,
       opacity: 1,
       yoyo: true,

@@ -87,7 +87,12 @@ export const startHeroAnimations = ({
   isMobile: boolean;
   onComplete: () => void;
 }) => {
-  const tl = gsap.timeline({ onComplete: onComplete });
+  const tl = gsap.timeline({
+    onComplete: onComplete,
+    defaults: { opacity: 0, ease: "back" },
+  });
+
+  tl.add(gsap.from("#hero", { autoAlpha: 0, ease: "linear" }));
 
   tl.add(
     gsap.fromTo(
@@ -126,7 +131,13 @@ export const startHeroAnimations = ({
       gsap.fromTo(
         ".title-badge",
         { yPercent: 50, xPercent: -10, opacity: 0, filter: "blur(8px)" },
-        { yPercent: isMobile ? -40 : 0, opacity: 1, filter: "blur(0px)", duration: 1, delay: 1 },
+        {
+          yPercent: isMobile ? -40 : 0,
+          opacity: 1,
+          filter: "blur(0px)",
+          duration: 1,
+          delay: 1,
+        },
       ),
       "<",
     )

@@ -1,32 +1,8 @@
-"use client";
-import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
 import MemojiBadge from "~/components/MemojiBadge";
-import useMediaQuery from "~/hooks/meda-query";
-import * as animations from "../animations";
 
-export default ({
-  onAnimationComplete,
-}: {
-  onAnimationComplete: () => void;
-}) => {
-  const scopeRef = useRef<HTMLDivElement | null>(null);
-
-  const { isMobile } = useMediaQuery();
-
-  useGSAP(
-    () => {
-      animations.startHeroAnimations({
-        isMobile,
-        onComplete: onAnimationComplete,
-      });
-    },
-    { scope: scopeRef, dependencies: [isMobile], revertOnUpdate: true },
-  );
-
+export default () => {
   return (
     <div
-      ref={scopeRef}
       className="col-start-1 col-end-5 row-start-2 row-end-3 lg:col-start-2 lg:col-end-4"
     >
       <div id="hero-title" className="flex h-full w-full justify-center">
