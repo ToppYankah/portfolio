@@ -31,7 +31,7 @@ const VisitorRate = forwardRef((_, ref: ForwardedRef<HTMLDivElement>) => {
           <div
             className={`leading-1em cursor-pointer rounded-full ${rating < 1 ? "pointer-events-none bg-accent opacity-70" : "bg-inverted"}`}
           >
-            <Link href={`/review/${rating}`} passHref>
+            <Link href={`/review?rating=${rating}`} passHref>
               <p
                 className={`px-3 py-2 text-xs font-bold leading-[1em] ${rating < 1 ? "" : "text-inverted"}`}
               >

@@ -7,19 +7,19 @@ import Magnetic from "~/components/Magnetic";
 import TextArea from "~/components/TextArea";
 import { useRating } from "~/context/rating-context";
 
-export default function ReviewForm({ stars }: { stars: number }) {
+export default function ReviewForm({ ratingValue }: { ratingValue: number }) {
   const { rating, setRating } = useRating();
 
   useEffect(() => {
-    setRating(stars);
-  }, [stars]);
+    setRating(ratingValue);
+  }, [ratingValue]);
 
   return (
     <div className="flex flex-col">
       <h1 className="font-serif text-[clamp(30px,4vw,35px)] capitalize leading-[1.1em]">
         Would you like to add <br /> a comment? 🙂
       </h1>
-      <p className="text-sm opacity-70 mt-3">
+      <p className="mt-3 text-sm opacity-70">
         Write your honest review about your experience below
       </p>
       <div className="mb-5 mt-5 flex items-center justify-end gap-5">

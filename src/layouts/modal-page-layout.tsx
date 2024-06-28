@@ -4,7 +4,7 @@ export default function ({
 }: {
   children: React.ReactNode;
   imageUrl: string;
-}) {
+  }) {
   return (
     <div className="flex justify-center gap-20 px-32 py-16 pb-32">
       <div className="flex flex-1 items-start justify-end max-[999px]:hidden">

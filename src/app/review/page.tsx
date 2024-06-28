@@ -1,13 +1,13 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import * as utils from "~/utils/utils";
+import ReviewForm from "./form";
 
-export default function () {
-  const router = useRouter();
+const ReviewPage = ({
+  searchParams: { rating },
+}: {
+  searchParams: { rating?: number };
+}) => {
+  return <ReviewForm ratingValue={utils.clamp(rating || 5, 1, 5)} />;
+};
 
-  useEffect(() => {
-    router.replace("/review/5");
-  }, []);
-
-  return null;
-}
+export default ReviewPage;
