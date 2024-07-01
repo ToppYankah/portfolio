@@ -10,8 +10,8 @@ export default function Header({ children }: { children?: ReactNode[] }) {
       <div className="grid grid-cols-3">
         <div className="grid place-items-start content-center">
           <div className="flex gap-[clamp(20px,5vw,30px)]">
-            <NavLink href="/#works">Works</NavLink>
             <NavLink href="/#about">About</NavLink>
+            <NavLink href="/#works">Works</NavLink>
           </div>
         </div>
         <div className="grid place-content-center">

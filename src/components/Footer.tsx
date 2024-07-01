@@ -1,13 +1,11 @@
 import { useGSAP } from "@gsap/react";
-import { useContext, useRef } from "react";
+import Link from "next/link";
+import { useRef } from "react";
 import { SocialIcon } from "react-social-icons";
-import { animateAvailableForWork } from "~/animations/global-animations";
-import { PointerContext } from "~/context/custom-pointer-context";
+import { animateAvailableForWork } from "~/animations";
+import { useSmoothScroll } from "~/context/smooth-scroll-context";
 import SectionLayout from "~/layouts/section-layout";
 import NavLink from "./NavLink";
-import { useModal } from "~/context/modal-context";
-import { useSmoothScroll } from "~/context/smooth-scroll-context";
-import Link from "next/link";
 
 const contacts: { label: string; link: string }[] = [
   {
@@ -31,28 +29,25 @@ const findMe: string[] = ["Haatso, Accra, Ghana", "GMT 00:00:00"];
 
 export default function Footer() {
   const { lenis } = useSmoothScroll();
-  const { setHoveredLink } = useContext(PointerContext);
 
   return (
     <SectionLayout
       id="footer"
-      darkMode
       minContent
-      className="min-h-[70vh]"
+      className="min-h-[70vh] overflow-hidden"
       containerclassname="pt-1 max-h-[100vh] overflow-auto max-w-[100%] overflow-hidden"
     >
       <AvailableForWork />
       <div className="my-20 flex">
         <div className="flex flex-col">
-          <p className="text-xs uppercase text-light">Get In Touch</p>
-          <p className="font-serif text-[clamp(30px,5vw,70px)] capitalize leading-[1.15em] text-light">
+          <p className="text-xs uppercase ">Get In Touch</p>
+          <p className="font-serif text-[clamp(30px,5vw,70px)] capitalize leading-[1.15em] ">
             Ready to build
             <br />
             the next
             <Link href="/contact">
               <span
-                onMouseEnter={() => setHoveredLink(true, null)}
-                onMouseLeave={() => setHoveredLink(false, null)}
+                data-pointer-grow
                 className="ml-5 inline-block -translate-y-[clamp(0px,1vw,1rem)] cursor-pointer rounded-full bg-accent-deep px-[clamp(1rem,2vw,2rem)] py-[clamp(.3rem,2vw,1.25rem)] font-sans text-[clamp(20px,1.5vw,25px)] leading-[1em] text-dark"
               >
                 Let's Go!
@@ -63,7 +58,7 @@ export default function Footer() {
           </p>
         </div>
       </div>
-      <div className="flex flex-wrap gap-10 text-light">
+      <div className="flex flex-wrap gap-10 ">
         <div className="hidden flex-1 sm:flex"></div>
         <div className="flex min-w-[200px] flex-col gap-2">
           <p className="mb-1 text-xs font-bold uppercase">Services</p>
@@ -111,7 +106,7 @@ const Socials = () => {
       <div className="social-item">
         <SocialIcon
           url="https://github.com/ToppYankah"
-          fgColor="var(--light-hex)"
+          fgColor="var(--foreground-hex)"
           bgColor="#0000"
           network="github"
           target="_blank"
@@ -121,7 +116,7 @@ const Socials = () => {
       <div className="social-item">
         <SocialIcon
           url="https://www.linkedin.com/in/kenneth-yankah/"
-          fgColor="var(--light-hex)"
+          fgColor="var(--foreground-hex)"
           bgColor="#0000"
           network="linkedin"
           target="_blank"
@@ -131,7 +126,7 @@ const Socials = () => {
       <div className="social-item">
         <SocialIcon
           url="https://www.linkedin.com/in/kenneth-yankah/"
-          fgColor="var(--light-hex)"
+          fgColor="var(--foreground-hex)"
           bgColor="#0000"
           network="instagram"
           target="_blank"
@@ -141,7 +136,7 @@ const Socials = () => {
       <div className="social-item">
         <SocialIcon
           url="https://www.linkedin.com/in/kenneth-yankah/"
-          fgColor="var(--light-hex)"
+          fgColor="var(--foreground-hex)"
           bgColor="#0000"
           network="twitter"
           target="_blank"
@@ -163,17 +158,19 @@ const AvailableForWork = () => {
   );
 
   return (
-    <div ref={scopeRef} className="mb-20 flex">
+    <div ref={scopeRef} className="relative mt-10 flex overflow-hidden">
       {Array(20)
         .fill("Available for work")
         .map((text, i) => (
-          <div key={text + i} className="part flex items-center text-light">
-            <h1 className="text-md whitespace-nowrap font-alt font-bold uppercase leading-[1em]">
+          <div key={text + i} className="part flex items-center ">
+            <h1 className="text-md font-smooth whitespace-nowrap uppercase leading-[1em]">
               {text}
             </h1>
             <div className="mx-8 overflow-hidden rounded-full bg-light p-1"></div>
           </div>
         ))}
+      <div className="from-bg-color absolute bottom-0 left-0 top-0 w-32 bg-gradient-to-r from-inverted" />
+      <div className="from-bg-color absolute bottom-0 right-0 top-0 w-32 bg-gradient-to-l from-inverted" />
     </div>
   );
 };

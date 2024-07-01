@@ -106,7 +106,7 @@ const WebDevExpertise = ({}) => {
                   <span className="text-sm font-semibold">
                     {expertise.label}
                   </span>
-                  <div className="flex-1 border-b-2 border-dotted border-light opacity-50" />
+                  <div className="flex-1 border-b-2 border-dotted border-light opacity-20" />
                   <span className="text-sm opacity-70">{expertise.level}</span>
                 </div>
               </div>

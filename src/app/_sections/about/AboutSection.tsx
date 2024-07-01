@@ -1,17 +1,16 @@
 "use client";
 import { useGSAP } from "@gsap/react";
-import { Fragment, useContext, useRef } from "react";
+import { useRef } from "react";
 import SectionTitle from "~/components/SectionTitle";
 import SectionLayout from "~/layouts/section-layout";
 import {
   animateBioText,
-  animateProfilePhoto,
   animatePersonalInfo,
+  animateProfilePhoto,
   animateRotatingStar,
   animateShortBio,
 } from "./animations";
 import ArrowPointerSVG from "./components/ArrowPointerSVG";
-import { PointerContext } from "~/context/custom-pointer-context";
 
 export default function AboutSection() {
   const bioText1Ref = useRef<HTMLDivElement | null>(null);
@@ -23,7 +22,6 @@ export default function AboutSection() {
   const personalInfoRefs = useRef<
     (HTMLSpanElement | HTMLHeadingElement | HTMLDivElement | null)[]
   >([]);
-  const { setHoveredLink } = useContext(PointerContext);
 
   useGSAP(
     () => {
@@ -35,14 +33,6 @@ export default function AboutSection() {
     },
     { scope: sectionRef },
   );
-
-  const handleMouseEnter = () => {
-    setHoveredLink(true, "Yep! That's Me");
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredLink(false, null);
-  };
 
   return (
     <div ref={sectionRef} className="pt-52 max-[999px]:pt-32">
@@ -58,9 +48,9 @@ export default function AboutSection() {
           Cross-Platform\nFrontend&nbsp;Developer
         </SectionTitle>
         <div
+          data-pointer-grow
           ref={imageContainerRef}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
+          data-pointer-text="Yep! That's Me"
           className="col-start-2 col-end-3 row-start-2 row-end-4 min-h-[clamp(300px,60vh,800px)] w-[clamp(200px,100%,600px)] overflow-hidden rounded-full bg-black max-[999px]:w-[clamp(200px,50vw,400px)] max-[599px]:w-[clamp(100px,80vw,500px)]"
         >
           <img

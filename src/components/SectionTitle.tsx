@@ -1,6 +1,6 @@
 import { useGSAP } from "@gsap/react";
 import React, { useRef } from "react";
-import { animateSectionTitle } from "~/animations/global-animations";
+import { animateSectionTitle } from "~/animations";
 
 export default function SectionTitle({
   label,

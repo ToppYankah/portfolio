@@ -66,7 +66,7 @@ const HeroLogo = () => {
 
   return (
     <div ref={scopeRef} className="col-start-2 col-end-4 flex justify-center">
-      <a href="#" id="logo" className="flex font-serif text-xl font-black">
+      <a data-pointer-grow href="#" id="logo" className="flex font-serif text-xl font-black">
         {"Kenny".split("").map((char, index) => {
           return (
             <p className="logo-char" key={char + index}>

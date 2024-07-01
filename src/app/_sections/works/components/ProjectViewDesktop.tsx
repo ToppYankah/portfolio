@@ -1,11 +1,10 @@
 "use client";
 import { useGSAP } from "@gsap/react";
-import { useContext, useRef } from "react";
-import { PointerContext } from "~/context/custom-pointer-context";
+import { useRouter } from "next/navigation";
+import { useRef } from "react";
+import { useCoverSheet } from "~/context/cover-sheet-context";
 import { Project } from "~/interfaces/interfaces";
 import * as animations from "../animations";
-import { useRouter } from "next/navigation";
-import { useCoverSheet } from "~/context/cover-sheet-context";
 
 const ProjectView = ({
   project,
@@ -16,7 +15,6 @@ const ProjectView = ({
 }) => {
   const router = useRouter();
   const { show: showSheet } = useCoverSheet();
-  const { setHoveredLink } = useContext(PointerContext);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const nameCharsRef = useRef<(HTMLSpanElement | null)[]>([]);
   const coverImageRef = useRef<HTMLImageElement | null>(null);
@@ -50,14 +48,6 @@ const ProjectView = ({
     { dependencies: [containerRef.current] },
   );
 
-  const handleMouseOver = (text: string | null) => {
-    setHoveredLink(true, text);
-  };
-
-  const handleMouseOut = () => {
-    setHoveredLink(false, null);
-  };
-
   const handleClick = () => showSheet(() => router.push("/project"));
 
   return (
@@ -67,8 +57,8 @@ const ProjectView = ({
     >
       <div
         onClick={handleClick}
-        onMouseOut={handleMouseOut}
-        onMouseOver={() => handleMouseOver("See\nProject")}
+        data-pointer-grow
+        data-pointer-text={"See\nProject"}
         className="cover-image h-[clamp(500px,65vh,1000px)] w-[clamp(300px,50%,450px)] min-w-[clamp(300px,60%,450px)] overflow-hidden rounded-[3rem] bg-black hover:cursor-pointer"
       >
         <img
@@ -88,7 +78,7 @@ const ProjectView = ({
               }}
               className="translate-y-[150%] opacity-0 blur-[12px] -rotate-y-45"
             >
-              <b className="bg-accent-deep rounded-lg p-2 py-0 text-black">#</b>{" "}
+              <b className="rounded-lg bg-accent-deep p-2 py-0 text-black">#</b>{" "}
               No Tags
             </p>
           ) : (
@@ -100,7 +90,7 @@ const ProjectView = ({
                 key={project.name + "-tag-" + index}
                 className="translate-y-[150%] opacity-0 blur-[12px] -rotate-y-45"
               >
-                <b className="bg-accent-deep rounded-lg p-2 py-0 text-black">
+                <b className="rounded-lg bg-accent-deep p-2 py-0 text-black">
                   #
                 </b>{" "}
                 {tag}
@@ -109,9 +99,8 @@ const ProjectView = ({
           )}
         </div>
         <div
+          data-pointer-grow
           className="mt-52 perspective-400 hover:cursor-pointer"
-          onMouseOver={() => handleMouseOver(null)}
-          onMouseOut={handleMouseOut}
         >
           {project.name.split("\n").map((line, index) => (
             <h2

@@ -3,7 +3,7 @@ import { useGSAP } from "@gsap/react";
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { useModal } from "~/context/modal-context";
-import * as animations from "../animations/global-animations";
+import * as animations from "../animations";
 import Magnetic from "./Magnetic";
 import { useRouter } from "next/navigation";
 

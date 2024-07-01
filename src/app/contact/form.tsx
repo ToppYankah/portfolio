@@ -1,159 +1,164 @@
 "use client";
-import { useEffect, useReducer, useState } from "react";
+import { FieldErrors, useForm } from "react-hook-form";
+import { ZodType, z } from "zod";
 import CheckButton from "~/components/CheckButton";
 import Input from "~/components/Input";
 import TextArea from "~/components/TextArea";
 
 const services: string[] = [
+  "Web Design",
   "Web Development",
-  "Mobile App Development",
-  "Maintenance",
   "UI/UX Design",
+  "Mobile App Development (iOS/Android)",
   "Motion Design",
   "Collaboration",
-  "Code Review",
-  "Consultation",
+  "Platform Redesign",
+  "Branding",
 ];
 
 const budget: string[] = ["300-500", "500-800", "800-1K", "> 2K"];
 
-interface FormAction<Payload> {
-  payload: Payload;
-  type:
-    | "setName"
-    | "setEmail"
-    | "setMessage"
-    | "setBudget"
-    | "setAttachments"
-    | "setInterest";
-}
+const schema: ZodType<ContactFormData> = z.object({
+  interest: z.array(z.string()),
+  name: z.string().min(1, { message: "Name is required" }),
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Invalid email address" }),
+  message: z.string().min(1, { message: "Message is required" }),
+  budget: z.string().min(1, { message: "Required" }),
+  attachments: z.array(z.string()),
+});
 
-interface FormState {
-  interest: string[];
-  name: string;
-  email: string;
-  message: string;
-  budget: string;
-  attachments: string[];
-}
-
-const initialState: FormState = {
-  interest: [],
-  name: "",
-  email: "",
-  message: "",
-  budget: "",
-  attachments: [],
-};
-
-type ReducerValue = (
-  state: FormState,
-  action: FormAction<string | string[]>,
-) => FormState;
-
-const reducer: ReducerValue = (state, action): FormState => {
-  switch (action.type) {
-    case "setName":
-      return { ...state, name: action.payload as string };
-
-    case "setEmail":
-      return { ...state, email: action.payload as string };
-
-    case "setMessage":
-      return { ...state, message: action.payload as string };
-
-    case "setBudget":
-      return { ...state, budget: action.payload as string };
-
-    case "setInterest":
-      const interest = action.payload as string;
-
-      const updatedInterest = state.interest.includes(interest)
-        ? state.interest.filter((i) => i !== interest)
-        : [...state.interest, interest];
-
-      return { ...state, interest: updatedInterest };
-
-    case "setAttachments":
-      return { ...state, attachments: action.payload as string[] };
-
-    default:
-      return state;
-  }
-};
+import { zodResolver } from "@hookform/resolvers/zod";
+import { FormFieldError } from "~/components/FormFieldError";
+import { ArrowUpRightIcon } from "@heroicons/react/24/solid";
+import { ContactFormData } from "~/interfaces/interfaces";
 
 export default function ContactForm() {
-  const [state, dispatch] = useReducer<ReducerValue, FormState>(
-    reducer,
-    initialState,
-    (state) => state,
-  );
+  const {
+    register,
+    setValue,
+    setError,
+    getValues,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(schema),
+  });
+
+  const onSubmit = async (data: ContactFormData) => {
+    console.log("SUCCESS", data);
+  };
+
+  const onError = (error: FieldErrors) => {
+    console.log("ERROR", error);
+  };
+
+  const handleInterestCheck = (service: string, index: number) => {
+    if (getValues("interest").includes(service)) {
+      const newValue = getValues("interest").filter(
+        (i) => i !== service && i !== undefined,
+      );
+
+      return setValue(`interest`, [...newValue], { shouldValidate: true });
+    }
+
+    setValue(`interest.${getValues("interest").length}`, service, {
+      shouldValidate: true,
+    });
+  };
+
+  const handleBudgetCheck = (budget: string) => {
+    setValue("budget", budget, { shouldValidate: true });
+  };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col max-w-[600px]">
       <h1 className="font-serif text-[clamp(30px,3.5vw,60px)] leading-[1.1em]">
         Got an Idea <br /> I can help with?
       </h1>
-      <div className="mt-8 flex flex-col">
+      <form
+        onSubmit={handleSubmit(onSubmit, onError)}
+        className="mt-8 flex flex-col"
+      >
         <div className="mb-8">
-          <h5 className="font-bold">What are you interested in?</h5>
+          <div className="mb-3 flex items-center gap-2">
+            <h5 className="text-sm font-semibold leading-[1em]">
+              What are you interested in?
+            </h5>
+            {errors.interest && (
+              <FormFieldError useMargin={false} error={errors.interest.root} />
+            )}
+          </div>
           <div className="mt-5 flex flex-wrap gap-3">
-            {services.map((service) => (
+            {services.map((service, index) => (
               <CheckButton
                 key={service}
                 text={service}
-                check={state.interest.includes(service)}
-                onCheck={() =>
-                  dispatch({ type: "setInterest", payload: service })
-                }
+                register={register}
+                name={`interest.${index}`}
+                onCheck={() => handleInterestCheck(service, index)}
+                check={((getValues("interest") || []) as string[]).includes(
+                  service,
+                )}
               />
             ))}
           </div>
         </div>
-        <div className="mb-8">
-          <h5 className="mb-3 font-bold">Your name</h5>
+        <div className="mb-10">
           <Input
+            name="name"
+            error={errors.name}
+            register={register}
             placeholder="Enter your Name"
-            onChange={({ currentTarget: { value } }) =>
-              dispatch({ type: "setName", payload: value })
-            }
           />
         </div>
-        <div className="mb-8">
-          <h5 className="mb-3 font-bold">Your email</h5>
+        <div className="mb-10">
           <Input
+            name="email"
+            register={register}
+            error={errors.email}
             placeholder="Enter your email address"
-            onChange={({ currentTarget: { value } }) =>
-              dispatch({ type: "setEmail", payload: value })
-            }
           />
         </div>
-        <div className="mb-8">
-          <h5 className="mb-3 font-bold">Idea Summary</h5>
+        <div className="mb-10">
           <TextArea
+            name="message"
+            register={register}
+            error={errors.message}
             placeholder="Let's discuss your idea"
-            onChange={({ currentTarget: { value } }) =>
-              dispatch({ type: "setMessage", payload: value })
-            }
           />
         </div>
-        <div className="mb-8">
-          <h5 className="mb-3 font-bold">Project Budget (USD)</h5>
+        <div className="mb-20">
+          <div className="mb-3 flex items-center gap-2">
+            <h5 className="text-sm font-semibold leading-[1em]">
+              Project Budget (USD)
+            </h5>
+            {errors.budget && (
+              <FormFieldError useMargin={false} error={errors.budget} />
+            )}
+          </div>
           <div className="mt-5 flex flex-wrap gap-3">
             {budget.map((budget) => (
               <CheckButton
                 key={budget}
                 text={budget}
-                check={state.budget === budget}
-                onCheck={() => dispatch({ type: "setBudget", payload: budget })}
+                onCheck={() => handleBudgetCheck(budget)}
+                check={getValues("budget") === budget}
+                register={register}
+                name="budget"
               />
             ))}
           </div>
         </div>
-        <button className="bg-inverted py-5 text-inverted">
-          Submit Request
+        <button
+          onClick={handleSubmit(onSubmit)}
+          className="flex justify-between gap-3 bg-inverted py-5 font-semibold text-inverted"
+        >
+          Submit Request <ArrowUpRightIcon width={20} />
         </button>
-      </div>
+      </form>
     </div>
   );
 }

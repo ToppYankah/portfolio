@@ -3,9 +3,12 @@
 
 import { sql } from "drizzle-orm";
 import {
+  boolean,
   index,
+  integer,
   pgTableCreator,
   serial,
+  text,
   timestamp,
   varchar,
 } from "drizzle-orm/pg-core";
@@ -18,39 +21,24 @@ import {
  */
 export const createTable = pgTableCreator((name) => `portfolio_${name}`);
 
-export const posts = createTable(
-  "post",
+export const reviews = createTable(
+  "review",
   { 
     id: serial("id").primaryKey(),
+    rating: integer("rating").notNull(),
     name: varchar("name", { length: 256 }),
+    profession: varchar("profession", { length: 256 }),
+    company: varchar("company", { length: 256 }),
+    comment: text("comment"),
+    shouldPost: boolean("should_post").default(false).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),
-    updatedAt: timestamp("updatedAt", { withTimezone: true }),
+    updatedAt: timestamp("updatedAt", { withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
+      .notNull(),
   },
   (example) => ({
     nameIndex: index("name_idx").on(example.name),
   })
 );
-
-// export const projects = createTable(
-//   "projects",
-//   { 
-//     id: serial("id").primaryKey(),
-//     name: varchar("name", { length: 256 }).notNull(),
-//     description: text("description").notNull(),
-//     type: varchar("type", {length: 20}).$type<"mobile" | "web" | "ui/ux">(),
-//     tags: varchar("tags", {length: 50}).array().notNull().default(sql`'ARRAY[]::text[]`),
-//     featuredImageUrls: varchar("featured_image_urls", { length: 1024 }).array().notNull().default(sql`'ARRAY[]::varchar[]`),
-//     thumbnailUrl: varchar("thumbnail_url", { length: 1024 }).notNull(),
-//     challenge: text("challenge").notNull(),
-//     linkUrl: varchar("link_url", {length: 1024}).notNull(),
-//     createdAt: timestamp("created_at", { withTimezone: true })
-//       .default(sql`CURRENT_TIMESTAMP`)
-//       .notNull(),
-//     updatedAt: timestamp("updatedAt", { withTimezone: true }),
-//   },
-//   (example) => ({
-//     nameIndex: index("name_idx").on(example.name),
-//   })
-// );

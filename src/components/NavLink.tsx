@@ -22,6 +22,7 @@ const NavLink = ({
         passHref
         {...props}
         href={href || "#"}
+        data-hover-indicate
         className={`group relative self-start overflow-hidden text-sm ${className || ""}`}
       >
         <div

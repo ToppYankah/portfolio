@@ -136,7 +136,27 @@ export function animateModalLabel() {
 export function animateModalContent() {
   return gsap.fromTo(
     ".content *",
-    { opacity: 0, y: 50 },
+    { opacity: 0, y: 30 },
     { opacity: 1, y: 0, stagger: 0.03, duration: 0.5 },
   );
+}
+
+export function revealFormContent(formId: string) {
+  return gsap.to(`#${formId} > *`, {
+    y: 0,
+    opacity: 1,
+    stagger: 0.1,
+    duration: 0.2,
+    pointerEvents: "all",
+  });
+}
+
+export function hideFormContent(formId: string) {
+  return gsap.to(`#${formId} > *`, {
+    y: 30,
+    opacity: 0,
+    stagger: 0.1,
+    duration: 0.2,
+    pointerEvents: "none",
+  });
 }

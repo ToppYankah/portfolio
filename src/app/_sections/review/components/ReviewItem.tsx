@@ -4,17 +4,17 @@ import { StarIcon } from "@heroicons/react/24/solid";
 
 const ReviewItem = ({ review }: { review: Review }) => {
   return (
-    <div className="review-item relative flex min-h-[350px] min-w-[clamp(400px,35%,500px)] flex-col gap-5 overflow-hidden rounded-3xl bg-accent px-[clamp(5%,10%,30px)] py-10">
-      <div className="absolute opacity-[0.08]">
+    <div className="review-item relative flex min-h-[350px] min-w-[clamp(400px,35%,500px)] flex-col gap-5 overflow-hidden rounded-3xl px-[clamp(5%,10%,30px)] py-10">
+      <div className="absolute opacity-[0.07]">
         <QuoteSVG />
       </div>
-      <p className="text-md mt-12">{review.comment}</p>
+      <p className="text-md mt-12 text-center">{review.comment}</p>
       <div className="mt-auto flex gap-5">
         <div className="rounded-full border-4 border-bg p-[3px]">
           <img
             draggable={false}
             src={review.profilePhoto}
-            className="h-[55px] w-[45px] rounded-full object-cover"
+            className="h-[55px] w-[55px] rounded-full object-cover"
           />
         </div>
         <div className="flex flex-1 flex-col justify-center">
@@ -25,10 +25,10 @@ const ReviewItem = ({ review }: { review: Review }) => {
         </div>
         <div className="flex items-center gap-1">
           <StarIcon
-            width={18}
+            width={15}
             className="text-orange-500 "
           />
-          <span className="text-sm font-bold leading-[1em]">
+          <span className="text-sm leading-[1em]">
             {review.rating.toFixed(1)}
           </span>
         </div>

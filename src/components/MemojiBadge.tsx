@@ -12,7 +12,7 @@ import {
   animateRotatingBadge,
   downscaleRotatingLetters,
   upscaleRotatingLetters,
-} from "~/animations/global-animations";
+} from "~/animations";
 import Magnetic from "~/components/Magnetic";
 import useThemeDetector from "~/hooks/theme-detector";
 

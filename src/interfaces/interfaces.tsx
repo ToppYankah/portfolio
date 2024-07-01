@@ -35,3 +35,20 @@ export interface CoverSheetInterface {
   show: (callback?: () => void) => void;
   hide: (callback?: () => void) => void;
 }
+
+export type ReviewFormData = {
+  name: string;
+  profession?: string;
+  company?: string;
+  comment: string;
+  shouldPost?: boolean;
+};
+
+export type ContactFormData = {
+  name: string;
+  email: string;
+  message: string;
+  budget: string;
+  interest: string[];
+  attachments?: string[];
+};

@@ -5,10 +5,8 @@ import React, {
   HTMLAttributes,
   MutableRefObject,
   ReactElement,
-  useContext,
   useRef,
 } from "react";
-import { PointerContext } from "~/context/custom-pointer-context";
 
 const Magnetic = ({
   message,
@@ -20,7 +18,6 @@ const Magnetic = ({
   message?: string | null;
   strength?: number;
 } & HTMLAttributes<HTMLDivElement>) => {
-  const { setHoveredLink } = useContext(PointerContext);
   const ref: MutableRefObject<HTMLElement | null> = useRef(null);
 
   const handleMouseMove = (e: MouseEvent) => {
@@ -38,20 +35,24 @@ const Magnetic = ({
   };
 
   const handleMouseLeave = (e: MouseEvent) => {
-    setHoveredLink(false, null);
     gsap.to(ref.current, { x: 0, y: 0 });
   };
-
-  const handleMouseEnter = (e: MouseEvent) =>
-    setHoveredLink(true, message ?? null);
 
   useGSAP(() => {
     ref.current?.addEventListener("mousemove", handleMouseMove);
     ref.current?.addEventListener("mouseleave", handleMouseLeave);
-    ref.current?.addEventListener("mouseenter", handleMouseEnter);
+
+    return () => {
+      ref.current?.removeEventListener("mousemove", handleMouseMove);
+      ref.current?.removeEventListener("mouseleave", handleMouseLeave);
+    };
   });
 
-  return React.cloneElement(children, { ref, ...rest });
+  return React.cloneElement(children, {
+    ref,
+    ...rest,
+    ["data-pointer-grow"]: true,
+  });
 };
 
 export default Magnetic;
