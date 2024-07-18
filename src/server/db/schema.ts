@@ -22,7 +22,7 @@ import {
 export const createTable = pgTableCreator((name) => `portfolio_${name}`);
 
 export const reviews = createTable(
-  "review",
+  "reviews",
   { 
     id: serial("id").primaryKey(),
     rating: integer("rating").notNull(),
@@ -42,3 +42,26 @@ export const reviews = createTable(
     nameIndex: index("name_idx").on(example.name),
   })
 );
+
+export const contacts = createTable(
+  "contacts",
+  {
+    id: serial("id").primaryKey(),
+    name: varchar("name", { length: 256 }),
+    email: varchar("email", { length: 256 }),
+    message: text("message"),
+    budget: varchar("budget", { length: 256 }),
+    interest: text("interest"),
+    attachments: text("attachments"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
+      .notNull(),
+    updatedAt: timestamp("updatedAt", { withTimezone: true })
+      .default(sql`CURRENT_TIMESTAMP`)
+      .notNull(),
+  },
+  (example) => ({
+    nameIndex: index("contacts_name_idx").on(example.name),
+  })
+);
+

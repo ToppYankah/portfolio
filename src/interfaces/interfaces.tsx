@@ -49,6 +49,8 @@ export type ContactFormData = {
   email: string;
   message: string;
   budget: string;
-  interest: string[];
-  attachments?: string[];
+  interest: { name: string }[];
+  attachments?:
+    | { name: string }[]
+    | { name: string; url: string; size: number; type: string }[];
 };
