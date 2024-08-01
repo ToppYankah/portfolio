@@ -21,6 +21,7 @@ export default function HeroSocials() {
     >
       <div className="social-item">
         <SocialIcon
+          data-pointer-grow
           url="https://github.com/ToppYankah"
           fgColor="var(--foreground-hex)"
           bgColor="#0000"
@@ -31,6 +32,7 @@ export default function HeroSocials() {
       </div>
       <div className="social-item">
         <SocialIcon
+          data-pointer-grow
           url="https://www.linkedin.com/in/kenneth-yankah/"
           fgColor="var(--foreground-hex)"
           bgColor="#0000"
@@ -41,6 +43,7 @@ export default function HeroSocials() {
       </div>
       <div className="social-item">
         <SocialIcon
+          data-pointer-grow
           url="https://www.linkedin.com/in/kenneth-yankah/"
           fgColor="var(--foreground-hex)"
           bgColor="#0000"
@@ -51,6 +54,7 @@ export default function HeroSocials() {
       </div>
       <div className="social-item">
         <SocialIcon
+          data-pointer-grow
           url="https://www.linkedin.com/in/kenneth-yankah/"
           fgColor="var(--foreground-hex)"
           bgColor="#0000"

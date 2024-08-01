@@ -68,7 +68,7 @@ export default function AboutSection() {
         </div>
         <div
           ref={shortBioRef}
-          className="flex gap-10 py-10 perspective-origin-bottom perspective-400 max-[999px]:absolute max-[999px]:left-[5%] max-[999px]:top-[40%] max-[999px]:w-[40%] max-[599px]:left-[5%] max-[599px]:top-[70%] max-[599px]:w-[70%] min-[600px]:flex-col min-[1000px]:col-start-3 min-[1000px]:col-end-4 min-[1000px]:row-start-2 min-[1000px]:row-end-3"
+          className="self-center flex gap-10 py-10 perspective-origin-bottom perspective-400 max-[999px]:absolute max-[999px]:left-[5%] max-[999px]:top-[40%] max-[999px]:w-[40%] max-[599px]:left-[5%] max-[599px]:top-[70%] max-[599px]:w-[70%] min-[600px]:flex-col min-[1000px]:col-start-3 min-[1000px]:col-end-4 min-[1000px]:row-start-2 min-[1000px]:row-end-3"
         >
           <div
             ref={bioText1Ref}
@@ -93,47 +93,6 @@ export default function AboutSection() {
               development. I have over 5 years of experience in crafting
               user-friendly interfaces for web and mobile. Let's create
               something amazing together.
-            </p>
-          </div>
-        </div>
-        <div
-          ref={(ref) => {
-            personalInfoRefs.current.push(ref);
-          }}
-          className="flex flex-col perspective-origin-bottom perspective-400 max-[999px]:absolute max-[999px]:left-[20%] max-[999px]:top-[75%] max-[999px]:p-10 max-[599px]:hidden min-[1000px]:col-start-3 min-[1000px]:col-end-4 min-[1000px]:row-start-3 min-[1000px]:row-end-4 min-[1000px]:pb-32"
-        >
-          <div
-            ref={(ref) => {
-              personalInfoRefs.current.push(ref);
-            }}
-            className="flex flex-col gap-2 max-[999px]:bg-color max-[999px]:p-5"
-          >
-            <h4
-              className="font-serif text-xl"
-              ref={(ref) => {
-                personalInfoRefs.current.push(ref);
-              }}
-            >
-              Personal Profile
-            </h4>
-            <p className="flex flex-col gap-1 pl-5 text-sm">
-              {[
-                "Kenneth Topp Yankah",
-                `${new Date().getFullYear() - 2000} years old`,
-                "Male (He/Him)",
-                "🇬🇭 Ghanaian",
-                "Frontend Developer",
-              ].map((text, index) => (
-                <span
-                  key={index}
-                  ref={(ref) => {
-                    personalInfoRefs.current.push(ref);
-                  }}
-                  className="relative block before:absolute before:-left-5 before:top-1/2 before:aspect-square before:w-2 before:-translate-y-1/2 before:rounded-full before:bg-inverted before:content-['']"
-                >
-                  {text}
-                </span>
-              ))}
             </p>
           </div>
         </div>

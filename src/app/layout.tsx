@@ -19,9 +19,9 @@ const alt_font = localFont({
 });
 
 const ibm_plex_sans = IBM_Plex_Sans({
-  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-ibm-plex",
+  weight: ["400", "500", "600", "700"],
 });
 
 const devTag = " (Dev Mode)";
@@ -46,7 +46,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning={true}
-      className={`${alt_font.className} ${copyright_font.variable} ${ibm_plex_sans.className}`}
+      className={`${copyright_font.variable} ${ibm_plex_sans.variable} ${alt_font.variable}`}
     >
       <body>
         <div id="top" />
