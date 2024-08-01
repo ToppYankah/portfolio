@@ -158,12 +158,12 @@ const AvailableForWork = () => {
   );
 
   return (
-    <div ref={scopeRef} className="relative mt-10 flex overflow-hidden">
+    <div ref={scopeRef} className="relative mt-10 flex overflow-hidden border-y dark:border-y-white/15 py-5">
       {Array(20)
         .fill("Available for work")
         .map((text, i) => (
           <div key={text + i} className="part flex items-center ">
-            <h1 className="text-md font-smooth whitespace-nowrap uppercase leading-[1em]">
+            <h1 className="text-md font-alt whitespace-nowrap capitalize leading-[1em]">
               {text}
             </h1>
             <div className="mx-8 overflow-hidden rounded-full bg-light p-1"></div>
