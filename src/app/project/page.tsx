@@ -7,6 +7,7 @@ import ProjectPageHeader from "./_components/Header";
 import { useGSAP } from "@gsap/react";
 import { ProjectInfo } from "./_components/ProjectInfo";
 import { ProjectChallenge } from "./_components/ProjectChallenge";
+import Footer from "~/components/Footer";
 
 export default function Page() {
   const { show: showSheet, hide: hideSheet } = useCoverSheet();
@@ -49,6 +50,7 @@ export default function Page() {
         />
       </SectionLayout>
       <ProjectChallenge />
+      <Footer />
     </main>
   );
 }

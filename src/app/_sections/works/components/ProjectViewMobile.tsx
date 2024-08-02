@@ -13,7 +13,7 @@ const ProjectViewMobile = forwardRef(
     return (
       <div
         onClick={handleClick}
-        className="min-w-[300px] flex-1 min-[700px]:max-w-[50%]"
+        className="min-w-[300px] flex-1 cursor-pointer min-[700px]:max-w-[50%]"
       >
         <div className="h-[clamp(250px,60%,500px)] w-full overflow-hidden rounded-[2rem] bg-inverted-light">
           <img
@@ -34,7 +34,10 @@ const ProjectViewMobile = forwardRef(
                 className="whitespace-nowrap text-xs"
                 key={project.name + "-tag-" + index}
               >
-                <b className="rounded-lg bg-accent-deep text-black p-2 py-0">#</b> {tag}
+                <b className="rounded-lg bg-accent-deep p-2 py-0 text-black">
+                  #
+                </b>{" "}
+                {tag}
               </span>
             ))}
           </div>
